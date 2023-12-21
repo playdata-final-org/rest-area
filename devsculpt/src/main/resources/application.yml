@@ -1,0 +1,24 @@
+# Server Port
+server:
+  port: 9851
+
+# DB Setting
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:xe
+    username: msa
+    password: msa
+
+  # JPA Setting
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      #ddl-auto: none
+
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+

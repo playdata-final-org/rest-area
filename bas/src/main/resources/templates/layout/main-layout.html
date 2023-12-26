@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ko"
+      th:fragment="layout(header_type,footer_type)">
+<head>
+    <!-- default-head insert -->
+    <th:block th:replace="~{layout/default-head :: head}"></th:block>
+    <!-- other page injection header -->
+    <th:block th:replace="~{this :: add_header}"></th:block>
+</head>
+
+<body>
+    <!-- 헤더 replace -->
+    <header th:replace="~{layout-switch/header-switch :: header-switch(${header_type})}"></header>
+    <section class="container-flude px-0">
+        <div class="row justify-content-center" >
+            <!-- 좌측 사이드바 영역-->
+                <div id="left_sidebar" th:replace="~{layout/left-sidebar :: sidebar-content}"></div>
+            <!-- content 영역 -->
+            <main th:replace="~{this :: content}"></main>
+        </div>
+    </section>
+    <!-- 푸터 replace -->
+    <footer th:replace="~{layout-switch/footer-switch :: footer-switch(${footer_type})}"></footer>
+
+</body>
+
+<!-- default-bottom insert -->
+<th:block th:replace="~{layout/default-bottom :: bottom}"></th:block>
+<!-- other page injection footer -->
+<th:block th:replace="~{this :: add_bottom}"></th:block>
+<script type="text/javascript" th:src="@{/js/floating-button.js}"></script>
+</html>

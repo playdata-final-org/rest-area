@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* 헤더(탑 네비게이션  */
+.cs-main-nav-bg {
+  background-color: #f8ebe6;
+}
+
+/* 메인 컨텐츠 백그라운드 색상 */
+.cs-main-content-bg {
+  background-color: #171717;
+}
+
+/* header 67 , footer 12 */
+.cs-content {
+  height: calc(100vh - 67px);
+  max-height: calc(100vh - 67px);
+  overflow-y: auto;
+}
+
+.cs-sidebar-menu {
+  position: fixed;
+  top: 40px;
+  left: 1000px;
+  z-index: 20;
+  box-shadow: rgb(91 91 91) 3px 5px 7px 1px;
+  border: 0.1px solid #b4b4b4;
+}
+
+.cs-sidebar-list-group {
+  height: calc(100vh - 67px);
+}
+
+button.navbar-toggler {
+  position: relative;
+  left: 1000px;
+}
+
+.navbar-brand{
+position: relative;
+right:1200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .cs-sidebar-menu {
+    left:100px;
+  }
+
+  button.navbar-toggler {
+    left: 500px;
+  }
+
+  .navbar-brand {
+    right: 500px; /* 필요에 따라 조정하세요 */
+  }
+}
+
+/*@media only screen and (max-width: 768px) {
+  .cs-sidebar-menu,
+  button.navbar-toggler,
+  .navbar-brand {
+    left: 0;
+    right: 0;
+  }*/
+
+
+
+.cs-profile-box {
+  min-height: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background: repeating-linear-gradient(to top left, #ff8000, #ffa54b, #ffd1a3);
+}
+
+.cs-profile-box .nickname {
+  color:#171717;
+}
+
+.cs-profile {
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+}
+
+
+.cs-floating-btn-container {
+  z-index: 3;
+  position: fixed;
+  bottom: 60px;
+  right: 35px;
+  display: flex;
+  /* 중앙 정렬을 위한 flex 설정 */
+  flex-direction: column;
+  /* 버튼들을 수직으로 정렬 */
+  align-items: center;
+  /* 가로 중앙 정렬 */
+}
+
+.cs-floating-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: white;
+  background-color: #ff5722;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.3s;
+}
+
+.cs-floating-sub-buttons {
+  display: flex;
+  flex-direction: column;
+  /* 하위 버튼들을 수직으로 배치 */
+  gap: 10px;
+  /* 각 버튼 사이의 간격 */
+  align-self: center;
+  /* 하위 버튼들을 중앙 정렬 */
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.cs-sub-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #666;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+
+
+.cs-floating-btn-container.cs-active .cs-floating-sub-buttons {
+  pointer-events: auto;
+  /* cs-active 상태에서는 클릭 가능하게 설정 */
+  opacity: 1;
+  /* cs-active 상태에서는 투명도 100%로 설정 */
+  transform: translateY(0);
+  /* cs-active 상태에서는 원래 위치로 설정 */
+}
+
+.cs-floating-btn-container.cs-active .cs-sub-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cs-floating-btn-container.cs-active .cs-floating-btn {
+  transform: rotate(45deg);
+  margin-top: 10px;
+}
+
+
+.cs-floating-btn-container.cs-active .cs-sub-btn:hover::before {
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: inherit;
+  /* 부모 요소의 배경색을 상속받습니다. */
+  opacity: 0.7;
+  /* 여기에서 원하는 투명도를 설정합니다. */
+  pointer-events: none;
+  /* 가상 요소 위의 마우스 동작을 방지합니다. */
+  content: ''
+}
+
+
+/* styles.css */
+
+
+
+

@@ -1,0 +1,96 @@
+body {
+  font-family: "Noto Sans KR";
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.fab {
+  color: orange;
+}
+
+.navbar {
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+}
+
+.navbar__logo {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjusted logo spacing */
+}
+
+.navbar__menu {
+  display: flex;
+  flex-grow: 1; /* Fill available space */
+  justify-content: center; /* Center menu items */
+  font-size: 14px;
+}
+
+.navbar__menu li {
+  padding: 8px 12px;
+}
+
+.navbar__buttons {
+  display: flex;
+}
+
+.navbar__buttons button {
+  margin-left: 8px;
+}
+
+.navbar__tooglebtn {
+  display: none;
+  position: absolute;
+  right: 32px;
+}
+
+.logo-img {
+  width: 100px;
+  height: 90px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar__logo {
+    margin-right: 0; /* Remove logo spacing */
+  }
+
+  .navbar__menu {
+    display: none;
+    width: 100%;
+    text-align: center; /* Center menu items */
+  }
+
+  .navbar__menu.active,
+  .navbar__icons.active,
+  .navbar__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar__buttons {
+    margin-top: 8px;
+  }
+
+  .navbar__tooglebtn {
+    display: block;
+  }
+}

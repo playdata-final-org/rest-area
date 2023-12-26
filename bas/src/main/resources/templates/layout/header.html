@@ -1,0 +1,60 @@
+<header th:fragment="header">
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+    id="main-navbar"
+    class="navbar navbar-light e-main-nav"
+    style="background-color: #ed9715"
+  >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler collapsed"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+       <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-button">
+      <a href="#"><i class="far fa-envelope"></i></a>
+      <a href="#"><i class="fas fa-bell"></i></a>
+      <a href="#"><i class="fas fa-gear"></i></a>
+      </div>
+
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <img
+          th:src="@{/assets/logo-removebg-preview.png}"
+          height="40"
+          alt=""
+          loading="lazy"
+        />
+      </a>
+
+      <!-- Search form -->
+<!--       <form class="d-none d-md-flex input-group w-auto my-auto">-->
+<!--        <input-->
+<!--          autocomplete="off"-->
+<!--          type="search"-->
+<!--          class="form-control rounded"-->
+<!--          placeholder='Search (ctrl + "/" to focus)'-->
+<!--          style="min-width: 225px"-->
+<!--        />-->
+<!--        <span class="input-group-text border-0"-->
+<!--          ><i class="fas fa-search"></i-->
+<!--        ></span>-->
+<!--      </form> -->
+
+      <!-- Right links -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+</header>

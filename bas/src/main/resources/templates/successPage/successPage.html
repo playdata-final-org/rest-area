@@ -1,0 +1,23 @@
+<!doctype html>
+<html html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div th:if="${successMessage}" class="text-success">
+    <span th:text="${successMessage}"></span>
+    <h1>메일이 성공적으로 보내졌습니다.</h1>
+    <h1>잠시 후 로그인 화면으로 이동합니다/</h1>
+    <script>
+        setTimeout(function () {
+            window.location.href = "/signin";
+        }, 3000);
+    </script>
+</div>
+
+</body>
+</html>

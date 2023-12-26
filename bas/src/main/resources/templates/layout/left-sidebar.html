@@ -1,0 +1,73 @@
+<nav
+        th:fragment="sidebar-content"
+        id="sidebarMenu"
+        class="sidebar bg-white col-11  col-xs-10 col-sm-9 col-md-8 col-lg-3 col-xl-2 collapse cs-sidebar-menu">
+    <div class="position-sticky">
+        <div class="list-group list-group-flush cs-sidebar-list-group">
+            <div class="p-1">
+                <div
+                        class="cs-profile-box justify-content-center d-flex flex-column bd-highlight text-center"
+                >
+                    <!-- <div class=""> -->
+                    <div class="mb-1">
+                        <img class="cs-profile"/>
+                    </div>
+                    <div>
+                        <p>
+                            <strong><span ><a href="#" class="nickname" >닉네임</a></span>
+                            </strong>
+                        </p>
+                        <!-- </div> -->
+                    </div>
+                    <!-- 타임리프 문법을 사용하여 session이 있으면 프로필 사진과 닉네임, 로그인 버튼이 표시되도록 처리해야함-->
+                </div>
+            </div>
+
+            <!-- 세션 있을때 -->
+
+            <!-- 세션 없을때 -->
+            <a th:if="${session.user == null}"
+               href="#"
+               class="list-group-item list-group-item-action py-2 ripple"
+               aria-current="true"
+               th:href="@{/user/profile}"
+            >
+                <i class="fa-solid fa-user fa-fw me-3"></i>
+
+                <span>마이페이지</span>
+            </a>
+            <a
+                    href="#"
+                    class="list-group-item list-group-item-action py-2 ripple active"
+                    th:href="@{/content/feed}"
+            >
+                <i class="fa-solid fa-comments fa-fw me-3"></i>
+                <span>피드</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+               th:href="@{/content/map}"
+            >
+                <i class="fa-solid fa-location-dot  fa-fw me-3"></i>
+                </i><span>맛집 지도</span></a
+            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+               th:href="@{/content/rank}"
+            ><i class="fa-solid fa-medal fa-fw me-3"></i><span>랭킹</span></a
+            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+               th:href="@{/board/qna}"
+            >
+                <i class="fa-solid fa-question fa-fw me-3"></i><span>Q&A 게시판</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+               th:href="@{/board/notice}"
+            ><i class="fa-solid fa-flag  fa-fw me-3"></i></i><span>공지사항</span></a
+            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+               th:href="@{/logout}"
+            ><i class="fa-solid fa-arrow-right-from-bracket fa-fw me-3"></i></i><span>로그아웃</span></a
+            >
+
+        </div>
+    </div>
+</nav>

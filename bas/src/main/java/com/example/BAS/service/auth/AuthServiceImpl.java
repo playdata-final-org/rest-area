@@ -24,6 +24,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -38,55 +39,104 @@ public class AuthServiceImpl implements AuthService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final FileService fileService;
     private final ProfileImageRepository profileImageRepository;
-    @Value("${spring.servlet.multipart.location}")
+
+    @Value("${spring.servlet.multipart.location}")    //yml에 설정한 경로 생성
     private String uploadPath;
 
-    @Transactional
+    @Transactional  //회원가입
     @Override
-    public AuthDTO signup(SignupDTO signupDTO) {
-
-        // 비밀번호 해싱
+    public AuthDTO signup(SignupDTO signupDTO) throws IOException {
+        //받아온 패스워드를 암호화해서 저장
         String rawPassword = signupDTO.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         signupDTO.setPassword(encPassword);
+
+        //회원가입시 받아온 권한 저장
         Authority authority = getOrCreateAuthority(signupDTO.getAuthority());
 
         //ModelMapper로 변환해서 저장
         ModelMapper mapper = new ModelMapper();
-        Users users = mapper.map(signupDTO, Users.class);
-        users.setAuthority(authority);
-        Users user = userDAO.save(users);
+        Users user = mapper.map(signupDTO, Users.class);
+        user.setAuthority(authority);
 
-        if (!(signupDTO.getProfileImage() == null)){
+        // 예외처리: 이미지가 null이 아니거나 비어있지 않을 시
+        if (signupDTO.getProfileImage() != null && !signupDTO.getProfileImage().isEmpty()){
+            //saveProfileImage메서드로 profileImage에 저장
             ProfileImage profileImage = saveProfileImage(signupDTO.getProfileImage());
-            users.updateProfileImage(profileImage);
+            //그 후 User엔티티에 업데이트
+            user.updateProfileImage(profileImage);
+        }else {
+            // 반대로 비어있거나 null인 상태이면 defaultProfileImage메서드로 디폴트 이미지를 저장
+            ProfileImage defaultImage = defaultProfileImage();
+            user.updateProfileImage(defaultImage);
         }
-
-        return mapper.map(user, AuthDTO.class);
+        // 정보들을 저장
+        Users savedUser = userDAO.save(user);
+        // AuthDTO를 생성하여 반환
+        return mapper.map(savedUser, AuthDTO.class);
     }
-    private ProfileImage saveProfileImage(MultipartFile file){
-        if(!file.getContentType().startsWith("image")){
-            log.warn("이미지 파일이 아닙니다.");
-            return null;
-        }
-        String originalName = file.getOriginalFilename();
-        Path root = Paths.get(uploadPath, "member");
+    @Override
+    public ProfileImage saveProfileImage(MultipartFile file) throws IOException {
+        // 이미지 파일이 아닌 경우 경고 메시지 출력
+        try {
+            //이미지가 null이거나 비었을시 처리
+            if(file == null || file.isEmpty()){
+                //defaultProfileImage 메서드에 반환
+                return defaultProfileImage();
+            }
+            //이미지 타입이 image가 아닐시 에러 발생 => 컨트롤러랑 연계
+            if(!file.getContentType().startsWith("image")){
+                log.warn("이미지 파일이 아닙니다.");
+                throw new IllegalArgumentException("이미지 파일이 아닙니다.");
+            }
+            //업로드 된 파일의 byte배열 가져오고 이름과 경로 처리
+            byte[] fileBytes = file.getBytes();
+            log.info("fileBytes: {} ", fileBytes);
+            String originalName = file.getOriginalFilename();
+            log.info("originalName = "+ originalName);
+            Path root = Paths.get(uploadPath,"users");
+            log.info("root = "+ root);
 
-        try{
             ImageDTO imageDTO = fileService.createImageDTO(originalName, root);
+            log.info("imageDTO = "+imageDTO);
             ProfileImage profileImage = ProfileImage.builder()
                     .uuid(imageDTO.getUuid())
                     .fileName(imageDTO.getFileName())
                     .fileUrl(imageDTO.getFileUrl())
+                    .imageData(fileBytes) // 바이트 배열로 저장
                     .build();
 
             file.transferTo(Paths.get(imageDTO.getFileUrl()));
-            return  profileImageRepository.save(profileImage);
+            log.info("profileImage = " + profileImage);
+            ProfileImage saveProfileImages = profileImageRepository.save(profileImage);
+            log.info("saveProfileImages: {}", saveProfileImages);
+            return saveProfileImages;
 
         } catch (IOException e) {
             log.warn("업로드 폴더 생성 실패: " + e.getMessage());
+            return null;
         }
-        return  null;
+    }
+
+    private ProfileImage defaultProfileImage() throws IOException {
+        //디폴트 이미지 생성 saveProfileImage메서드와 같은 방식임
+        String defaultProfileImage = "ai.png";
+        Path root = Paths.get(uploadPath, "users");
+        ImageDTO imageDTO = fileService.createImageDTO(defaultProfileImage, root);
+
+        byte[] defaultImageBytes = getDefaultImage();
+        return ProfileImage.builder()
+                .uuid(imageDTO.getUuid())
+                .fileName(imageDTO.getFileName())
+                .fileUrl(imageDTO.getFileUrl())
+                .imageData(defaultImageBytes)
+                .build();
+    }
+
+    private byte[] getDefaultImage() throws IOException {
+        //경로에 있는 지정한 디폴트 이미지를 바이트화 경로상에 지정한 이미지가 파일이 있어야함(ai.png)
+        Path defaultImagePath = Paths.get("C:/back_msa/rest-area/bas/src/main/resources/static/assets/ai.png");
+        return Files.readAllBytes(defaultImagePath);
     }
 
 
@@ -110,7 +160,7 @@ public class AuthServiceImpl implements AuthService {
 
     }
 
-    @Override
+    @Override //에러메시지
     public Map<String, String> errorMessage(Errors errors) {
         Map<String, String> result = new HashMap<>();
 
@@ -118,8 +168,6 @@ public class AuthServiceImpl implements AuthService {
             String key = String.format("error_%s", error.getField());
             result.put(key, error.getDefaultMessage());
         }
-
-
         return result;
     }
 

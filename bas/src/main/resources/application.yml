@@ -45,7 +45,7 @@ spring:
     multipart:
       max-file-size: 4MB
       max-request-size: 4MB
-      location: static/img
+      location: C:/back_msa/rest-area/bas/src/main/resources/static/img
 
 
 #  security:

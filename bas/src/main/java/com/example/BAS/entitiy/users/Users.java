@@ -25,7 +25,8 @@ public class Users {
     @Id
     @GeneratedValue
     private Long userId;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_image_id")
     private ProfileImage profileImage;
     private String username;
     @JsonIgnore

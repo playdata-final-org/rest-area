@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 public class UserDAOImpl implements UserDAO {
     private final UserRepository userRepository;
 
-
     @Override
     public Users findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -43,6 +42,5 @@ public class UserDAOImpl implements UserDAO {
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
-
 
 }

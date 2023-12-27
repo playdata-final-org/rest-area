@@ -9,6 +9,6 @@ public interface UserDAO {
     Users findByUserId(Long userId);
     Users findByEmail(String email);
     boolean existsByEmail(String email);
-
     boolean existsByUsername(String username);
+
 }

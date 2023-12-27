@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class Image {
     @Id
     @GeneratedValue
-    private Long ImageId;
+    private Long imageId;
     @NotNull
     private String uuid;
     @NotNull

@@ -12,11 +12,6 @@
         <!-- 표시 안할 경우 -->
         <th:block th:case="'none'"></th:block>
 
-        <!-- custom header1 -->
-        <th:block th:case="'white'">
-            <div th:replace="~{layout/header1 :: header}"></div>
-        </th:block>
-
         <!-- 이상한 값이 입력되었을 경우 -->
         <th:block th:case="*">
             <script>console.error('헤더에 예기치 못한 값이 값이 입력되었습니다');</script>

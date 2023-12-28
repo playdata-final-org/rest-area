@@ -19,7 +19,7 @@ public interface AuthService {
     boolean isUsernameDuplicate(String username);
     boolean isEmailDuplicate(String email);
 
-    ProfileImage saveProfileImage(MultipartFile file) throws IOException;
+
 
 
 }

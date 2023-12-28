@@ -2,7 +2,6 @@ package com.example.BAS.controller.auth;
 
 import com.example.BAS.config.security.PrincipalDetails;
 import com.example.BAS.dto.auth.SignupDTO;
-import com.example.BAS.entitiy.image.ProfileImage;
 import com.example.BAS.service.auth.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -82,8 +81,7 @@ public class AuthController {
                 model.addAttribute("signupError", "중복 체크를 해주세요.");
                 return "user/signup";
             }
-            //프로필 이미지 저장
-            authService.saveProfileImage(file);
+
             //프로필 이미지 처리중 Exception 발생 시 ErrorMessage를 모델에 담아 뷰로 보냄
             } catch (IllegalArgumentException e) {
                 model.addAttribute("imageError", "이미지 파일이 아닙니다.");

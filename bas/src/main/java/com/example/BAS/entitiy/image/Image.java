@@ -4,14 +4,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @SuperBuilder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Image {
@@ -24,4 +22,5 @@ public abstract class Image {
     private String fileName;
     @NotNull
     private String fileUrl;
+
 }

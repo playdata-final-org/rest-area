@@ -1,20 +1,56 @@
 @charset "utf-8"; /*인코딩시 깨지지말라고 붙여줘야함*/
 @import url('https://fonts.googleapis.com/css?family=Exo+2|Noto+Sans+KR&display=swap');
-/*reset*/
+
 * {margin: 0;padding: 0;}
 body {margin: 0;}
 h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd {margin: 0; padding: 0;}
 h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a img {border: none;}
+li {list-style: none;}
 a {color: inherit; text-decoration: inherit;}
 img {vertical-align: middle;}
-a img {border: none;}
-li {list-style: none;} /**/
 address, em, i {font-style: normal;}
 
-/*layout*/
 .mo {display: none;}
 .en {font-family: 'Exo 2', sans-serif;}
 body {font-family: 'Noto Sans KR', sans-serif; font-size: 14px;}
+
+/*layout*/
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* 헤더(탑 네비게이션  */
+.cs-main-nav-bg {
+  background-color: #f8ebe6;
+}
+
+/* 메인 컨텐츠 백그라운드 색상 */
+.cs-main-content-bg {
+  background-color: #f4d7d7;
+}
+
+/* header 67 , footer 12 */
+.cs-content {
+  height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.cs-sidebar-menu {
+  position: fixed;
+  top: 40px;
+  z-index: 20;
+  box-shadow: rgb(91 91 91) 3px 5px 7px 1px;
+  border: 0.1px solid #b4b4b4;
+}
+
+.cs-sidebar-list-group {
+  height: calc(100vh - 67px);
+}
+
+
 
 .wrap {margin: 0 auto; }
 
@@ -35,7 +71,7 @@ body {font-family: 'Noto Sans KR', sans-serif; font-size: 14px;}
     top: 0;
     }
 
-header {
+.mainHeader {
     position: fixed; /*브라우저에서 고정*/
     top:0;
     left: 0;
@@ -45,6 +81,16 @@ header {
     background: rgba(0,0,0,0.2);
     z-index: 200;
     }
+.fragment-header {
+    position: relative;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: #fff;
+    z-index: 200;
+}
 
 .innerHeader{
     width: 1600px;
@@ -111,6 +157,77 @@ header {
 }
 
 .innerHeader .tnb li:last-child a:hover {
+    background: #fff;
+    color:#ff8342;
+    transition: all 0.3s;
+}
+
+.fragmentHeader{
+    width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    }
+
+.fragmentHeader .fragmentLogo {
+    float: left;
+    position: relative;
+    left: 20px;
+    top: -5px;
+    }
+
+.fragmentHeader .fragmentLogo img {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    }
+
+.fragmentHeader .fnbMo {
+    display: none;
+    }
+
+.fragmentHeader .fnb {
+    float: right;
+    }
+.fragmentHeader .fnb li {
+    float: left;
+    position:relative;
+    right: 10px;
+    margin-right: 25px;
+    }
+.fragmentHeader .fnb li a{
+    display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.fragmentHeader .fnb li:nth-child(1) a i{
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.fragmentHeader .fnb li:last-child a {
+    display: block;
+    width: 200px;
+    line-height: 2;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    margin-top: 35px;
+}
+
+.fragmentHeader .fnb li:last-child a i {
+    margin-left: 5px;
+}
+
+.fragmentHeader .fnb li:nth-child(1) a:hover {
+    color:#ff8342;
+    transition: all 0.3s;
+}
+
+.fragmentHeader .fnb li:last-child a:hover {
     background: #fff;
     color:#ff8342;
     transition: all 0.3s;
@@ -592,6 +709,11 @@ footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',san
     .innerHeader .gnb li {margin-right: 40px;}
     .innerHeader .gnb li:last-child {margin-right: 0;}
     .innerHeader .tnb li {margin-right: 10px;}
+     header .fragmentHeader {width: 95%; min-width: 1024px;}
+        .fragmentHeader .fnb {margin-left: 50px;}
+        .fragmentHeader .fnb li {margin-right: 40px;}
+        .fragmentHeader .fnb li:last-child {margin-right: 0;}
+        .fragmentHeader .fnb li {margin-right: 10px;}
     section.about ul, section.rank .imgBox,section.me ul.list,section.start ul {width: 95%;}
     footer .inner{width: 95%; min-width: 90%;}
     footer .inner .list li {margin-left: 20px;}
@@ -602,6 +724,9 @@ footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',san
     header .innerHeader {width: 95%; min-width: 90%;}
     .innerHeader .gnb, .innerHeader .tnb {display: none;}
     .innerHeader .gnbMo {display: block; color: #fff; font-size: 40px;float: right;}
+    header .fragmentHeader {width: 95%; min-width: 90%;}
+        .fragmentHeader .fnb, .innerHeader .fnb {display: none;}
+        .fragmentHeader .fnbMo {display: block; color: #fff; font-size: 40px;float: right;}
     section.main .mainTitle {width: 80%;}
     section.me {margin-bottom: 50px; }
     section.me ul.in li p:before {left: -20px;}
@@ -633,7 +758,10 @@ footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',san
     @media screen and (max-width:414px) {
          header {height: 60px; line-height: 60px;}    
         .innerHeader {height: 100%; line-height: 60px;}    
-        .innerHeader .logo {padding-top: 5px;}     
+        .innerHeader .logo {padding-top: 5px;}
+         header {height: 60px; line-height: 60px;}
+                .fragmentHeader {height: 100%; line-height: 60px;}
+                .fragmentHeader .fragmentLogo {padding-top: 5px;}
         section.main .mainTitle h2 {font-size: 30px;}     
         section.main .mainTitle p {font-size: 16px;}    
         section.main .mainTitle .view {width: 150px; font-size: 14px;}    
@@ -655,6 +783,9 @@ footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',san
         header .innerHeader{min-width: 320px;}
         .innerHeader .logo {width: 140px; height: auto;}
         .innerHeader .gnbMo {margin-right: 10px;}
+        header .fragmentHeader{min-width: 320px;}
+                .fragmentHeader .fragmentLogo {width: 140px; height: auto;}
+                .fragmentHeader .fnbMo {margin-right: 10px;}
         section.main .mainTitle h2 {font-size: 22px;}
         section.main .mainTitle p {font-size: 14px;}
         section.about {padding: 10px 0;}

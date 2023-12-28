@@ -1,0 +1,19 @@
+@MappedSuperclass
+    -객체의 입장에서 공통 매핑 정보가 필요할 때 사용
+    -image를 저장하는 테이블을 나눠서 어차피 사용할 속성이 같으니
+     코드 재사용과 유지보수가 용이하고 확장성이 좋게 하려고 사용
+@SuperBuilder
+    -Lombok 라이브러리에서 제공하는 어노테이션 중 하나이며
+    이 어노테이션을 사용하면 자바 빈(Java Bean) 클래스를 빌더 패턴(Builder Pattern)으로 간편하게 구현할 수 있다.
+    -@Builder 어노테이션의 기능을 보완하기 위해 도입됨
+     @Builder 어노테이션으로는 상속받은 필드를 빌더에서 사용하지 못하는 등의 제한이 있었으나,
+     @SuperBuilder 어노테이션은 이러한 제한을 해결하고, 상속받은 필드도 빌더에서 사용할 수 있다.
+
+@LOB(Large Object)
+    -가변길이를 갖는 큰 데이터형 저장 할 수 있는 데이터 양이 4기가 ㄷㄷ
+    -@Lob
+     @Column(name = "photo", columnDefinition="BLOB") = binary데이터를 저장하는데 사용
+    -@Lob
+     @Column(name = "name", columnDefinition="VARCHAR(128)") = 문자기반의 데이터를 저장하는데 사용
+    -스프링은 자동으로 추론하여 어떤 타입으로 저장할지 판단함 ㄷ
+     =>String과 char 를 기본으로 하는 타입을 제외하면 @Blob으로 사용

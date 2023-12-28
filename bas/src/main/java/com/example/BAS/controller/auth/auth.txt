@@ -26,5 +26,13 @@
              4. 사용자 경험 저하: 입력 오류를 서버에 전송하기 전까지 확인 못함
              5.코드 중복성 : 백이랑 프론트에서 둘다 구현해야 할 수 가 있음. 유지보수가 어려워짐
 
+3.이슈: 프로필 이미지 2개씩 중복 저장
+        authService.saveProfileImage(file);
+        authService.signup(signupDTO);
+
+        둘다 이미지 파일을 저장할 수 있는 중복 코드
+
+        해결: authService.saveProfileImage(file);를 제거 후 서비스의 signup 메서드에서 호출하는 식으로
+             필요할 때 만 실행하게 수정
 
 

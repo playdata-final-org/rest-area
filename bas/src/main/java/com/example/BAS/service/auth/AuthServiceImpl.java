@@ -75,8 +75,8 @@ public class AuthServiceImpl implements AuthService {
         // AuthDTO를 생성하여 반환
         return mapper.map(savedUser, AuthDTO.class);
     }
-    @Override
-    public ProfileImage saveProfileImage(MultipartFile file) throws IOException {
+
+    private ProfileImage saveProfileImage(MultipartFile file) throws IOException {
         // 이미지 파일이 아닌 경우 경고 메시지 출력
         try {
             //이미지가 null이거나 비었을시 처리
@@ -89,28 +89,18 @@ public class AuthServiceImpl implements AuthService {
                 log.warn("이미지 파일이 아닙니다.");
                 throw new IllegalArgumentException("이미지 파일이 아닙니다.");
             }
-            //업로드 된 파일의 byte배열 가져오고 이름과 경로 처리
-            byte[] fileBytes = file.getBytes();
-            log.info("fileBytes: {} ", fileBytes);
-            String originalName = file.getOriginalFilename();
-            log.info("originalName = "+ originalName);
-            Path root = Paths.get(uploadPath,"users");
-            log.info("root = "+ root);
 
+            String originalName = file.getOriginalFilename();
+            Path root = Paths.get(uploadPath,"users");
             ImageDTO imageDTO = fileService.createImageDTO(originalName, root);
-            log.info("imageDTO = "+imageDTO);
             ProfileImage profileImage = ProfileImage.builder()
                     .uuid(imageDTO.getUuid())
                     .fileName(imageDTO.getFileName())
                     .fileUrl(imageDTO.getFileUrl())
-                    .imageData(fileBytes) // 바이트 배열로 저장
                     .build();
-
             file.transferTo(Paths.get(imageDTO.getFileUrl()));
-            log.info("profileImage = " + profileImage);
-            ProfileImage saveProfileImages = profileImageRepository.save(profileImage);
-            log.info("saveProfileImages: {}", saveProfileImages);
-            return saveProfileImages;
+
+            return profileImageRepository.save(profileImage);
 
         } catch (IOException e) {
             log.warn("업로드 폴더 생성 실패: " + e.getMessage());
@@ -124,12 +114,10 @@ public class AuthServiceImpl implements AuthService {
         Path root = Paths.get(uploadPath, "users");
         ImageDTO imageDTO = fileService.createImageDTO(defaultProfileImage, root);
 
-        byte[] defaultImageBytes = getDefaultImage();
         return ProfileImage.builder()
                 .uuid(imageDTO.getUuid())
                 .fileName(imageDTO.getFileName())
                 .fileUrl(imageDTO.getFileUrl())
-                .imageData(defaultImageBytes)
                 .build();
     }
 

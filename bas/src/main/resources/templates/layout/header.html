@@ -1,10 +1,43 @@
-<header th:fragment="header" class="fragment-header">
+<header th:fragment="header" class="fragment-header" xmlns="http://www.w3.org/1999/html">
     <div class="fragmentHeader">
-        <h1 class="fragmentLogo"><a href="index.html"><img th:src="@{/assets/BASTation2.png}" alt="BAS"></a></h1>
+        <h1 class="fragmentLogo"><a href="index.html"><img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>
+        <nav class="gnb">
+            <ul>
+                <li><a href="#">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
+            </ul>
+        </nav>
+
         <nav class="fnb">
             <ul>
-                <li><a href="signin">로그인</a></li>
-                <li><a href="#">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
+                <li>
+                <div class="upload-img"
+                     style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                    <img id="imagePreview" alt="" th:src="@{/assets/ai.png}"
+                         style="object-fit: cover; border-radius: 50%; width: 100%; height: 100%;">
+                </div>
+                </li>
+                <li>
+                    <button
+                            class="navbar-toggler collapsed"
+                            type="button"
+                            data-mdb-toggle="collapse"
+                            data-mdb-target="#sidebarMenu"
+                            aria-controls="sidebarMenu"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                    >
+                        <span>username</span></br>
+                        <span>role</span>
+                    </button>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bell fa-2x" aria-hidden="true" ></i></a>
+                </li>
+
+
             </ul>
         </nav>
         <nav class="fnbMo"><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a></nav>

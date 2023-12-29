@@ -40,15 +40,29 @@ body {
 
 .cs-sidebar-menu {
   position: fixed;
-  top: 40px;
-  z-index: 20;
+  right: 100px;
+  top: 70px;
+  z-index: 250;
   box-shadow: rgb(91 91 91) 3px 5px 7px 1px;
-  border: 0.1px solid #b4b4b4;
+  border: 2px solid #b4b4b4;
 }
 
 .cs-sidebar-list-group {
-  height: calc(100vh - 67px);
+  height: calc(100vh - 200px);
 }
+
+.navbar-toggler {
+    float: left;
+    padding: 20px;
+    font-size: 20px;
+    line-height: normal;
+    color: var(--mdb-navbar-color);
+    background-color: transparent;
+    border: var(--mdb-border-width) solid var(--mdb-navbar-toggler-border-color);
+    border-radius: var(--mdb-navbar-toggler-border-radius);
+    transition: var(--mdb-navbar-toggler-transition);
+}
+
 
 
 
@@ -174,6 +188,7 @@ body {
     position: relative;
     left: 20px;
     top: -5px;
+    margin-right: 50px;
     }
 
 .fragmentHeader .fragmentLogo img {
@@ -181,6 +196,46 @@ body {
     height: auto;
     margin-top: 30px;
     }
+
+.fragmentHeader .gnb {
+    float: left;
+    }
+.fragmentHeader .gnb li {
+    float: left;
+    margin-right: 80px;
+    }
+.fragmentHeader .gnb li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #0000000;
+    font-size: 16px;
+    }
+
+.fragmentHeader .gnb li:last-child a {
+    display: block;
+    width: 200px;
+    line-height: 2;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    margin-top: 35px;
+}
+
+.fragmentHeader .gnb li:last-child a i {
+    margin-left: 5px;
+}
+
+.fragmentHeader .gnb li:nth-child(1) a:hover {
+    color:#ff8342;
+    transition: all 0.3s;
+}
+
+.fragmentHeader .gnb li:last-child a:hover {
+    background: #0000000;
+    color:#ff8342;
+    transition: all 0.3s;
+}
 
 .fragmentHeader .fnbMo {
     display: none;
@@ -193,15 +248,15 @@ body {
     float: left;
     position:relative;
     right: 10px;
-    margin-right: 25px;
+    margin-right: 5px;
     }
 .fragmentHeader .fnb li a{
-    display:block;
     width: 100%;
     height: 100%;
     text-align: center;
     font-size: 16px;
-    color: #fff;
+    margin-left: 30px;
+    color: #0000000;
 }
 
 .fragmentHeader .fnb li:nth-child(1) a i{
@@ -210,16 +265,8 @@ body {
 }
 
 .fragmentHeader .fnb li:last-child a {
-    display: block;
-    width: 200px;
-    line-height: 2;
-    border: 1px solid #fff;
-    border-radius: 30px;
-    margin-top: 35px;
-}
-
-.fragmentHeader .fnb li:last-child a i {
-    margin-left: 5px;
+    font-size: 20px;
+        margin-right: 20px;
 }
 
 .fragmentHeader .fnb li:nth-child(1) a:hover {
@@ -228,7 +275,6 @@ body {
 }
 
 .fragmentHeader .fnb li:last-child a:hover {
-    background: #fff;
     color:#ff8342;
     transition: all 0.3s;
 }
@@ -726,7 +772,7 @@ footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',san
     .innerHeader .gnbMo {display: block; color: #fff; font-size: 40px;float: right;}
     header .fragmentHeader {width: 95%; min-width: 90%;}
         .fragmentHeader .fnb, .innerHeader .fnb {display: none;}
-        .fragmentHeader .fnbMo {display: block; color: #fff; font-size: 40px;float: right;}
+        .fragmentHeader .fnbMo {display: block; color: #000000; font-size: 40px;float: right;}
     section.main .mainTitle {width: 80%;}
     section.me {margin-bottom: 50px; }
     section.me ul.in li p:before {left: -20px;}

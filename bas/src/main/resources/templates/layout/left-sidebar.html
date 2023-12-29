@@ -32,7 +32,7 @@
                aria-current="true"
                th:href="@{/user/profile}"
             >
-                <i class="fa-solid fa-user fa-fw me-3"></i>
+                <i class="fa fa-address-book-o" aria-hidden="true"></i>
 
                 <span>마이페이지</span>
             </a>
@@ -41,27 +41,26 @@
                     class="list-group-item list-group-item-action py-2 ripple active"
                     th:href="@{/content/feed}"
             >
-                <i class="fa-solid fa-comments fa-fw me-3"></i>
-                <span>피드</span>
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span>크리에이터찾기</span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/content/map}"
             >
-                <i class="fa-solid fa-location-dot  fa-fw me-3"></i>
-                </i><span>맛집 지도</span></a
+                <i class="fa fa-handshake-o" aria-hidden="true"></i><span>후원중인크리에이터</span></a
             >
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/content/rank}"
-            ><i class="fa-solid fa-medal fa-fw me-3"></i><span>랭킹</span></a
+            ><i class="fa fa-credit-card" aria-hidden="true"></i><span>후원이력</span></a
             >
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/board/qna}"
             >
-                <i class="fa-solid fa-question fa-fw me-3"></i><span>Q&A 게시판</span>
+                <i class="fa fa-heart-o" aria-hidden="true"></i><span>메일 서비스로 이동하기</span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/board/notice}"
-            ><i class="fa-solid fa-flag  fa-fw me-3"></i></i><span>공지사항</span></a
+            ><i class="fa fa-heart-o" aria-hidden="true"></i><span>커뮤니티 서비스로 이동하기</span></a
             >
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/logout}"

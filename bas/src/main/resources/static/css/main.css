@@ -17,7 +17,7 @@ body {font-family: 'Noto Sans KR', sans-serif; font-size: 14px;}
 
 /*layout*/
 body {
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -28,7 +28,7 @@ body {
 
 /* 메인 컨텐츠 백그라운드 색상 */
 .cs-main-content-bg {
-  background-color: #f4d7d7;
+  background-color: #f5f5f5;
 }
 
 /* header 67 , footer 12 */
@@ -747,6 +747,44 @@ footer .inner .list li a {display: block; width: 100%; height: 100%; position: r
 footer .inner .list li a:after {content: ''; width: 4px; height: 4px; border-radius: 50%; background: #ccc; position: absolute; right: -50px; top:10px;  }
 footer .inner .list li a:hover,footer .inner .list li a:focus {color: #ff8342; text-decoration: underline;}
 footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',sans-serif;}
+
+/*blog*/
+section.blogMain .blogMainTitle {
+    position: relative;
+
+}
+
+section.blogMain .blogMainTitle img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    background:#fff;
+}
+
+section.blogMain .blogMainTitle .view {
+    position: absolute;
+    bottom: 20px;  /* 원하는 위치에 조절 */
+    right: 20px;  /* 원하는 위치에 조절 */
+    display: none;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 300;
+}
+
+section.blogMain .blogMainTitle:hover .view {
+    display: inline-block;
+}
+
+
+
+
+
+
+
 
 /*1599*/
 @media screen and (max-width:1599px) {

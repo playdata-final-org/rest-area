@@ -10,11 +10,12 @@
         <nav class="fnb">
             <ul>
                 <li>
-                <div class="upload-img"
-                     style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
-                    <img id="imagePreview" alt="" th:src="@{/assets/ai.png}"
-                         style="object-fit: cover; border-radius: 50%; width: 100%; height: 100%;">
-                </div>
+                    <div class="upload-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                        <img id="imagePreview" alt="Profile Image"
+                             th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
+                             fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}"
+                             style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                    </div>
                 </li>
                 <li>
                     <button
@@ -26,8 +27,8 @@
                             aria-expanded="false"
                             aria-label="Toggle navigation"
                     >
-                        <span>username</span></br>
-                        <span>role</span>
+                        <span th:text="${booster.username}">username</span></br>
+                        <span th:text="${booster.authority.authorityName}">role</span>
                     </button>
                 </li>
                 <li>

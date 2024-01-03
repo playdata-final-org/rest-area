@@ -1,8 +1,6 @@
-# Server Port
 server:
-  port: 9851
+  port: 1234
 
-# DB Setting
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
@@ -10,15 +8,19 @@ spring:
     username: msa
     password: msa
 
-  # JPA Setting
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
-      #ddl-auto: none
+    #ddl-auto: create
+      ddl-auto: none
 
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: true
 
+logging:
+  level:
+    org:
+      springframework:
+        web: TRACE

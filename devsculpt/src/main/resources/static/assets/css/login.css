@@ -1,0 +1,25 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px #000000;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.btn-dark:hover {
+    background-color: #1d2124;
+}

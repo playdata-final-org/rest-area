@@ -1,7 +1,9 @@
 package com.example.BAS.controller.auth;
 
 import com.example.BAS.config.security.PrincipalDetails;
+import com.example.BAS.dto.auth.AuthDTO;
 import com.example.BAS.dto.auth.SignupDTO;
+import com.example.BAS.entitiy.users.Users;
 import com.example.BAS.service.auth.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,14 +33,23 @@ public class AuthController {
         return "user/main";
     }
 
-    @GetMapping("/test") //로그인 성공 후 test페이지 -> 후 크리에이터:블로그 후원자:크리에이터 찾기
-    public String loginPage(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-        if ("ROLE_BOOSTER".equals(principalDetails.getUsers().getAuthority().getAuthorityName())) {
+    @GetMapping("/test")
+    public String loginPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        if ("ROLE_BOOSTER".equalsIgnoreCase(principalDetails.getUsers().getAuthority().getAuthorityName())) {
+            Users booster = principalDetails.getUsers();
+            if (booster.getProfileImage() != null) {
+                // UUID와 파일 이름을 모델에 추가
+                model.addAttribute("profileImageUuid", booster.getProfileImage().getUuid());
+                model.addAttribute("profileImageFileName", booster.getProfileImage().getFileName());
+            }
+            model.addAttribute("booster", booster);
+            System.out.println("booster = " + booster);
             return "user/test";
         } else {
             return "user/main";
         }
     }
+    
 
     @GetMapping("/signin") //로그인 페이지
     public String signForm() {

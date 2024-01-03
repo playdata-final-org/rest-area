@@ -10,4 +10,7 @@ public interface UserDAO {
     UserEntity findByUsernameOrNickName(String username, String nickName);
 
     UserEntity login(String username);
+
+    boolean idcheck(String username);
+
 }

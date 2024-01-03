@@ -12,4 +12,7 @@ public interface UserService {
 
     // 회원 아이디, 닉네임으로 조회하기
     UserResponseDTO findUserByIdAndNickName(String username, String nickName);
+    // 회원 아이디 중복 검사
+    boolean idcheck(String username);
+    // 회원 아이디 로그인
 }

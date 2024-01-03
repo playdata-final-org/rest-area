@@ -57,5 +57,8 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-
+    @Override
+    public boolean idcheck(String username) {
+        return dao.idcheck(username);
+    }
 }

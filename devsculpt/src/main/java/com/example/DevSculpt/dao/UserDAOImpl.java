@@ -13,6 +13,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public UserEntity save(UserEntity user) {
+        if (repository.existsByUsername(user.getUsername())) {
+            throw new RuntimeException("이미 존재하는 회원입니다.");
+        }
         return repository.save(user);
     }
 
@@ -26,9 +29,13 @@ public class UserDAOImpl implements UserDAO {
         return repository.findByUsernameOrNickName(username, nickName);
     }
 
-
     @Override
     public UserEntity login(String username) {
         return repository.findByUsername(username);
+    }
+
+    @Override
+    public boolean idcheck(String username) {
+        return repository.existsByUsername(username);
     }
 }

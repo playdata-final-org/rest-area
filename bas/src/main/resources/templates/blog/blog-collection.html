@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>blog-collection</title>
+</head>
+<body>
+<section class="blogHome" >
+    <div class="homeContainer">
+        <form action="" method="post" style="margin-bottom: 30px;">
+            <label>
+                <select name="tag"style="width: 150px; border: 2px solid #336699; font-size: 16px; padding: 5px;">
+                    <option value="id">등급</option>
+                    <option value="one">1단계</option>
+                    <option value="two">2단계</option>
+                    <option value="three">3단계</option>
+                </select>
+            </label>
+            <label>
+                <div style="display: flex; align-items: center;">
+                    <div style="position: relative;">
+                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
+                        <input type="text" name="search" placeholder="검색어를 입력하세요" style="border: 2px solid #336699; font-size: 16px; padding: 5px 5px 5px 30px;">
+                    </div>
+                </div>
+            </label>
+        </form>
+        <div class="card">
+            <img th:src="@{/assets/ai.png}" alt="Product Image">
+            <div class="card-body">
+                <h2 class="card-title">제목</h2>
+                <p class="card-text">날짜</p>
+                <p class="card-text">내용</p>
+            </div>
+            <div class="cardFile">
+                <p class="card-text">
+                    첨부된 파일: <a th:href="@{/download/frond-design.zip}" download="프론트디자인.zip">프론트디자인.zip</a>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img th:src="@{/assets/ai.png}" alt="Product Image">
+            <div class="card-body">
+                <h2 class="card-title">제목</h2>
+                <p class="card-text">날짜</p>
+                <p class="card-text">내용</p>
+            </div>
+            <div class="cardFile">
+                <p class="card-text">
+                    첨부된 파일: <a th:href="@{/download/frond-design.zip}" download="프론트디자인.zip">프론트디자인.zip</a>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img th:src="@{/assets/ai.png}" alt="Product Image">
+            <div class="card-body">
+                <h2 class="card-title">제목</h2>
+                <p class="card-text">날짜</p>
+                <p class="card-text">내용</p>
+            </div>
+            <div class="cardFile">
+                <p class="card-text">
+                    첨부된 파일: <a th:href="@{/download/frond-design.zip}" download="프론트디자인.zip">프론트디자인.zip</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -761,30 +761,198 @@ section.blogMain .blogMainTitle img {
     background:#fff;
 }
 
-section.blogMain .blogMainTitle .view {
+section.blogMain .blogMainTitle .coverChange {
     position: absolute;
-    bottom: 20px;  /* 원하는 위치에 조절 */
-    right: 20px;  /* 원하는 위치에 조절 */
+    bottom: 20px;
+    right: 20px;
     display: none;
     text-decoration: none;
     padding: 10px;
-    background-color: #3498db;
+    background-color: #8abde057;
     color: #fff;
     border-radius: 5px;
     transition: opacity 0.5s ease-in-out;
     z-index: 300;
 }
 
-section.blogMain .blogMainTitle:hover .view {
+section.blogMain .blogMainTitle:hover .coverChange {
     display: inline-block;
+}
+.blogBody {
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    width:100%
+
+}
+
+.blogInfo .username,
+.blogInfo .email {
+    margin-bottom: 10px;
+}
+
+.blogInfo .member-count,
+.blogInfo .post-count {
+    margin-right: 10px;
+}
+
+.blogBody .section{
+    flex: 2;
+    margin-right:2%;
+}
+
+.collectionWriteButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.blogWriteButtonContainer,
+.collectionWriteButtonContainer {
+     flex: 8;
+     margin: 30px;
+
+}
+
+.collectionWriteButton button.collectionWrite,
+.blogWriteButton button.blogWrite {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: transparent;
+    background-color: #8aa0ce;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+section.blogCategory button{
+    border: none;
+    background-color: transparent;
+}
+
+.highlightLine{
+    height: 3px;
+    background-color: #ddd;
 }
 
 
 
+/*=========================blog-Home=======================*/
 
+section.blogHome {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
+}
 
+section.blogHome .homeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+section.blogHome .homeContainer .card{
+    text-align: center;
+    width: 800px;
+    max-width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+section.blogHome .homeContainer .card img{
+   max-height: 300px;
+   width: auto;
+   object-fit: cover;
+   margin-bottom: 10px;
+}
+
+section.blogHome .homeContainer .card-body,
+section.blogHome .homeContainer .cardFile{
+   display: flex;
+   flex-direction: column;
+   text-align: left;
+}
+
+/*=========================blog-Collection=======================*/
+
+section.blogCollection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    flex-direction: row;
+}
+
+section.blogCollection .collectionContainer{
+    margin: 10px;
+}
+
+section.blogCollection .collectionContainer .card{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width:300px;
+    text-align: left;
+
+}
+
+section.blogCollection .collectionContainer .cardHeader{
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+section.blogCollection .collectionContainer .membershipButton{
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border: 3px solid #000;
+    padding: 10px;
+}
+
+section.blogCollection .collectionContainer .membershipButton button{
+     background-color: #000;
+     color: #fff;
+     border: none;
+     padding: 10px;
+     cursor: pointer;
+}
+
+/*=blog-About=*/
+
+section.blogAbout{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    flex-direction: row;
+}
+
+section.blogAbout .aboutContainer{
+    margin: 10px;
+}
+
+section.blogAbout .aboutContainer .card{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width:300px;
+    text-align: left;
+
+}
+
+section.blogAbout .aboutContainer .card p {
+    background-color: #f5f5f5;
+    padding: 10px;
+}
 
 /*1599*/
 @media screen and (max-width:1599px) {

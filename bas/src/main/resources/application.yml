@@ -23,8 +23,8 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
-      #ddl-auto: none
+      #ddl-auto: create
+      ddl-auto: none
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -47,6 +47,10 @@ spring:
       max-request-size: 4MB
       location: C:/back_msa/rest-area/bas/src/main/resources/static/img
 
+
+
+#  resources:
+#    static-locations=classpath:/static/**
 
 #  security:
 #    oauth2:

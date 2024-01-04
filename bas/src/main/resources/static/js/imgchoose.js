@@ -14,4 +14,5 @@ function imageChoose(input) {
         // 선택한 파일이 없는 경우 기본 이미지를 표시
         previewImage.src = 'assets/ai.png';
     }
+
 }

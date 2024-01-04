@@ -1,14 +1,73 @@
 <!DOCTYPE html>
-<th:block th:replace="~{layout/main-layout :: layout(default,none)}">
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
     <th:block th:fragment="add_header">
         <title>test</title>
     </th:block>
-    <div th:fragment="content">
-        
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <section class="blogMain">
+            <div class="blogMainTitle">
+                <img id="blogMainPreview" alt=""
+                     th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
+                             fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}">
+                <a href="#" class="coverChange" id="coverChange"><i class="fa fa-picture-o" aria-hidden="true"></i>커버
+                    이미지 설정</a>
+            </div>
+        </section>
+        <div class="blogBody">
+            <section class="blogWriteButtonContainer">
+                <div class="blogWriteButton">
+                    <button href="#" class="blogWrite"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+                </div>
+            </section>
+            <section class="blogInfo text-center" style="font-size: 18px;">
+                <div class="upload-img mx-auto"
+                     style="margin-bottom: -50px; width: 150px; height: 150px; border-radius: 10px; overflow: hidden; z-index: 250; position: relative; top: -80px; background: #fff;">
+                    <img id="imagePreview" alt="Profile Image"
+                         th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
+                     fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}"
+                         style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                    <img id="imagePreview1" alt="Profile Image"
+                         th:src="@{/img/users/{uuid}_{fileName}(uuid=${profileImageUuid},fileName=${profileImageFileName})}"
+                         style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                </div>
+                <span class="username" th:text="${booster.username}">username</span></br>
+                <span class="email" th:text="${booster.email}">email</span></br>
+                <span class="member-count">회원수:</span><span class="member-count">0명</span><span
+                    class="post-count">게시글 수</span><span class="post-count">0개</span>
+            </section>
+            <section class="collectionWriteButtonContainer">
+                <div class="collectionWriteButton">
+                    <button href="#" class="collectionWrite"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>작성하기
+                    </button>
+                </div>
+            </section>
+        </div>
+        <section class="blogCategory" style="font-size: 20px; margin-top: 30px;">
+            <nav class="bc" style="display: flex; align-content: center;align-items: center;flex-direction: column;">
+                <ul style="list-style-type: none; padding: 0; margin: 0; display: flex;">
+                    <li style="margin-right: 15px;"><button id="blogHome" onclick="handleButtonClick('blogHome', loadBlogHomeContent)">홈</button></li>
+                    <li style="margin-right: 15px;"><button id="blogCollection" onclick="handleButtonClick('blogCollection', loadBlogCollectionContent)">컬렉션</button></li>
+                    <li style="margin-right: 15px;"><button id="blogMembership" onclick="handleButtonClick('blogMembership', loadMembershipContent)">멤버십</button></li>
+                    <li><button id="blogAbout" onclick="handleButtonClick('blogAbout', loadBlogAboutContent)">소개</button></li>
+                </ul>
+                </ul>
+            </nav>
+        </section>
+        <section>
+            <div class="highlightLine"></div>
+            <div id="buttonHighlight"></div>
+        </section>
+        <div class="blogContent" id="blogContentContainer" style="margin-top: 20px;">
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        </div>
     </div>
     <th:block th:fragment="add_bottom">
-        <script type="text/javascript" th:src="@{/js/feed.js}"></script>
+
+        <script src="/js/home.js" type="text/javascript"></script>
+        <script src="/js/highlight.js" type="text/javascript"></script>
+
     </th:block>
-        
+
 </th:block>
-</html>

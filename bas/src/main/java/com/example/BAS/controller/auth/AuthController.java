@@ -33,7 +33,7 @@ public class AuthController {
         return "user/main";
     }
 
-    @GetMapping("/test")
+    @GetMapping("/blog")
     public String loginPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         if ("ROLE_BOOSTER".equalsIgnoreCase(principalDetails.getUsers().getAuthority().getAuthorityName())) {
             Users booster = principalDetails.getUsers();
@@ -44,7 +44,7 @@ public class AuthController {
             }
             model.addAttribute("booster", booster);
             System.out.println("booster = " + booster);
-            return "user/test";
+            return "blog/blog";
         } else {
             return "user/main";
         }

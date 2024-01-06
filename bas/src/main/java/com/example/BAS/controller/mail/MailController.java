@@ -23,16 +23,17 @@ public class MailController {
     private final MailService mailService;
     private final UserDAO userDAO;
 
+    // TODO-1 비밀번호 찾기는 없습니다, 비밀번호 재설정만이 필요함
     @GetMapping("/password-search") //비밀번호 찾기 페이지
     public String passwordSearch() {
         return "user/password-search";
     }
 
     @Transactional
-    @PostMapping("/sendEmail")
+    @PostMapping("/sendEmail") // TODO-1 rest-api rule 어김, 어떠한 목적인지 파악하기 힘든 api 및 method 명
     public String sendEmail(@RequestParam("email") String email, Model model) {
         // 먼저 회원이 입력한 이메일이 디비에 존재하는지 확인
-        if (!userDAO.existsByEmail(email)) {
+        if (!userDAO.existsByEmail(email)) { // TODO-1 GOOD
             model.addAttribute("errorMessage", "존재하지 않는 이메일입니다.");
             return "user/password-search";
         }

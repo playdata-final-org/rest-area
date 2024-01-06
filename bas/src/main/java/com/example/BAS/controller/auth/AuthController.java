@@ -75,16 +75,21 @@ public class AuthController {
                 model.addAttribute("signupDTO", signupDTO);
                 // 유효성 검사 결과를 Map으로 받아옴
                 Map<String, String> validationErrors = authService.errorMessage(errors);
+                // TODO-1 log 레벨 구분 필요, info, debug, warn, error
                 log.info("Validator Result: {}", validationErrors);
+
                 // 각 유효성 검사 결과를 모델에 추가
                 for (String key : validationErrors.keySet()) {
                     model.addAttribute(key, validationErrors.get(key));
                 }
                 return "user/signup";
             }
+
             // 중복 검사 - 아이디 중복 또는 이메일 중복이 있는지 확인
             boolean isUsernameDuplicate = authService.isUsernameDuplicate(signupDTO.getUsername());
             boolean isEmailDuplicate = authService.isEmailDuplicate(signupDTO.getEmail());
+
+            // TODO-1 둘중 하나라도 중복이면 안내가 가므로 사용자는 최대 2번 재시도를 해야함
             // 중복이 발생한 경우 회원가입 폼으로 돌아가기
             if (isUsernameDuplicate || isEmailDuplicate) {
                 model.addAttribute("usernameDuplicate", isUsernameDuplicate);
@@ -106,11 +111,13 @@ public class AuthController {
         log.info("SignupDTO: {}", signupDTO);
         return "user/signin";
     }
+    // TODO-1 아래 2개 api 는 하나로 합칠 수 있어보임, endpoint 구분 필요, validation/duplicatation/{category}
     @PostMapping("/checkDuplicateUsername")         //유저 네임 중복 검사
     @ResponseBody
     public String checkDuplicateUsername(@RequestParam String username) {
         return authService.checkDuplicateUsername(username);
     }
+
     @PostMapping("/checkDuplicateEmail")            //이메일 중복 검사
     @ResponseBody
     public String checkDuplicateEmail(@RequestParam String email) {

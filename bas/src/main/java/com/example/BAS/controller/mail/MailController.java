@@ -23,17 +23,17 @@ public class MailController {
     private final MailService mailService;
     private final UserDAO userDAO;
 
-    // TODO-1 비밀번호 찾기는 없습니다, 비밀번호 재설정만이 필요함
+    // TODO-1 done 비밀번호 찾기는 없습니다, 비밀번호 재설정만이 필요함
     @GetMapping("/password-search") //비밀번호 찾기 페이지
     public String passwordSearch() {
         return "user/password-search";
     }
 
     @Transactional
-    @PostMapping("/sendEmail") // TODO-1 rest-api rule 어김, 어떠한 목적인지 파악하기 힘든 api 및 method 명
+    @PostMapping("/sendEmail") // TODO-1 done rest-api rule 어김, 어떠한 목적인지 파악하기 힘든 api 및 method 명, POST /api/email
     public String sendEmail(@RequestParam("email") String email, Model model) {
         // 먼저 회원이 입력한 이메일이 디비에 존재하는지 확인
-        if (!userDAO.existsByEmail(email)) { // TODO-1 GOOD
+        if (!userDAO.existsByEmail(email)) { // TODO-1 done GOOD
             model.addAttribute("errorMessage", "존재하지 않는 이메일입니다.");
             return "user/password-search";
         }
@@ -42,15 +42,30 @@ public class MailController {
         MailDTO mailDTO = mailService.createMailAndChangePassword(email);
         log.info("MailController mailDTO=>[]" + mailDTO);
 
+        // 데이터 생성 (제어 가능)
+        // DB I/O(제어 가능)
+        // DB 성공시 외부 서비스 사용(제어 불가)
+
+        String pwd = userService.updatePassowrd()
+        if(!pwd){
+            return null;
+        }
+
+
+        MailDTO mailDTO = mailService.createMail(email, pwd);
         // 성공 여부
         boolean mailSend = mailService.mailSend(mailDTO);
         if (mailSend) {
             model.addAttribute("successMessage", "이메일 전송 성공 ");
             return "successPage/successPage";
         } else {
+            userService.updatePassowrd(originPwd)
             model.addAttribute("errorMessage", "이메일 전송 실패");
             return "user/password-search";
         }
+        // 데이터 생성 (= 내가 제어 가능)
+        // 외부 서비스 사용 (= 내가 제어 불가)
+        // 외부 서비스가 성공시 > DB I/O
     }
 }
 

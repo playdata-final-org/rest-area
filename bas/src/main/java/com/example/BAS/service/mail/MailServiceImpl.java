@@ -33,8 +33,8 @@ public class MailServiceImpl implements MailService {
         mailDTO.setMessage("안녕하세요! BAS 임시비밀번호 발급 안내 메일 입니다."
                 + " 회원님의 임시 비밀 번호는 " + temporaryPassword + " 입니다."
                 + "로그인 후에 회원 정보 수정 창에서 비밀 번호를 변경을 해 주세요!");
-        // TODO-1 잘못된 위치, mail 에서 password 를 변경하고 있음
-        // TODO-1 비밀번호를 변경한 후 메일을 보내고 있음, 만약 메일 전송이 실패했다면?
+        // TODO-1 done 잘못된 위치, mail 에서 password 를 변경하고 있음
+        // TODO-1 done 비밀번호를 변경한 후 메일을 보내고 있음, 만약 메일 전송이 실패했다면?
         // 사용자의 비빌번호를 암호화 된 임시 비밀번호로 업데이트
         updatePassword(temporaryPassword,email);
         return mailDTO;

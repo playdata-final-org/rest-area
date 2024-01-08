@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>blog-write</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <form  th:action="@{/blog}" method="post" class="container" id="blogForm">
+            <div class="creator-search-container">
+                <section class="creator-search-icon">
+                    <i class="fa fa-search fa-3x" aria-hidden="true"></i>
+                </section>
+
+                <section class="creator-search">
+                 <a  th:href="@{/creatorSearchList}"> <p>크리에이터찾기</p></a>
+                </section>
+
+                <section class="creator-search-bar">
+                    <div class="creator-search-bar-box">
+                        <label for="creator-search-bar-titleInput" >
+                            <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>
+                            <input type="text" id="creator-search-bar-titleInput" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
+                        </label>
+                    </div>
+                </section>
+
+                <section class="creator-search-bar-button">
+                    <div class="creator-search-bar-button-box">
+                        <button type="submit">템플릿</button>
+                        <button type="submit">리엑트</button>
+                        <button type="submit">스프링</button>
+                        <button type="submit">디자인</button>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </div>
+    <th:block th:fragment="add_bottom">
+
+    </th:block>
+
+</th:block>

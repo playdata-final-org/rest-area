@@ -1,9 +1,9 @@
 <header th:fragment="header" class="fragment-header" xmlns="http://www.w3.org/1999/html">
     <div class="fragmentHeader">
-        <h1 class="fragmentLogo"><a href="index.html"><img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>
+        <h1 class="fragmentLogo"><a th:href="@{/main}"><img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>
         <nav class="gnb">
             <ul>
-                <li><a href="#">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
+                <li><a th:href="@{/creator-search}">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
             </ul>
         </nav>
 

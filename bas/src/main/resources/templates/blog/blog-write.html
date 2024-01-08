@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>blog-write</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <form  th:action="@{/blog}" method="post" class="container" id="blogForm">
+            <section class="collection-imageUpload">
+                <div class="collection-imageUpload-box">
+                    <label>
+                        <input type="file" id="file1" name="file" style="display: none">
+                        이미지 업로드
+                    </label>
+                    <p>JPG,JPEG 또는 PNG파일</p>
+                </div>
+            </section>
+
+            <section class="collection-title">
+                <div class="collection-title-box">
+                    <label for="titleInput" >
+                        <input type="text" id="titleInput" placeholder="제목입력">
+                    </label>
+                </div>
+            </section>
+
+            <section class="collection-content">
+                <div class="collection-content-box">
+                    <label for="collection-content-Input" >
+                        <input type="text" id="collection-content-Input">
+                    </label>
+                </div>
+            </section>
+
+            <section class="collection-file-upload">
+                <div style="display: flex; justify-content: space-between; flex-direction: row; width:800px;">
+                    <h2>첨부파일</h2>
+                    <label for="file" class="upload-form" style="cursor: pointer; margin-left: 150px;">
+                        <input type="file" id="file" name="file" style="display: none">
+                        업로드
+                    </label>
+                </div>
+            </section>
+
+            <section class="collection-membership-choose">
+                <div class="collection-membership-choose-box">
+                    <button type="button" onclick="toggleMembership('allPublic')"><span>전체 공개</span></button>
+                    <button type="button" onclick="toggleMembership('paidPublic')"><span>유료 공개</span></button>
+                </div>
+            </section>
+
+            <section class="collection-membership-choose-select">
+                <div class="collection-membership-choose-select-box">
+                    <button type="button" onclick="toggleGrade('1등급')"><span>1등급</span></button>
+                    <button type="button" onclick="toggleGrade('2등급')"><span>2등급</span></button>
+                    <button type="button" onclick="toggleGrade('3등급')"><span>3등급</span></button>
+                </div>
+            </section>
+
+            <section class="collection-button">
+                <div class="collection-button-box">
+                    <button type="submit">업로드</button>
+                    <button type="submit">수정</button>
+                    <button type="submit">삭제</button>
+                </div>
+            </section>
+        </form>
+    </div>
+        <th:block th:fragment="add_bottom">
+            <script src="/js/blogWrite.js" type="text/javascript"></script>
+            <script src="/js/blogWriteInit.js" type="text/javascript"></script>
+        </th:block>
+
+</th:block>

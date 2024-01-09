@@ -8,7 +8,7 @@ classes/
 target/
 *.log
 *.log.*
-
+.env
 ### STS ###
 .apt_generated
 .classpath

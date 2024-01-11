@@ -1,25 +1,9 @@
+HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-bin/
-classes/
-target/
-*.log
-*.log.*
-.env
-node_modules/
-install-state.gz
-.pnp.*
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### STS ###
 .apt_generated
@@ -29,14 +13,18 @@ install-state.gz
 .settings
 .springBeans
 .sts4-cache
-.yarn
-nodemodules/
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -47,7 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### Mac ###
-.DS_Store
-cached-antora-playbook.yml

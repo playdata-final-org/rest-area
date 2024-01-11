@@ -1,4 +1,6 @@
 {
+  "name": "cloud-static",
+  "version": "0.0.1",
   "packageManager": "yarn@4.0.2",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -18,5 +20,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
-  "engines": {"node" : ">=18.0.0"}
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

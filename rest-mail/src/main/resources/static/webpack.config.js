@@ -2,7 +2,7 @@ const { loadFiles } = require("./load-webpack-files");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
 
-const DEV_SERVER_PORT = process.env.WEBPACK_DEV_SERVER_PORT ?? 9000;
+const DEV_SERVER_PORT = process.env.WEBPACK_DEV_SERVER_PORT ?? 9002;
 const path = require("path");
 console.log(loadFiles);
 module.exports = {

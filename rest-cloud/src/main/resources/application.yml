@@ -1,5 +1,5 @@
 resource:
   response-path: classpath:/static/dist
   request-path: /dist
-
-
+server:
+  port: ${APPLICATION_SERVER_PORT}

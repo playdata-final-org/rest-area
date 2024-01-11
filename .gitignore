@@ -29,7 +29,8 @@ install-state.gz
 .settings
 .springBeans
 .sts4-cache
-
+.yarn
+nodemodules/
 ### IntelliJ IDEA ###
 .idea
 *.iws

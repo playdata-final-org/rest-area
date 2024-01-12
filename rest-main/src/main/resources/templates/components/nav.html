@@ -1,0 +1,92 @@
+<th:block th:fragment="nav">
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img
+                        src="/asset/favicon.png"
+                        alt=""
+                        width="30"
+                        height="30"
+                        class="d-inline-block align-text-top"
+                />
+                <span>RestArea</span>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+                    <a class="nav-link" href="#">소개</a>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDarkDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                            >
+                                제품
+                            </a>
+                            <ul
+                                    class="dropdown-menu dropdown-menu-dark"
+                                    aria-labelledby="navbarDarkDropdownMenuLink"
+                            >
+                                <li>
+                                    <a class="dropdown-item" href="/intro/mail">Mail</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/intro/cloud">Cloud</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-link"
+
+                                data-bs-toggle="collapse"
+                                href="#nav-profile"
+                                role="button"
+                                aria-expanded="false"
+                                aria-controls="nav-profile"
+                        >
+                            <img
+                                    src="/asset/images/testuser.png"
+                                    class="cursor-pointer"
+                                    width="30"
+                            />
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-nav d-none">
+                    <a class="nav-link" href="//auth.restarea.com/login">로그인</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <div
+            class="row nav-profile w-100 justify-content-end collapse g-0"
+            id="nav-profile"
+            style=""
+    >
+        <div class="card layer col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="img">
+                <img src="/asset/images/testuser.png" width="50"/>
+            </div>
+            <p class="text-center"><strong class="email">test@gmail.com</strong></p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-center">
+                <a class="btn btn-link" href="//auth.restarea.com/manage/account" target="_blank">계정관리</a>
+                <form action="/logout" method="post">
+                    <button class="btn btn-link" id="nav-logout" type="submit">로그아웃</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>

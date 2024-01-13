@@ -112,7 +112,6 @@ public class AuthController {
         return "user/signin";
     }
     // TODO-1 done 아래 2개 api 는 하나로 합칠 수 있어보임, endpoint 구분 필요, validation/duplication/{category}
-    // 하위버젼
     @PostMapping("/checkDuplicateUsername")         //유저 네임 중복 검사
     @ResponseBody
     public String checkDuplicateUsername(@RequestParam String username) {

@@ -42,18 +42,6 @@ public class MailController {
         MailDTO mailDTO = mailService.createMailAndChangePassword(email);
         log.info("MailController mailDTO=>[]" + mailDTO);
 
-        // 데이터 생성 (제어 가능)
-        // DB I/O(제어 가능)
-        // DB 성공시 외부 서비스 사용(제어 불가)
-
-        String pwd = userService.updatePassowrd()
-        if(!pwd){
-            return null;
-        }
-
-
-        MailDTO mailDTO = mailService.createMail(email, pwd);
-        // 성공 여부
         boolean mailSend = mailService.mailSend(mailDTO);
         if (mailSend) {
             model.addAttribute("successMessage", "이메일 전송 성공 ");

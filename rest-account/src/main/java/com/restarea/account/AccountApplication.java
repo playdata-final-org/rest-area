@@ -1,4 +1,4 @@
-package com.restarea.auth;
+package com.restarea.account;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class AuthApplication {
+public class AccountApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthApplication.class, args);
+		SpringApplication.run(AccountApplication.class, args);
 	}
 
 }

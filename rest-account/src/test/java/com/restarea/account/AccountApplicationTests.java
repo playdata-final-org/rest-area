@@ -1,10 +1,10 @@
-package com.restarea.auth;
+package com.restarea.account;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AuthApplicationTests {
+class AccountApplicationTests {
 
 	@Test
 	void contextLoads() {

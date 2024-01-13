@@ -20,6 +20,7 @@ install-state.gz
 !.yarn/sdks
 !.yarn/versions
 
+**/resources/static/dist
 
 ### STS ###
 .apt_generated

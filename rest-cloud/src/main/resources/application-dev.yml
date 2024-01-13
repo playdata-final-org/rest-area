@@ -1,0 +1,5 @@
+resource:
+  response-path: http://localhost:${WEBPACK_DEV_SERVER_PORT}/src
+  request-path: http://localhost:${WEBPACK_DEV_SERVER_PORT}
+server:
+  port: ${APPLICATION_SERVER_PORT}

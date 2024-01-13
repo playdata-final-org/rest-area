@@ -75,7 +75,7 @@ public class AuthController {
                 model.addAttribute("signupDTO", signupDTO);
                 // 유효성 검사 결과를 Map으로 받아옴
                 Map<String, String> validationErrors = authService.errorMessage(errors);
-                // TODO-1 log 레벨 구분 필요, info, debug, error
+                // TODO-1 done log 레벨 구분 필요, info, debug, error
                 log.info("Validator Result: {}", validationErrors);
 
                 // 각 유효성 검사 결과를 모델에 추가

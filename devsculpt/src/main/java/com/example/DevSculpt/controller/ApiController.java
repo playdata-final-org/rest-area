@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ApiController {
 
     private final UserService service;
-    @PostMapping("/create") // TODO-1 rest-api done rule 에 어긋남. 행동 -> HTTP method, POST, GET, PUT, DELETE, 자원(resource, 복수형)
+    @PostMapping("/create") // TODO-1 done rest-api rule 에 어긋남. 행동 -> HTTP method, POST, GET, PUT, DELETE, 자원(resource, 복수형)
     public ResponseEntity<String> createUser(@Valid @RequestBody UserRequestDTO requestDTO) {
         service.createUser(requestDTO);
         return ResponseEntity.ok("성공");

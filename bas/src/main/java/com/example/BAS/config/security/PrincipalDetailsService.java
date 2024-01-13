@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+// TODO-2 docs 을 사용할것이라면 official docs format 을 따라 가는게 좋다.
 @RequiredArgsConstructor
 @Service
 public class PrincipalDetailsService implements UserDetailsService {

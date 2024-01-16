@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5"
+    />
+    <meta name="author" content="AdminKit" />
+    <meta
+      name="keywords"
+      content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="/asset/img/icons/email.png" />
+
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+    <title>메일내용</title>
+
+    <link th:href="${@environment.getProperty('resource.request-path')} + /css/app.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+          <a class="sidebar-brand" href="email-inbox.html">
+            <span class="align-middle">메일함</span>
+          </a>
+
+          <ul class="sidebar-nav">
+            <li class="sidebar-header">목록</li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-write.html">
+                <i class="align-middle" data-feather="send"></i>
+                <span class="align-middle">메일작성</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item active">
+              <a class="sidebar-link" href="email-inbox.html">
+                <i class="align-middle" data-feather="arrow-down-left"></i>
+                <span class="align-middle">받은메일함</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-outbox.html">
+                <i class="align-middle" data-feather="arrow-up-right"></i>
+                <span class="align-middle">보낸메일함</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-favorites.html">
+                <i class="align-middle" data-feather="star"></i>
+                <span class="align-middle">즐겨찾기</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-trash.html">
+                <i class="align-middle" data-feather="trash-2"></i>
+                <span class="align-middle">휴지통</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="검색"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              <i class="align-middle" data-feather="search"></i>
+            </button>
+          </form>
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="position-relative">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="indicator">4</span>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <div class="dropdown-menu-header">알림</div>
+                  <div class="list-group">
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/03</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/02</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/01</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2023/12/31</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                  href="#"
+                  xxl-
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="settings"></i>
+                </a>
+
+                <a
+                  class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="asset/img/avatars/youngbin.jpg"
+                    class="avatar img-fluid rounded me-1"
+                    alt="Charles Hall"
+                  />
+                  <span class="text-dark">전영빈</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="pages-profile.html"
+                    ><i class="align-middle me-1" data-feather="user"></i>
+                    마이페이지</a
+                  >
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="pages-sign-in.html"
+                    ><i class="align-middle me-1" data-feather="log-out"></i>
+                    로그아웃</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content">
+          <a class="inbox" href="email-inbox.html">
+            <strong>&lt; 받은메일함</strong>
+          </a>
+          <br />
+          <form>
+            <div class="row mb-3">
+              <label
+                for="inputTitle
+              3"
+                class="col-sm-2 col-form-label"
+                >제목</label
+              >
+              <div class="col-sm-10">안녕하세요</div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >보낸사람</label
+              >
+              <div class="col-sm-10">test@gmail.com</div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >받는사람</label
+              >
+              <div class="col-sm-10">kasdf12347@naver.com</div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >참조</label
+              >
+              <div class="col-sm-10">dudqlswjs98@naver.com</div>
+            </div>
+          </form>
+
+          <form class="was-validated">
+            <div class="mb-3">
+              <div class="form-control-maildetail" id="formGroupExampleInput">
+                <h2>안녕하세요 playdata 백엔드 4기 전영빈 학생입니다.</h2>
+
+                <figure class="image image-style-side">
+                  <img
+                    src="https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg"
+                    srcset="
+                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg,
+                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano_2x.jpg 2x
+                    "
+                    alt="A lone wanderer looking at Mount Bromo volcano in Indonesia."
+                  />
+                  <figcaption>경치가 좋네요</figcaption>
+                </figure>
+
+                <h3>등산을 했습니다.</h3>
+
+                <p>공기가 좋네요</p>
+              </div>
+            </div>
+            <div class="col-12">
+              <button
+                class="btn btn-primary"
+                type="button"
+                onclick="location.href='email-write.html'"
+              >
+                회신하기
+              </button>
+              <button
+                class="btn btn-secondary"
+                type="button"
+                onclick="location.href='email-inbox.html'"
+              >
+                뒤로가기
+              </button>
+            </div>
+          </form>
+        </main>
+
+        <footer></footer>
+      </div>
+    </div>
+
+    <script th:src="${@environment.getProperty('resource.request-path')} + js/app.js"></script>
+
+  </body>
+</html>

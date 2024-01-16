@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5"
+    />
+    <meta name="author" content="AdminKit" />
+    <meta
+      name="keywords"
+      content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="/asset/img/icons/email.png" />
+
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+    <title>즐겨찾기</title>
+
+    <link th:href="${@environment.getProperty('resource.request-path')} + /css/app.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+          <a class="sidebar-brand" href="email-inbox.html">
+            <span class="align-middle">메일함</span>
+          </a>
+
+          <ul class="sidebar-nav">
+            <li class="sidebar-header">목록</li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-write.html">
+                <i class="align-middle" data-feather="send"></i>
+                <span class="align-middle">메일작성</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-inbox.html">
+                <i class="align-middle" data-feather="arrow-down-left"></i>
+                <span class="align-middle">받은메일함</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-outbox.html">
+                <i class="align-middle" data-feather="arrow-up-right"></i>
+                <span class="align-middle">보낸메일함</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item active">
+              <a class="sidebar-link" href="email-favorites.html">
+                <i class="align-middle" data-feather="star"></i>
+                <span class="align-middle">즐겨찾기</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="email-trash.html">
+                <i class="align-middle" data-feather="trash-2"></i>
+                <span class="align-middle">휴지통</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="검색"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              <i class="align-middle" data-feather="search"></i>
+            </button>
+          </form>
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="position-relative">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="indicator">4</span>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <div class="dropdown-menu-header">알림</div>
+                  <div class="list-group">
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/03</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/02</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2024/01/01</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="email-inbox-detail.html" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-mail" data-feather="mail"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">안녕하세요</div>
+                          <div class="text-muted small mt-1">
+                            test@gmail.com
+                          </div>
+                          <div class="text-muted small mt-1">2023/12/31</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                  href="#"
+                  xxl-
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="settings"></i>
+                </a>
+
+                <a
+                  class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="asset/img/avatars/youngbin.jpg"
+                    class="avatar img-fluid rounded me-1"
+                    alt="Charles Hall"
+                  />
+                  <span class="text-dark">전영빈</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="pages-profile.html"
+                    ><i class="align-middle me-1" data-feather="user"></i>
+                    마이페이지</a
+                  >
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="pages-sign-in.html"
+                    ><i class="align-middle me-1" data-feather="log-out"></i>
+                    로그아웃</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content">
+          <div class="container-fluid p-0">
+            <h1 class="h3 mb-3"><strong>즐겨찾기</strong></h1>
+
+            <div class="row">
+              <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+                <div class="card flex-fill">
+                  <div class="card-header">
+                    <div class="openBtn">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-trash-2 align-middle"
+                      >
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path
+                          d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                        ></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                      </svg>
+                    </div>
+                    <div class="modal hidden">
+                      <div class="bg"></div>
+                      <div class="modalBox">
+                        <p>휴지통으로 보내겠습니까?</p>
+                        <button class="closeBtn">휴지통</button>
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-hover my-0">
+                    <thead>
+                      <tr>
+                        <th>즐겨찾기</th>
+                        <th class="d-none d-xl-table-cell">이메일</th>
+                        <th class="d-none d-xl-table-cell">제목</th>
+                        <th></th>
+                        <th class="d-none d-xl-table-cell">보낸 시간</th>
+                        <th>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="cbx_chkAll"
+                          />
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2024/01/03</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2024/01/02</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2024/01/01</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2023/12/31</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2023/12/30</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2023/12/29</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2023/12/28</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          &nbsp
+                          <div
+                            class="star-btn"
+                            onclick="toggleColor(this)"
+                          ></div>
+                        </td>
+                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td
+                          class="d-none d-xl-table-cell"
+                          onclick="location.href='email-favorites-detail.html'"
+                        >
+                          안녕하세요
+                        </td>
+                        <td></td>
+                        <td class="d-none d-xl-table-cell">2023/12/27</td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="chk"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer></footer>
+      </div>
+    </div>
+
+    <script th:src="${@environment.getProperty('resource.request-path')} + js/app.js"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + js/toggleColor.js"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + js/cbx_chkAll.js"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + js/modal.js"></script>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 const { loadFiles } = require("./load-webpack-files");
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
 
@@ -33,6 +34,9 @@ module.exports = {
     port: DEV_SERVER_PORT,
   },
   resolve: {
-    modules: ["node_modules"],
+    plugins: [PnpWebpackPlugin],
+  },
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
 };

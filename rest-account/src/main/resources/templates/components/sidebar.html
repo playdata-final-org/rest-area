@@ -1,0 +1,24 @@
+<th:block th:fragment="sidebar">
+  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
+    <div class="position-sticky pt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item"
+            th:classappend="${#strings.startsWith(servletPath,'/manage/personal-info')} == true ? 'active' ">
+          <a class="nav-link " aria-current="page" href="/manage/personal-info">
+            <i class="fa-solid fa-user">개인정보</i>
+            개인정보
+          </a>
+        </li>
+        <li class="nav-item"
+            th:classappend="${#strings.startsWith(servletPath,'/manage/payment')} == true ? 'active' ">
+          <a class="nav-link" href="/manage/payment">
+            <i class="fa-solid fa-money-bill">
+              <span>결제</span>
+            </i>
+            결제
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</th:block>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="icon" href="/asset/favicon.png" />
+    <th:block th:replace="include/top :: top"></th:block>
+</head>
+<body class="background-cover">
+<div class="d-none d-sm-block top-cover"></div>
+<div class="container-fluid px-2" style="min-height:80vh";>
+    <div class="row justify-content-center">
+
+        <div class="card col-sm-12 col-md-10 col-lg-7 col-xl-6 col-xxl-5">
+            <div class="card-body">
+                <div class="text-center">
+
+                    <img src="/asset/favicon.png" alt="" width="80" height="80" class="d-inline-block align-text-top">
+                    <h3 class="mt-3">SingUp</h3>
+                </div>
+                <h4 class="card-subtitle mb-3 text-muted">필수사항</h4>
+                <div class="row mb-1">
+                    <div class="col-12 col-sm-3 mb-1">
+                        <label for="email" class="form-label mb-0 mt-1">* 이메일</label>
+                    </div>
+                    <div class="col-12 col-sm-6  col-md-6 mb-0  mx-0">
+                        <input type="email" class="form-control email-min-width" id="email" placeholder="@restarea.com 제외 입력">
+                        <p class="mb-0">
+                            <span class="success-text">12123123123</span>
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-3 mb-2">
+                        <button class="btn btn-primary w-100" id="email-duplicate-check" type="button">중복체크</button>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-12 col-sm-3 mb-0">
+                        <label for="password" class="form-label mb-0">* 비밀번호</label>
+
+                    </div>
+                    <div class="col-12 col-sm-9">
+                        <input type="password" class="form-control" id="password"
+                        placeholder="8자리 이상, 특수문자 포함">
+                        <p>
+                            <span class="fail-text">12123123123</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12 col-sm-3 mb-0">
+                        <label for="password2" class="form-label mb-0">* 재입력</label>
+                    </div>
+                    <div class="col-12 col-sm-9">
+                        <input type="password" class="form-control" id="password2"
+                               placeholder="8자리 이상, 특수문자 포함">
+                        <p>
+                            <span class="success-text">12123123123</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 약관 -->
+                <div class="row mb-3">
+                    <div class="col-8 col-sm-3">
+                        <p class="d-inline">
+                            <span>약관 동의</span>
+                        </p>
+                    </div>
+                    <div class="col-4 col-sm-6">
+                        <p class="d-inline">
+                            <a href="/policy/term" target="_blank" class="card-link d-inline mb-1">전문 보기</a>
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="term-agree" name="agree" data-attribute="term">
+                            <label class="form-check-label" for="term-agree">
+                                동의
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- 개인정보처리방침 -->
+                <div class="row mb-3">
+                    <div class="col-8 col-sm-3">
+                        <p class="d-inline">
+                            <span>개인정보처리 동의</span>
+                        </p>
+                    </div>
+                    <div class="col-4 col-sm-6">
+                        <p class="d-inline">
+                            <a href="/policy/privacy" target="_blank" class="card-link d-inline mb-1">전문 보기</a>
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="privacy-agree" name="agree" data-attribute="privacy">
+                            <label class="form-check-label" for="privacy-agree">
+                                동의
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4"/>
+
+                <!-- 선택 사항 -->
+                <h4 class="card-subtitle mb-3 text-muted mt-3">선택사항</h4>
+                <!-- 복구 이메일 -->
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-3 mb-1">
+                        <label for="restore-email" class="form-label mb-0 mt-1">복구 이메일</label>
+                    </div>
+                    <div class="col-12 col-sm-9 mb-0  mx-0">
+                        <input type="email" class="form-control email-min-width" id="restore-email">
+                        <p>
+                            <span class="fail-text">이메일 형식에 맞지 않습니다.</span>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            <span class="desc-text">아이디 또는 패스워드 찾기를 위해 복구 이메일을 지정 할 수 있습니다.</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 카드 정보 -->
+                <div class="row mb-3">
+                    <div class="col-12 col-sm-3 mb-1">
+                        <label for="restore-email" class="form-label mb-0 mt-1">카드번호</label>
+                    </div>
+                    <div class="col-12 col-sm-9 mb-3  mx-0">
+                        <input type="number" name="card-number" min="0" max="9999" class="px-0 text-center form-control d-inline w-20">
+                        &nbsp;-&nbsp;
+                        <input type="number" name="card-number" min="0" max="9999" class="px-0 text-center form-control d-inline w-20">
+                        &nbsp;-&nbsp;
+                        <input type="number" name="card-number" min="0" max="9999" class="px-0 text-center form-control d-inline w-20">
+                        &nbsp;-&nbsp;
+                        <input type="number" name="card-number" min="0" max="9999" class="px-0 text-center form-control d-inline w-20">
+                    </div>
+                    <div class="col-12 col-sm-3 mb-1">
+                        <label for="restore-email" class="form-label mb-0 mt-1">CVC</label>
+                    </div>
+                    <div class="col-12 col-sm-3 mb-3  mx-0">
+                        <input type="number" name="cvc-number" class="form-control" min="0" max="999" placeholder="숫자 3자리">
+                    </div>
+                    <div class="col-12 col-sm-3 mb-1">
+                        <label for="restore-email" class="form-label mb-0 mt-1">유효기간</label>
+                    </div>
+                    <div class="col-12 col-sm-3 mb-0  mx-0">
+                        <input type="text" name="card-number" class="form-control" placeholder="MM/YY">
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            <span class="desc-text">RestArea에서 제공하는 서비스에서 사용될 결제정보입니다.</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 회원가입 -->
+                <div class="row mt-3">
+                    <div class="d-grid gap-2 col-12 col-xl-4 mx-auto">
+                        <button class="btn btn-primary " id="signin" type="button">가입완료</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="d-none d-sm-block bottom-cover"></div>
+</body>
+</html>

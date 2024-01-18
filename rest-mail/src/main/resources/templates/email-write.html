@@ -24,7 +24,8 @@
 
     <title>메일작성</title>
 
-    <link th:href="${@environment.getProperty('resource.request-path')} + '/css/app.css'" rel="stylesheet" />
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -47,7 +48,7 @@
     <div class="wrapper">
       <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-          <a class="sidebar-brand" href="email-inbox.html">
+          <a class="sidebar-brand" href="/inbox">
             <span class="align-middle">메일함</span>
           </a>
 
@@ -55,37 +56,41 @@
             <li class="sidebar-header">목록</li>
 
             <li class="sidebar-item active">
-              <a class="sidebar-link" href="email-write.html">
+              <a class="sidebar-link" href="/write">
                 <i class="align-middle" data-feather="send"></i>
                 <span class="align-middle">메일작성</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-inbox.html">
+              <a class="sidebar-link" href="/inbox">
                 <i class="align-middle" data-feather="arrow-down-left"></i>
                 <span class="align-middle">받은메일함</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-outbox.html">
+              <a class="sidebar-link" href="/outbox">
                 <i class="align-middle" data-feather="arrow-up-right"></i>
                 <span class="align-middle">보낸메일함</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-favorites.html">
+              <a class="sidebar-link" href="/favorites">
                 <i class="align-middle" data-feather="star"></i>
                 <span class="align-middle">즐겨찾기</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-trash.html">
+              <a class="sidebar-link" href="/trash">
                 <i class="align-middle" data-feather="trash-2"></i>
                 <span class="align-middle">휴지통</span>
+                <span class="bsU">205</span>
               </a>
             </li>
           </ul>
@@ -112,84 +117,6 @@
             <ul class="navbar-nav navbar-align">
               <li class="nav-item dropdown">
                 <a
-                  class="nav-icon dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  data-bs-toggle="dropdown"
-                >
-                  <div class="position-relative">
-                    <i class="align-middle" data-feather="bell"></i>
-                    <span class="indicator">4</span>
-                  </div>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
-                  aria-labelledby="alertsDropdown"
-                >
-                  <div class="dropdown-menu-header">알림</div>
-                  <div class="list-group">
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/03</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/02</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/01</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2023/12/31</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
                   class="nav-icon dropdown-toggle d-inline-block d-sm-none"
                   href="#"
                   xxl-
@@ -204,7 +131,7 @@
                   data-bs-toggle="dropdown"
                 >
                   <img
-                    src="asset/img/avatars/youngbin.jpg"
+                    src="/asset/img/avatars/youngbin.jpg"
                     class="avatar img-fluid rounded me-1"
                     alt="Charles Hall"
                   />
@@ -213,7 +140,7 @@
                 <div class="dropdown-menu dropdown-menu-end">
                   <a class="dropdown-item" href="pages-profile.html"
                     ><i class="align-middle me-1" data-feather="user"></i>
-                    마이페이지</a
+                    계정관리</a
                   >
 
                   <div class="dropdown-divider"></div>
@@ -229,7 +156,7 @@
 
         <main class="content">
           <h1 class="h3 mb-3"><strong>메일작성</strong></h1>
-          <form>
+          <form th:action="@{/mail}" method="post">
             <div class="row mb-3">
               <label
                 for="inputTitle
@@ -238,7 +165,7 @@
                 >제목</label
               >
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" />
+                <input type="email" class="form-control" name="title" id="inputEmail1" />
               </div>
             </div>
             <div class="row mb-3">
@@ -246,7 +173,7 @@
                 >받는사람</label
               >
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" />
+                <input type="email" class="form-control" name="address" id="inputEmai2" />
               </div>
             </div>
             <div class="row mb-3">
@@ -254,28 +181,29 @@
                 >참조</label
               >
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" />
+                <input type="email" class="form-control" name="ccAddress" id="inputEmail3" />
               </div>
             </div>
-          </form>
-
           <div class="mb-3">
             <input
               type="file"
               class="form-control"
+              name="file"
               aria-label="file example"
               required
             />
           </div>
-          <form class="was-validated">
+          </form>
+          <form class="was-validated" th:action="@{/mail}" method="post">
             <div class="mb-3">
               <label for="formGroupExampleInput" class="form-label"
                 >메일작성</label
               >
-              <div id="summernote"></div>
+              <div id="summernote" name="message"></div>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" type="submit">메일 보내기</button>
+              <button class="btn btn-primary" type="button" onclick="location.href='/mail/send'">메일 보내기</button>
+              <button>발송</button>
             </div>
           </form>
         </main>
@@ -284,7 +212,8 @@
       </div>
     </div>
 
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/app.js"></script>
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/summernote.js"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/app.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/summernote.js'"></script>
+
   </body>
 </html>

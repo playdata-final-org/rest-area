@@ -23,9 +23,7 @@
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
     <title>보낸메일함</title>
-
-    <link th:href="${@environment.getProperty('resource.request-path')} + /css/app.css" rel="stylesheet" />
-    <link th:href="${@environment.getProperty('resource.request-path')} + /js/cbx_chkAll.js" rel="stylesheet" />
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -40,7 +38,7 @@
     <div class="wrapper">
       <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-          <a class="sidebar-brand" href="email-inbox.html">
+          <a class="sidebar-brand" href="/inbox">
             <span class="align-middle">메일함</span>
           </a>
 
@@ -48,37 +46,41 @@
             <li class="sidebar-header">목록</li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-write.html">
+              <a class="sidebar-link" href="/write">
                 <i class="align-middle" data-feather="send"></i>
                 <span class="align-middle">메일작성</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-inbox.html">
+              <a class="sidebar-link" href="/inbox">
                 <i class="align-middle" data-feather="arrow-down-left"></i>
                 <span class="align-middle">받은메일함</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item active">
-              <a class="sidebar-link" href="email-outbox.html">
+              <a class="sidebar-link" href="/outbox">
                 <i class="align-middle" data-feather="arrow-up-right"></i>
                 <span class="align-middle">보낸메일함</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-favorites.html">
+              <a class="sidebar-link" href="/favorites">
                 <i class="align-middle" data-feather="star"></i>
                 <span class="align-middle">즐겨찾기</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="email-trash.html">
+              <a class="sidebar-link" href="/trash">
                 <i class="align-middle" data-feather="trash-2"></i>
                 <span class="align-middle">휴지통</span>
+                <span class="bsU">205</span>
               </a>
             </li>
           </ul>
@@ -105,84 +107,6 @@
             <ul class="navbar-nav navbar-align">
               <li class="nav-item dropdown">
                 <a
-                  class="nav-icon dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  data-bs-toggle="dropdown"
-                >
-                  <div class="position-relative">
-                    <i class="align-middle" data-feather="bell"></i>
-                    <span class="indicator">4</span>
-                  </div>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
-                  aria-labelledby="alertsDropdown"
-                >
-                  <div class="dropdown-menu-header">알림</div>
-                  <div class="list-group">
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/03</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/02</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2024/01/01</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="email-inbox-detail.html" class="list-group-item">
-                      <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                          <i class="text-mail" data-feather="mail"></i>
-                        </div>
-                        <div class="col-10">
-                          <div class="text-dark">안녕하세요</div>
-                          <div class="text-muted small mt-1">
-                            test@gmail.com
-                          </div>
-                          <div class="text-muted small mt-1">2023/12/31</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
                   class="nav-icon dropdown-toggle d-inline-block d-sm-none"
                   href="#"
                   xxl-
@@ -197,7 +121,7 @@
                   data-bs-toggle="dropdown"
                 >
                   <img
-                    src="asset/img/avatars/youngbin.jpg"
+                    src="/asset/img/avatars/youngbin.jpg"
                     class="avatar img-fluid rounded me-1"
                     alt="Charles Hall"
                   />
@@ -206,7 +130,7 @@
                 <div class="dropdown-menu dropdown-menu-end">
                   <a class="dropdown-item" href="pages-profile.html"
                     ><i class="align-middle me-1" data-feather="user"></i>
-                    마이페이지</a
+                    계정관리</a
                   >
 
                   <div class="dropdown-divider"></div>
@@ -225,7 +149,7 @@
             <h1 class="h3 mb-3"><strong>보낸메일함</strong></h1>
 
             <div class="row">
-              <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
                 <div class="card flex-fill">
                   <div class="card-header">
                     <div class="openBtn">
@@ -257,14 +181,36 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="page">
+                    <span class="Di">
+                      <div id=":page"
+                           class="J-J5-Ji amH J-JN-I"
+                           aria-expanded="false"
+                           aria-haspopup="true"
+                           aria-disabled="false"
+                           style="user-select: none"
+                           tabindex="0">
+                        <span class="dj">
+                          <span class="ts">212</span>개 중
+                          <span><span class="ts">1</span>–<span class="ts">50</span>
+                        </span>
+                        </span><a class="page-link" href="#" aria-label="Previous">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                      </a><a class="page-link" href="#" aria-label="Next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </a>
+                      </div>
+                    </span>
+                  </div>
                   <table class="table table-hover my-0">
                     <thead>
                       <tr>
                         <th>즐겨찾기</th>
-                        <th class="d-none d-xl-table-cell">이메일</th>
-                        <th class="d-none d-xl-table-cell">제목</th>
+                        <th class="d-xl-table-cell">이메일</th>
+                        <th class="d-xl-table-cell">제목</th>
                         <th></th>
-                        <th class="d-none d-xl-table-cell">보낸 시간</th>
+                        <th class="d-xl-table-cell">보낸 시간</th>
                         <th>
                           <input
                             class="form-check-input"
@@ -283,15 +229,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2024/01/03</td>
+                        <td class="d-xl-table-cell">2024/01/03</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -308,15 +254,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2024/01/02</td>
+                        <td class="d-xl-table-cell">2024/01/02</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -333,15 +279,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2024/01/01</td>
+                        <td class="d-xl-table-cell">2024/01/01</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -358,15 +304,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2023/12/31</td>
+                        <td class="d-xl-table-cell">2023/12/31</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -383,15 +329,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2023/12/30</td>
+                        <td class="d-xl-table-cell">2023/12/30</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -408,15 +354,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2023/12/29</td>
+                        <td class="d-xl-table-cell">2023/12/29</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -433,15 +379,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2023/12/28</td>
+                        <td class="d-xl-table-cell">2023/12/28</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -458,15 +404,15 @@
                             onclick="toggleColor(this)"
                           ></div>
                         </td>
-                        <td class="d-none d-xl-table-cell">test@gmail.com</td>
+                        <td class="d-xl-table-cell">test@gmail.com</td>
                         <td
-                          class="d-none d-xl-table-cell"
-                          onclick="location.href='email-outbox-detail.html'"
+                          class="d-xl-table-cell"
+                          onclick="location.href='/outbox/detail'"
                         >
                           안녕하세요
                         </td>
                         <td></td>
-                        <td class="d-none d-xl-table-cell">2023/12/27</td>
+                        <td class="d-xl-table-cell">2023/12/27</td>
                         <td>
                           <input
                             class="form-check-input"
@@ -487,9 +433,9 @@
       </div>
     </div>
 
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/app.js"></script>
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/toggleColor.js"></script>
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/cbx_chkAll.js"></script>
-    <script th:src="${@environment.getProperty('resource.request-path')} + js/modal.js"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/app.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/toggleColor.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/cbx_chkAll.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/modal.js'"></script>
   </body>
 </html>

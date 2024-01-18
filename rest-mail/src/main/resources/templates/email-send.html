@@ -22,12 +22,26 @@
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-    <title>메일내용</title>
+    <title>메일작성</title>
+
     <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <!--summernote-develop-->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!--summernote-develop-->
   </head>
 
   <body>
@@ -41,7 +55,7 @@
           <ul class="sidebar-nav">
             <li class="sidebar-header">목록</li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
               <a class="sidebar-link" href="/write">
                 <i class="align-middle" data-feather="send"></i>
                 <span class="align-middle">메일작성</span>
@@ -56,7 +70,7 @@
               </a>
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
               <a class="sidebar-link" href="/outbox">
                 <i class="align-middle" data-feather="arrow-up-right"></i>
                 <span class="align-middle">보낸메일함</span>
@@ -141,79 +155,51 @@
         </nav>
 
         <main class="content">
-          <a class="inbox" href="/outbox">
-            <strong>&lt; 보낸메일함</strong>
-          </a>
-          <br />
-          <form>
-            <div class="row mb-3">
-              <label
-                for="inputTitle
-              3"
-                class="col-sm-2 col-form-label"
-                >제목</label
-              >
-              <div class="col-sm-10">안녕하세요</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >보낸사람</label
-              >
-              <div class="col-sm-10">kasdf12347@naver.com</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >받는사람</label
-              >
-              <div class="col-sm-10">test@gmail.com</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >참조</label
-              >
-              <div class="col-sm-10">dudqlswjs98@naver.com</div>
-            </div>
-          </form>
+          <div class="container d-flex flex-column">
+            <div class="row vh-100">
+              <div class="col-sm-10 col-md-8 col-lg-8 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
 
-          <form class="was-validated">
-            <div class="mb-3">
-              <div class="form-control-maildetail" id="formGroupExampleInput">
-                <h2>안녕하세요 playdata 백엔드 4기 전영빈 학생입니다.</h2>
 
-                <figure class="image image-style-side">
-                  <img
-                    src="https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg"
-                    srcset="
-                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg,
-                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano_2x.jpg 2x
-                    "
-                    alt="A lone wanderer looking at Mount Bromo volcano in Indonesia."
-                  />
-                  <figcaption>경치가 좋네요</figcaption>
-                </figure>
-
-                <h3>등산을 했습니다.</h3>
-
-                <p>공기가 좋네요</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="m-sm-4">
+                        <div class="text-center">
+                          <img
+                                  src="/asset/img/icons/mail-send.png"
+                                  alt="Charles Hall"
+                                  class="img-fluid rounded-circle"
+                                  width="132"
+                                  height="132"
+                          />
+                        </div>
+                        <form>
+                          <h1 class="mail-text">메일 전송 완료</h1>
+                          <div class="text-center mt-3">
+                            <button
+                                    class="btn btn-primary"
+                                    type="button"
+                                    onclick="location.href='/inbox'"
+                            >
+                              메일목록
+                            </button>
+                            <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    onclick="location.href='/write'"
+                            >
+                              메일쓰기
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-12">
-              <button
-                class="btn btn-primary"
-                type="button"
-                onclick="location.href='/write'"
-              >
-                회신하기
-              </button>
-              <button
-                class="btn btn-secondary"
-                type="button"
-                onclick="location.href='/outbox'"
-              >
-                뒤로가기
-              </button>
-            </div>
-          </form>
+          </div>
+
         </main>
 
         <footer></footer>
@@ -221,6 +207,7 @@
     </div>
 
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/app.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/summernote.js'"></script>
 
   </body>
 </html>

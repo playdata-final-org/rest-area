@@ -99,6 +99,10 @@ h3 {
   margin-bottom: 0.5rem;
   margin-top: 0;
 }
+.mail-text {
+  font-size: 1.53125rem;
+  text-align : center
+}
 .h1,
 h1 {
   font-size: 1.75rem;
@@ -106,6 +110,7 @@ h1 {
 .h2,
 h2 {
   font-size: 1.53125rem;
+
 }
 .h3,
 h3 {
@@ -1002,8 +1007,13 @@ button:not(:disabled) {
   border-top: 0;
 }
 .card-body {
-  flex: 1 1 auto;
-  padding: 1.25rem;
+
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 250px);
+
 }
 
 .card-header {
@@ -1830,6 +1840,17 @@ a {
 .closeBtn {
   position: relative;
   bottom: -100px;
+}
+
+.page {
+   margin-left: 10px;
+}
+.page-link {
+  position: relative;
+  bottom: -7px;
+}
+.bsU {
+  float: right;
 }
 
 /*# sourceMappingURL=app.css.map*/

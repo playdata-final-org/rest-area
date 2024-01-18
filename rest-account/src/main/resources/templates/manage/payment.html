@@ -7,8 +7,9 @@
     <title>RestArea</title>
     <link rel="icon" href="/asset/favicon.png" />
 </head>
+<div th:replace="~{/include/top::top}"></div>
 <body >
-<div th:replace="components/nav"></div>
+<div th:replace="~{/components/nav::nav}"></div>
 <div class="container-fluid mb-3" id="content">
     <div class="row">
 
@@ -82,9 +83,9 @@
         </main>
     </div>
 </div>
-<div th:replace="components/footer"></div>
+<div th:replace="~{/components/footer::footer}"></div>
 
 </body>
-<th:block th:replace="include/bottom"></th:block>
+<th:block th:replace="~{include/bottom::bottom}"></th:block>
 <script  th:src="${@environment.getProperty('resource.request-path')} + '/js/page/payment.js'"></script>
 </html>

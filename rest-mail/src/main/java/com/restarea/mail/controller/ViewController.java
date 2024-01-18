@@ -1,12 +1,28 @@
 package com.restarea.mail.controller;
 
+import com.restarea.mail.Service.MailService;
+import com.restarea.mail.dto.MailDto;
+import jakarta.mail.MessagingException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("")
+@Slf4j
 public class ViewController {
+
+    private final MailService mailService;
+
+    public ViewController(MailService mailService) {
+        this.mailService = mailService;
+    }
+
     @GetMapping("/inbox")
     public String inBox() {
         return "email-inbox";
@@ -42,5 +58,11 @@ public class ViewController {
     @GetMapping("/write")
     public String write() {
         return "email-write";
+    }
+    @PostMapping("/mail")
+    public String sendMail(MailDto mailDto, MultipartFile file) throws MessagingException, IOException {
+        mailService.sendMultipleMessage(mailDto, file);
+        System.out.println("메일 전송 완료");
+        return "email-send";
     }
 }

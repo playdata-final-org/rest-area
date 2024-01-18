@@ -3,3 +3,23 @@ resource:
   request-path: http://localhost:${WEBPACK_DEV_SERVER_PORT}
 server:
   port: ${APPLICATION_SERVER_PORT}
+
+spring:
+  mail:
+    default:
+      encoding: UTF-8
+    host: smtp.gmail.com
+    username: dudqlswjs12@gmail.com
+    password: bxjr nxjy rbqy wupp
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        debug: true
+        mime:
+          charset: UTF-8
+        transport:
+          protocol: smtp

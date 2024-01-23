@@ -11,7 +11,7 @@ target/
 .env
 node_modules/
 install-state.gz
-.pnp.*
+
 
 **/static/dist
 ### STS ###

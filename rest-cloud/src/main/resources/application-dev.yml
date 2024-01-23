@@ -3,3 +3,11 @@ resource:
   request-path: http://localhost:${WEBPACK_DEV_SERVER_PORT}
 server:
   port: ${APPLICATION_SERVER_PORT}
+logging:
+  level:
+    org:
+      springframework:
+        boot: debug
+      thymeleaf:
+        model: debug
+

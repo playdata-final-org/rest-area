@@ -12,15 +12,8 @@ target/
 node_modules/
 install-state.gz
 .pnp.*
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
-
+**/static/dist
 ### STS ###
 .apt_generated
 .classpath
@@ -29,7 +22,7 @@ install-state.gz
 .settings
 .springBeans
 .sts4-cache
-.yarn
+
 nodemodules/
 ### IntelliJ IDEA ###
 .idea

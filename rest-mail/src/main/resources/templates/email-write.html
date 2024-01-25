@@ -24,6 +24,10 @@
 
     <title>메일작성</title>
 
+    <script type="text/javascript" src="/scripts/common/common-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
 
     <link
@@ -74,7 +78,7 @@
               <a class="sidebar-link" href="/outbox">
                 <i class="align-middle" data-feather="arrow-up-right"></i>
                 <span class="align-middle">보낸메일함</span>
-                <span class="bsU">205</span>
+                <span class="bsU" th:text="${sentMailCount}">205</span>
               </a>
             </li>
 
@@ -120,16 +124,14 @@
                   class="nav-icon dropdown-toggle d-inline-block d-sm-none"
                   href="#"
                   xxl-
-                  data-bs-toggle="dropdown"
-                >
+                  data-bs-toggle="dropdown">
                   <i class="align-middle" data-feather="settings"></i>
                 </a>
 
                 <a
                   class="nav-link dropdown-toggle d-none d-sm-inline-block"
                   href="#"
-                  data-bs-toggle="dropdown"
-                >
+                  data-bs-toggle="dropdown">
                   <img
                     src="/asset/img/avatars/youngbin.jpg"
                     class="avatar img-fluid rounded me-1"
@@ -140,14 +142,12 @@
                 <div class="dropdown-menu dropdown-menu-end">
                   <a class="dropdown-item" href="pages-profile.html"
                     ><i class="align-middle me-1" data-feather="user"></i>
-                    계정관리</a
-                  >
+                    계정관리</a>
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="pages-sign-in.html"
                     ><i class="align-middle me-1" data-feather="log-out"></i>
-                    로그아웃</a
-                  >
+                    로그아웃</a>
                 </div>
               </li>
             </ul>
@@ -156,54 +156,39 @@
 
         <main class="content">
           <h1 class="h3 mb-3"><strong>메일작성</strong></h1>
-          <form th:action="@{/mail}" method="post">
+          <form th:action="@{/mail/send}" method="post" enctype="multipart/form-data">
             <div class="row mb-3">
               <label
-                for="inputTitle
-              3"
-                class="col-sm-2 col-form-label"
-                >제목</label
-              >
+                for="subject"
+                class="col-sm-2 col-form-label">제목</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" name="title" id="inputEmail1" />
+                <input type="text" class="form-control" name="subject" id="subject" />
               </div>
             </div>
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >받는사람</label
-              >
+              <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" name="address" id="inputEmai2" />
+                <input type="email" class="form-control" name="recipient" id="recipient" multiple />
               </div>
             </div>
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >참조</label
-              >
+              <label for="cc" class="col-sm-2 col-form-label">참조</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" name="ccAddress" id="inputEmail3" />
+                <input type="email" class="form-control" name="cc" id="cc" multiple />
               </div>
             </div>
-          <div class="mb-3">
-            <input
-              type="file"
-              class="form-control"
-              name="file"
-              aria-label="file example"
-              required
-            />
-          </div>
-          </form>
-          <form class="was-validated" th:action="@{/mail}" method="post">
+            <div class="row mb-3">
+              <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control" name="attachment" id="attachment" aria-label="file example" />
+              </div>
+            </div>
             <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label"
-                >메일작성</label
-              >
-              <div id="summernote" name="message"></div>
+              <label for="summernote" class="form-label">내용</label>
+                <textarea id="summernote" class="form-control" name="content"></textarea>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" type="button" onclick="location.href='/mail/send'">메일 보내기</button>
-              <button>발송</button>
+              <button class="btn btn-primary" type="submit">메일 보내기</button>
             </div>
           </form>
         </main>

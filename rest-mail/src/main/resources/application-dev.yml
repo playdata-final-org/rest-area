@@ -5,12 +5,14 @@ server:
   port: ${APPLICATION_SERVER_PORT}
 
 spring:
+  application:
+    name: mail
   mail:
     default:
       encoding: UTF-8
     host: smtp.gmail.com
     username: dudqlswjs12@gmail.com
-    password: bxjr nxjy rbqy wupp
+    password: gafq ghot rxws bhtu
     port: 587
     properties:
       mail:
@@ -23,3 +25,34 @@ spring:
           charset: UTF-8
         transport:
           protocol: smtp
+
+  datasource:
+    url: jdbc:oracle:thin:@127.0.0.1:1521:xe
+    username: mail
+    password: mail
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      #ddl-auto: create
+      ddl-auto: none
+
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.OracleDialect
+        id:
+          new_generator_mappings: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+

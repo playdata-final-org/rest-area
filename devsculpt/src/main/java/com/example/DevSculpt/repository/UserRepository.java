@@ -1,6 +1,5 @@
 package com.example.DevSculpt.repository;
 
-import com.example.DevSculpt.dto.UserResponseDTO;
 import com.example.DevSculpt.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

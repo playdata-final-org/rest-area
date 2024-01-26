@@ -1,7 +1,7 @@
 package com.example.DevSculpt.service.security;
 
-import com.example.DevSculpt.dao.UserDAO;
-import com.example.DevSculpt.dto.UserResponseDTO;
+import com.example.DevSculpt.dao.user.UserDAO;
+import com.example.DevSculpt.dto.user.UserResponseDTO;
 import com.example.DevSculpt.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

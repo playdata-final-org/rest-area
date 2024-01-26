@@ -1,4 +1,4 @@
-package com.example.DevSculpt.dto;
+package com.example.DevSculpt.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,19 +1,20 @@
 package com.example.BAS.entitiy.users;
 
-import com.example.BAS.entitiy.authority.Authority;
-import com.example.BAS.entitiy.image.ProfileImage;
+import com.example.BAS.entitiy.authority.UserStatus;
+import com.example.BAS.entitiy.blog.Blogs;
+import com.example.BAS.entitiy.blog.BoostHistory;
+import com.example.BAS.entitiy.blog.Membership_tier;
+import com.example.BAS.entitiy.blog.Memberships;
+import com.example.BAS.entitiy.files.ProfileImage;
+import com.example.BAS.entitiy.payment.Charge;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,20 +24,44 @@ import java.util.Set;
 public class Users {
     @JsonIgnore
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long userId;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_image_id")
-    private ProfileImage profileImage;
     private String username;
     @JsonIgnore
     private String password;
-    private String email;
-    private int coin;
+    private String nickName;
+    private int point;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_image_id")
+    @ToString.Exclude
+    private ProfileImage profileImage;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<BoostHistory> boostHistories;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<UserStatus> userStatuses = new ArrayList<>();
+
+    private String currentRole;
+
+    @OneToMany(mappedBy = "users")
+    @ToString.Exclude
+    private List<Blogs> blogs;
 
     @ManyToOne
-    @JoinColumn(name = "authority_id")
-    private Authority authority;
+    @JoinColumn(name = "tier_id")
+    private Membership_tier membership_tier;
+    @OneToMany(mappedBy = "creator")
+    @ToString.Exclude
+    private List<Memberships> memberships;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Charge> charges;
+
+    private boolean userState;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
@@ -45,19 +70,15 @@ public class Users {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime deleteDate;
 
-    private boolean userstate;
-
-    @PrePersist //insert되기 전에 실행 = DB에 값을 넣으면 자동으로 실행
+    @PrePersist
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
-
-    @PreUpdate //update되기 전에 실행
+    @PreUpdate
     public void updateDate() {
         this.updateDate = LocalDateTime.now();
     }
-
-    @PreRemove //delete되기 전에 실행
+    @PreRemove
     public void deleteDate() {
         this.deleteDate = LocalDateTime.now();
     }
@@ -65,7 +86,5 @@ public class Users {
     public void updateProfileImage(ProfileImage profileImage) {
         this.profileImage = profileImage;
     }
-
-
 
 }

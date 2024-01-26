@@ -1,10 +1,16 @@
 package com.example.BAS.dao.auth;
 
-import com.example.BAS.entitiy.authority.Authority;
+import com.example.BAS.entitiy.authority.Authorities;
+import com.example.BAS.entitiy.users.Users;
 
 public interface AuthDAO {
 
-    Authority findByAuthorityName(String authorityName);
 
-    Authority save(Authority authority);
+    Authorities findByCreatorAuthority(String roleCreator,Long userId);
+
+    Authorities findByBoosterAuthority(String roleBooster,Long userId);
+
+
+
+
 }

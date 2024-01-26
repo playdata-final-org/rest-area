@@ -1,12 +1,11 @@
 package com.example.BAS.config.security;
 
-import com.example.BAS.entitiy.authority.Authority;
+
 import com.example.BAS.entitiy.users.Users;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,21 +14,36 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class PrincipalDetails implements UserDetails {
     private Users users;
-    private Authority authority;
-
-
     public PrincipalDetails(Users users) {
         this.users = users;
-        this.authority = users.getAuthority();
-    }
 
-    @Override//권한 정보 반환
+    }
+    public void sessionReset(Users updatedUser) {
+        this.users = updatedUser;
+    }
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //Authority의 getAuthorityName()을 통해 권한을 가져와 GrantedAuthority(권한정보)형태로 반환
         Collection<GrantedAuthority> collector = new ArrayList<>();
-        collector.add(() -> authority.getAuthorityName());
+        collector.add(() -> users.getCurrentRole());
         return collector;
     }
+    public String profileImageUrl() {
+        if (users != null && users.getProfileImage() != null) {
+            return users.getProfileImage().getFileUrl();
+        }
+        return null;
+    }
+    public String rolePage() {
+        if (users != null) {
+            if ("ROLE_BOOSTER".equalsIgnoreCase(users.getCurrentRole()) ||
+                    "ROLE_CREATOR".equalsIgnoreCase(users.getCurrentRole())) {
+                return null;
+            }
+        }
+        return "user/main";
+    }
+
+
 
     @Override
     public String getPassword() {

@@ -1,4 +1,4 @@
-package com.example.DevSculpt.dto;
+package com.example.DevSculpt.dto.user;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

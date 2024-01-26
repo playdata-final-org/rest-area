@@ -1,0 +1,83 @@
+/* 스타일링 */
+body {
+    background-color: #212529;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #343a40;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: center;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info img {
+    margin-right: 10px;
+}
+
+.input-group {
+    text-align: center; /* 내용 가운데 정렬 */
+    max-width: 300px; /* 검색 입력창 최대 너비 지정 */
+    margin: auto; /* 가운데 정렬을 위해 추가 */
+}
+
+/* a 태그의 밑줄 제거 */
+a {
+    text-decoration: none;
+}
+
+.pagination-container {
+    margin-top: 20px;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.active > .page-link,
+.page-link,
+.page-item.active .page-link,
+.page-link:hover,
+.btn-dark:hover {
+    color: #ffffff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+/* 페이지마다 현재 페이지 버튼 색상 변경 */
+.page-item.active .page-link,
+.page-link:hover {
+    color: #ffffff;
+    background-color: #6c757d; /* 회색으로 변경 */
+    border-color: #6c757d; /* 회색으로 변경 */
+}
+
+/* 작성하기 버튼 아이콘 스타일 */
+.btn-dark i {
+    margin-right: 5px; /* 아이콘과 텍스트 간격 조정 */
+}
+.btn-dark {
+    margin-right: -410px;
+}

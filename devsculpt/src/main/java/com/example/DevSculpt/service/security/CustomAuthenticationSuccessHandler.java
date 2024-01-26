@@ -14,7 +14,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         CustomUserDetail customUserDetail = (CustomUserDetail) authentication.getPrincipal();
-        request.getSession().setAttribute("userDetails", customUserDetail.getUserResponseDTO());
+        request.getSession().setAttribute("user", customUserDetail.getUserResponseDTO());
+        request.getSession().setAttribute("devId", customUserDetail.getUserResponseDTO().getDevId());
         response.sendRedirect("/dev/index");
     }
 }

@@ -1,0 +1,16 @@
+.body {
+    background-color: #f8f9fa; /* Set a light background color */
+}
+
+.container {
+    max-width: 800px; /* Set a maximum width for the content */
+    margin: 0 auto; /* Center the container */
+}
+
+.custom-div {
+    background-color: #ffffff; /* Set a white background color for the divs */
+    padding: 20px; /* Add some padding for spacing */
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
+    border: 1px solid #dee2e6; /* Add a border for styling */
+    border-radius: 8px; /* Add rounded corners for styling */
+}

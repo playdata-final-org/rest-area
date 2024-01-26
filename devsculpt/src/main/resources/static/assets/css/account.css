@@ -1,0 +1,99 @@
+body {
+    background-color: #212529 !important;
+    color: #fff !important;
+}
+
+.sidebar {
+    width: 250px; /* 사이드바 너비 조정 */
+    position: fixed;
+    height: 100%;
+    top: 263px;
+    left: 15px;
+    padding-top: 0px;
+    color: white;
+    z-index: 1000;
+}
+
+.sidebar p {
+    text-align: center; /* 내 계정 텍스트 중앙 정렬 */
+    color: #007bff; /* 내 계정 텍스트 색상 변경 */
+    margin-bottom: 20px; /* 내 계정 텍스트와 메뉴 간격 조정 */
+}
+
+.menu-item {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* 수정된 부분: 사이드바 메뉴 위치 조정 */
+.menu-item:nth-child(2) {
+    margin-top: 20px; /* 이 값은 조절 가능합니다. */
+}
+
+/* 추가된 부분: 계정관리 아이템 위치 조정 */
+.menu-item:nth-child(3) {
+    margin-top: 20px; /* 이 값은 조절 가능합니다. */
+}
+
+/* 수정된 부분: 사이드바 메뉴 텍스트 숨김 */
+.menu-item span {
+    display: none;
+}
+
+.menu-item i {
+    color: #fff;
+}
+
+/* 수정된 부분: 사이드바 메뉴 hover 효과 */
+.menu-item:hover {
+    background: rgba(0, 123, 255, 0.8); /* 투명도와 색상을 조정 */
+}
+
+/* 추가된 부분: 활성화된 메뉴 아이템 스타일 */
+.menu-item.active {
+    background: rgba(0, 123, 255, 0.6); /* 활성화된 메뉴의 투명도를 줄 수 있음 */
+}
+
+/* 추가된 부분: 회원탈퇴 페이지 스타일 */
+.container .user-page {
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 250px; /* 사이드바 너비만큼 마진 추가 */
+}
+
+.withdraw-info {
+    margin-bottom: 20px;
+}
+
+.withdraw-info p {
+    margin-bottom: 10px;
+}
+
+/* 추가된 부분: 계정 삭제 동의 체크박스 스타일 */
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+label input {
+    margin-right: 5px;
+}
+
+/* 추가된 부분: 동의 체크박스 체크 시 버튼 활성화 */
+#agreeCheckbox:checked~.btn-danger {
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
+    cursor: pointer;
+}
+
+/* 추가된 부분: 회원 탈퇴 버튼 비활성화 상태 스타일 */
+.btn-danger:disabled {
+    background: grey;
+    color: #ccc;
+    cursor: not-allowed; /* 비활성화 상태일 때 커서 변경 */
+}

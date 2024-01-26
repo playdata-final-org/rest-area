@@ -1,11 +1,11 @@
-package com.example.DevSculpt.dao;
+package com.example.DevSculpt.dao.user;
 
 import com.example.DevSculpt.entity.UserEntity;
 
 public interface UserDAO {
     UserEntity save(UserEntity user);
 
-    UserEntity findById(Long userId);
+    UserEntity findById(Long devId);
 
     UserEntity findByUsernameOrNickName(String username, String nickName);
 
@@ -13,4 +13,7 @@ public interface UserDAO {
 
     boolean idcheck(String username);
 
+    UserEntity findByUser(Long devId);
+
+    void deleteUser(Long devId);
 }

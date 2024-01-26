@@ -1,11 +1,13 @@
-package com.example.DevSculpt.dao;
+package com.example.DevSculpt.dao.user;
 
 import com.example.DevSculpt.entity.UserEntity;
 import com.example.DevSculpt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Slf4j
 @RequiredArgsConstructor
 public class UserDAOImpl implements UserDAO {
 
@@ -13,9 +15,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public UserEntity save(UserEntity user) {
-        if (repository.existsByUsername(user.getUsername())) {
-            throw new RuntimeException("이미 존재하는 회원입니다.");
-        }
         return repository.save(user);
     }
 
@@ -36,6 +35,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean idcheck(String username) {
-        return repository.existsByUsername(username);
+        boolean exists = repository.existsByUsername(username);
+        return exists;
+    }
+
+    @Override
+    public UserEntity findByUser(Long devId) {
+        return repository.findById(devId).orElse(null);
+    }
+
+    @Override
+    public void deleteUser(Long devId) {
+        repository.deleteById(devId);
     }
 }

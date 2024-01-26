@@ -4,6 +4,7 @@
     padding: 10px;
     height: 100%;
     display: relative;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Add a subtle border */
 }
 .header-logo-container {
     display: flex;

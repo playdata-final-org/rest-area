@@ -13,18 +13,18 @@
         <div class="header-dropdown">
             <a href="#">Menu</a>
             <div class="header-dropdown-content">
-                <th:block th:if="${session.userDetails != null}">
-                    <a href="#">My Page</a>
-                </th:block>
-                <th:block th:unless="${session.userDetails != null}">
-                    <a href="#">Log in/Sign up</a>
-                </th:block>
-                <a href="#">Community</a>
-                <a href="#">Knowledge</a>
+                <a th:if="${session.user != null}" th:href="@{/dev/mypage/user/{devId}(devId=${session.user.devId})}">마이페이지</a>
+                <a th:unless="${session.user != null}" th:href="@{/dev/login}">로그인</a>
+                <a th:unless="${session.user != null}" th:href="@{/dev/signup}">회원가입</a>
+                <a th:if="${session.user != null}" th:href="@{/logout}">로그아웃</a> <!-- Use /logout for Spring Security logout -->
+                <a href="#">커뮤니티</a>
+                <a href="#">지식</a>
             </div>
         </div>
         <div class="header-logo-container">
-            <img src="/assets/image/devlogo.png" alt="Logo">
+            <a th:href="@{/dev/index}">
+                <img src="/assets/image/devlogo.png" alt="Logo">
+            </a>
         </div>
     </div>
 </div>

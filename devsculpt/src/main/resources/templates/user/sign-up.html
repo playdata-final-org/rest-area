@@ -1,57 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Registration</title>
-    <link href="/assets/css/sign-up.css" rel="stylesheet" type="text/css"/>
+    <title>Devsculpt</title>
+    <link href="/assets/css/signup.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
 </head>
+
 <body>
-<div th:replace="layout/header"::header></div>
 <div class="container">
-    <h2>Welcome to DevSculpt.</h2>
-    <h4>This is a knowledge sharing platform for software developers.</h4>
-    <form th:action="@{/dev/signup}" method="post" th:object="${userRequestDTO}">
-        <label for="username">아이디</label>
-        <input type="text" class="form-control" id="username" th:field="*{username}" required/>
-        <small id="idAvailability" class="form-text text-muted"></small>
+    <div class="form-container">
+        <a th:href="@{/dev/index}">
+            <img src="/assets/image/devlogo.png" alt="DevLogo" width="150" height="150">
+        </a>
+        <div class="form-intro-container">
+            <p class="form-intro welcome-message">Devsculpt에 오신 것을 환영합니다.</p>
+            <p class="form-intro">Devsculpt는 소프트웨어 개발자를 위한 지식공유 플랫폼입니다.</p>
+        </div>
 
-        <label for="password">비밀번호</label>
-        <input type="password" class="form-control" id="password" th:field="*{password}" required/>
+        <form th:action="@{/dev/signup}" method="post" th:object="${userRequestDTO}">
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="username" th:field="*{username}"
+                           placeholder="중복검사는 필수입니다." required/>
+                    <button type="button" class="btn btn-outline-secondary" id="checkDuplicate">중복검사</button>
+                </div>
+                <small id="idAvailability"></small>
+            </div>
 
-        <label for="name">이름</label>
-        <input type="text" class="form-control" id="name" th:field="*{name}" required/>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}"
+                       placeholder="문자, 숫자, 특수문자 포함 8-20" required/>
+            </div>
 
-        <label for="nickName">닉네임</label>
-        <input type="text" class="form-control" id="nickName" th:field="*{nickName}"/>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required/>
+            </div>
 
-        <label for="email">이메일</label>
-        <input type="email" class="form-control" id="email" th:field="*{email}" required/>
+            <div class="form-group">
+                <label for="nickName">닉네임</label>
+                <input type="text" class="form-control" id="nickName" th:field="*{nickName}"/>
+            </div>
 
-        <button type="submit" class="btn btn-dark">Sign up</button>
-    </form>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required/>
+            </div>
+
+            <button type="submit" class="btn btn-dark" id="signupButton" disabled>회원가입</button>
+        </form>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).ready(function () {
-      $('#username').on('input', function () {
-          var username = encodeURIComponent($(this).val());
-          $.ajax({
-              type: 'GET',
-              url: '/dev/checkUsernameAvailability?username=' + username,
-              success: function (data) {
-                  if (data.available) {
-                      $('#idAvailability').text('사용 가능한 아이디 입니다.');
-                      $('#idAvailability').css('color', 'green');
-                  } else {
-                      $('#idAvailability').text('이미 존재하는 아이디 입니다.')
-                      $('#idAvailability').css('color', 'red');
-                  }
-              }
-          });
-      });
-  });
+        $('#checkDuplicate').click(function () {
+            var username = encodeURIComponent($('#username').val());
+            $.ajax({
+                type: 'GET',
+                url: '/dev/checkUsernameAvailability?username=' + username,
+                success: function (data) {
+                    if (data.available) {
+                        $('#idAvailability').text('이미 존재하는 아이디 입니다.');
+                        $('#idAvailability').css('color', 'red');
+                        $('#signupButton').prop('disabled', true);
+                    } else {
+                        $('#idAvailability').text('사용 가능한 아이디 입니다.');
+                        $('#idAvailability').css('color', 'green');
+                        $('#signupButton').prop('disabled', false);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log('AJAX error:', status, error);
+                }
+            });
+        });
+    });
+    /*]]>*/
 </script>
 </body>
+
 </html>

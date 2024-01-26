@@ -9,8 +9,7 @@
         <section class="blogMain">
             <div class="blogMainTitle">
                 <img id="blogMainPreview" alt=""
-                     th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
-                             fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}">
+                     th:src="${profileImageUrl}">
                 <a href="#" class="coverChange" id="coverChange"><i class="fa fa-picture-o" aria-hidden="true"></i>커버
                     이미지 설정</a>
             </div>
@@ -27,15 +26,11 @@
                 <div class="upload-img mx-auto"
                      style="margin-bottom: -50px; width: 150px; height: 150px; border-radius: 10px; overflow: hidden; z-index: 250; position: relative; top: -80px; background: #fff;">
                     <img id="imagePreview" alt="Profile Image"
-                         th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
-                     fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}"
-                         style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
-                    <img id="imagePreview1" alt="Profile Image"
-                         th:src="@{/img/users/{uuid}_{fileName}(uuid=${profileImageUuid},fileName=${profileImageFileName})}"
+                         th:src="${profileImageUrl}"
                          style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
                 </div>
-                <span class="username" th:text="${booster.username}">username</span></br>
-                <span class="email" th:text="${booster.email}">email</span></br>
+                <span class="username" th:text="${booster.nickName}">username</span></br>
+                <span class="email" th:text="${booster.username}">email</span></br>
                 <span class="member-count">회원수:</span><span class="member-count">0명</span><span
                     class="post-count">게시글 수</span><span class="post-count">0개</span>
             </section>
@@ -50,15 +45,15 @@
                 <div id="writeOptionsModal" class="modal">
                     <div class="modal-content">
                         <p>콘텐츠 유형을 선택하세요</p>
-                        <a href="/blogWrite">
+                        <a th:href="@{/blogWrite/{blogId}(blogId=${blog.blogId})}">
                             <i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i>
                             컬렉션 작성
                         </a>
-                        <a href="/blogMembershipWrite">
+                        <a th:href="@{/blogMembershipWrite/{blogId}(blogId=${blog.blogId})}">
                             <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
                             멤버십 작성
                         </a>
-                        <a href="/aboutWrite">
+                        <a th:href="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}">
                             <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
                             소개 작성
                         </a>
@@ -75,7 +70,6 @@
                     <li style="margin-right: 15px;"><button id="blogMembership" onclick="handleButtonClick('blogMembership', loadMembershipContent)">멤버십</button></li>
                     <li><button id="blogAbout" onclick="handleButtonClick('blogAbout', loadBlogAboutContent)">소개</button></li>
                 </ul>
-                </ul>
             </nav>
         </section>
         <section>
@@ -87,11 +81,13 @@
         </div>
     </div>
     <th:block th:fragment="add_bottom">
-
+        <script th:inline="javascript">
+            var blogId = /*[[${blog.blogId}]]*/
+            console.log(blogId)
+        </script>
         <script src="/js/home.js" type="text/javascript"></script>
         <script src="/js/highlight.js" type="text/javascript"></script>
         <script src="/js/blogWriteModal.js" type="text/javascript"></script>
-
     </th:block>
 
 </th:block>

@@ -6,32 +6,32 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form th:action="@{/blog}" method="post" class="container" id="blogForm">
+        <form th:action="@{/blogMembershipWrite/{blogId}(blogId=${blog.blogId})}" method="post"
+              class="container" id="blogForm" th:object="${membershipTierResponseDTO}">
             <div class="blogWriteMembership-container">
                 <section class="blogWriteMembership">
                     <p>멤버십</p>
                 </section>
                 <div class="blogWriteMembership-pages">
                     <div class="blogWriteMembership-box" data-page="1">
-                        <!-- Your content for page 1 -->
                         <section class="blogWriteMembership-title">
                             <div class="blogWriteMembership-title-box">
-                                <label for="membership-titleInput" >
-                                    <input type="text" id="membership-titleInput" placeholder="1등급">
+                                <label for="tier1Name" >
+                                    <input type="text" id="tier1Name" name="tier1Name" placeholder="1등급" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-price">
                             <div class="blogWriteMembership-price-box">
-                                <label for="priceInput">
-                                    <input type="number" id="priceInput" name="membershipPrice" placeholder="가격 입력" required>
+                                <label for="tier1Price">
+                                    <input type="number" id="tier1Price" name="tier1Price" placeholder="가격 입력" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-content">
                             <div class="blogWriteMembership-content-box">
-                                <label for="blogWriteMembership-content-Input" >
-                                    <input type="text" id="blogWriteMembership-content-Input" placeholder="멤버십 설명">
+                                <label for="tier1Content" >
+                                    <input type="text" id="tier1Content" name="tier1Content" placeholder="멤버십 설명" required>
                                 </label>
                             </div>
                         </section>
@@ -40,22 +40,22 @@
                     <div class="blogWriteMembership-box" data-page="2">
                         <section class="blogWriteMembership-title">
                             <div class="blogWriteMembership-title-box">
-                                <label for="silver-membership-titleInput" >
-                                    <input type="text" id="silver-membership-titleInput" placeholder="2등급">
+                                <label for="tier2Name" >
+                                    <input type="text" id="tier2Name" name="tier2Name" placeholder="2등급" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-price">
                             <div class="blogWriteMembership-price-box">
-                                <label for="silver-priceInput">
-                                    <input type="number" id="silver-priceInput" name="membershipPrice" placeholder="가격 입력" required>
+                                <label for="tier2Price">
+                                    <input type="number" id="tier2Price" name="tier2Price" placeholder="가격 입력" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-content">
                             <div class="blogWriteMembership-content-box">
-                                <label for="silver-blogWriteMembership-content-Input" >
-                                    <input type="text" id="silver-blogWriteMembership-content-Input" placeholder="멤버십 설명">
+                                <label for="tier2Content" >
+                                    <input type="text" id="tier2Content" name="tier2Content" placeholder="멤버십 설명" required>
                                 </label>
                             </div>
                         </section>
@@ -64,22 +64,22 @@
                     <div class="blogWriteMembership-box" data-page="3">
                         <section class="blogWriteMembership-title">
                             <div class="blogWriteMembership-title-box">
-                                <label for="gold-membership-titleInput" >
-                                    <input type="text" id="gold-membership-titleInput" placeholder="3등급">
+                                <label for="tier3Name" >
+                                    <input type="text" id="tier3Name" name="tier3Name" placeholder="3등급" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-price">
                             <div class="blogWriteMembership-price-box">
-                                <label for="gold-priceInput">
-                                    <input type="number" id="gold-priceInput" name="membershipPrice" placeholder="가격 입력" required>
+                                <label for="tier3Price">
+                                    <input type="number" id="tier3Price" name="tier3Price" placeholder="가격 입력" required>
                                 </label>
                             </div>
                         </section>
                         <section class="blogWriteMembership-content">
                             <div class="blogWriteMembership-content-box">
-                                <label for="gold-blogWriteMembership-content-Input" >
-                                    <input type="text" id="gold-blogWriteMembership-content-Input" placeholder="멤버십 설명">
+                                <label for="tier3Content" >
+                                    <input type="text" id="tier3Content" name="tier3Content" placeholder="멤버십 설명" required>
                                 </label>
                             </div>
                         </section>

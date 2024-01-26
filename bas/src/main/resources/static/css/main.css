@@ -748,6 +748,21 @@ footer .inner .list li a:after {content: ''; width: 4px; height: 4px; border-rad
 footer .inner .list li a:hover,footer .inner .list li a:focus {color: #ff8342; text-decoration: underline;}
 footer .inner .list li:last-child a {font-weight: bold; font-family: 'Exo 2',sans-serif;}
 
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+}
+
+
+
 /*blog*/
 section.blogMain .blogMainTitle {
     position: relative;
@@ -959,7 +974,7 @@ section.creator-search-list .creator-search-list-bar-box {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    width: 100%; /* 수정된 부분 */
+    width: 100%;
     margin-bottom: 5px;
 }
 
@@ -1084,6 +1099,13 @@ section.blogCollection .collectionContainer .membershipButton{
     color: #fff;
     border: 3px solid #000;
     padding: 10px;
+    text-decoration: none;
+}
+
+section.blogCollection .collectionContainer .membershipButton a:hover {
+    background-color: #fff;
+    color: #000;
+    border: 3px solid #000;
 }
 
 section.blogCollection .collectionContainer .membershipButton button{
@@ -1093,6 +1115,8 @@ section.blogCollection .collectionContainer .membershipButton button{
      padding: 10px;
      cursor: pointer;
 }
+
+/*blogModal*/
 
 section.blogModal{
     display: flex;
@@ -1147,6 +1171,13 @@ section.blogModal p {
     margin-bottom: 20px;
     font-size: 20px;
 }
+/*blog-collection*/
+
+.verticalImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /*blog-collection-write*/
 
@@ -1169,15 +1200,15 @@ section.collection-file-upload{
 }
 
 section.collection-imageUpload .collection-imageUpload-box {
-     position: relative;
-     width: 800px;
-     height: 500px;
-     border: 5px dotted #9f8d8d;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     margin: 0 auto;
+      position: relative;
+      width: 800px;
+      height: 500px;
+      border: 5px dotted #9f8d8d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
 }
 
 section.collection-imageUpload #file1 {
@@ -1191,6 +1222,60 @@ section.collection-imageUpload #file1 {
 
 section.collection-imageUpload p {
     margin-top: 10px;
+}
+
+#imagePreviewContainer {
+    position: relative;
+    border: 2px dotted #ddd;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+section.imageAddContainer{
+    display:flex;
+    margin-top: 10px;
+}
+section.imageAddContainer .secondImageAddContainer,
+section.imageAddContainer .thirdImageAddContainer{
+    flex:1;
+
+}
+
+#secondImagePreviewContainer,
+#thirdImagePreviewContainer {
+    position: relative; /* 수정된 부분 */
+    border: 2px dotted #ddd;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-right: 10px;
+    position: relative; /* 수정된 부분 */
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #ff0000;
+    display: none; /* 추가된 부분 */
+}
+
+.image-preview-container:hover .delete-icon {
+    display: block; /* 추가된 부분 */
 }
 
 #titleInput {
@@ -1356,12 +1441,12 @@ section.blogWriteMembership p {
     margin-bottom: 10px;
 }
 
-#membership-titleInput,
-#silver-membership-titleInput,
-#gold-membership-titleInput,
-#priceInput,
-#silver-priceInput,
-#gold-priceInput{
+#tier1Name,
+#tier2Name,
+#tier3Name,
+#tier1Price,
+#tier2Price,
+#tier3Price{
     width: 820px;
     padding: 10px;
     font-size: 20px;
@@ -1369,9 +1454,9 @@ section.blogWriteMembership p {
     background: transparent;
 }
 
-#blogWriteMembership-content-Input,
-#silver-blogWriteMembership-content-Input,
-#gold-blogWriteMembership-content-Input{
+#tier1Content,
+#tier2Content,
+#tier3Content{
     width: 820px;
     height: 150px;
     padding: 10px;
@@ -1445,6 +1530,268 @@ section.blogAbout .aboutContainer .card{
 section.blogAbout .aboutContainer .card p {
     background-color: #f5f5f5;
     padding: 10px;
+}
+
+/*======================membership-charge=======================*/
+section.charge-about{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px;
+}
+
+section.charge-about > span{
+    font-size: 30px;
+    color: #909118;
+}
+
+section.charge-about > div{
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+section.charge-view-container,
+section.charge-terms{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+section.charge.terms .charge-terms-one{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    flex: 1;
+}
+section.charge.terms .charge-terms-two{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    flex: 1;
+
+}
+
+section.charge-view-container .charge-view-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    flex: 1;
+    background-color: #fff;
+}
+
+section.charge-view-container .charge-second-view-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    flex: 1;
+}
+.charge-view,
+.charge-second-view{
+    width: 100%
+}
+
+.charge-view .charge-potato {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #f1e0e0;
+}
+
+.charge-second-view .charge-potato{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #f1e0e0;
+}
+
+.charge-potato button {
+    width: 100px;
+    padding: 5px;
+    background-color: #282e51;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.charge-potato span {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+
+section.card-userName-container {
+    margin-top: 20px;
+}
+
+section.card-userName-container .card-userName-box {
+    display: flex;
+    flex-direction: column;
+}
+
+section.card-userName-container .card-userName-box label {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-userName-box label span {
+    margin-bottom: 5px;
+}
+
+section.card-userName-container .card-userName-box input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+section.card-userName-container .card-userName-box input:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+section.card-info-container {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+section.card-info-container .card-info-box {
+    display: flex;
+    flex-direction: column;
+}
+
+section.card-info-container .card-info-box label {
+    margin-bottom: 10px;
+}
+
+section.card-info-container .card-info-box input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+section.card-info-container .expiration-cvc-container {
+    display: flex;
+    gap: 10px;
+}
+
+section.card-info-container .card-info-box input:invalid {
+    border: 1px solid #ff5a5a;
+}
+
+section.card-info-container .card-info-box input:valid {
+    border: 1px solid #4caf50;
+}
+
+section.subscribe-button-container {
+    margin-top: 10px;
+}
+
+.subscribe-button-box button {
+    background-color: #000;
+    color: #fff;
+    width: 500px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.subscribe-button-box button:hover {
+    background-color: #333;
+}
+
+.charge-membership-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.membership-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #ac9b9b;
+}
+
+.membership-chargeInfo-box,
+.membership-moneyChargeInfo-box {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.membership-info-box h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.charge-membership-view .membership-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.charge-membership-view .membership-info-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.charge-membership-view .membership-info-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.charge-membership-view .membership-info-details {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.charge-membership-view .membership-info-details span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.charge-membership-view .membership-info-details span:last-child {
+    margin-left: auto;
 }
 
 /*1599*/

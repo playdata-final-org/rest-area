@@ -6,21 +6,11 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form  th:action="@{/blog}" method="post" class="container" id="blogForm">
-            <section class="collection-imageUpload">
-                <div class="collection-imageUpload-box">
-                    <label>
-                        <input type="file" id="file1" name="file" style="display: none">
-                        샘플 이미지 업로드
-                    </label>
-                    <p>JPG,JPEG 또는 PNG파일</p>
-                </div>
-            </section>
-
+        <form  th:action="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}" method="post" class="container" id="blogForm">
             <section class="collection-title">
                 <div class="collection-title-box">
                     <label for="titleInput" >
-                        <input type="text" id="titleInput" placeholder="제목입력">
+                        <input type="text" id="titleInput" name="aboutTitle" placeholder="제목입력">
                     </label>
                 </div>
             </section>
@@ -28,7 +18,7 @@
             <section class="collection-content">
                 <div class="collection-content-box">
                     <label for="collection-content-Input" >
-                        <input type="text" id="collection-content-Input">
+                        <input type="text" id="collection-content-Input" name="aboutContent">
                     </label>
                 </div>
             </section>
@@ -41,6 +31,7 @@
                         업로드
                     </label>
                 </div>
+                <div id="filenameDisplay" class="filename-display"></div>
             </section>
 
             <section class="collection-button">

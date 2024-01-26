@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     loadBlogHomeContent();
 });
 
@@ -8,15 +7,15 @@ function loadBlogHomeContent() {
 }
 
 function loadBlogCollectionContent() {
-    loadContent('/blogCollection');
+    loadContent('/blogCollection/'+blogId);
 }
 
 function loadMembershipContent() {
-    loadContent('/blogMembership');
+    loadContent('/blogMembership/'+blogId);
 }
 
 function loadBlogAboutContent() {
-    loadContent('/blogAbout');
+    loadContent('/blogAbout/'+blogId);
 }
 
 function loadContent(page) {

@@ -6,7 +6,7 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form  th:action="@{/blog}" method="post" class="container" id="blogForm">
+        <form th:action="@{/creator-search}" method="post" class="container" id="blogForm">
             <div class="creator-search-container">
                 <section class="creator-search-icon">
                     <i class="fa fa-search fa-3x" aria-hidden="true"></i>
@@ -20,7 +20,7 @@
                     <div class="creator-search-bar-box">
                         <label for="creator-search-bar-titleInput" >
                             <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>
-                            <input type="text" id="creator-search-bar-titleInput" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
+                            <input type="text" id="creator-search-bar-titleInput" name="nickName" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
                         </label>
                     </div>
                 </section>

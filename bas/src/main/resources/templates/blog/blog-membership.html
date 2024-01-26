@@ -6,49 +6,25 @@
     <title>blog-membership</title>
 </head>
 <body>
-<section class="blogCollection" >
-    <div class="collectionContainer">
+<section class="blogCollection">
+    <div class="collectionContainer" th:each="membership, iterStat : ${membershipTier}">
         <div class="card">
             <div class="cardHeader">
-                <h2 class="card-title">제목</h2>
-                <p class="card-text">가격</p>
+                <h2 class="card-title" th:text="${membership.getTierName()}">제목</h2>
+                <p class="card-text" th:text="${membership.getTierPrice()}">가격</p>
             </div>
             <div class="membershipButton">
-                <button>가입하기</button>
+                <form th:action="@{/blogMembership/{blogId}(blogId=${blog.blogId})}" method="post">
+                    <input type="hidden" name="selectedTierId" th:value="${membership.getTierId()}">
+                    <button type="submit">가입하기</button>
+                </form>
             </div>
             <div class="card-body">
-                <p class="card-text">내용</p>
+                <p class="card-text" th:text="${membership.getTierContent()}">내용</p>
             </div>
         </div>
     </div>
-    <div class="collectionContainer">
-        <div class="card">
-            <div class="cardHeader">
-                <h2 class="card-title">제목</h2>
-                <p class="card-text">가격</p>
-            </div>
-            <div class="membershipButton">
-                <button>가입하기</button>
-            </div>
-            <div class="card-body">
-                <p class="card-text">내용</p>
-            </div>
-        </div>
-    </div>
-    <div class="collectionContainer">
-            <div class="card">
-                <div class="cardHeader">
-                    <h2 class="card-title">제목</h2>
-                    <p class="card-text">가격</p>
-                </div>
-                <div class="membershipButton">
-                    <button>가입하기</button>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">내용</p>
-                </div>
-            </div>
-        </div>
 </section>
+
 </body>
 </html>

@@ -10,37 +10,54 @@ function toggleMembership(membershipType) {
         button.classList.remove('selected');
     });
 
-    const selectedButton = document.querySelector(`.collection-membership-choose-box button:nth-child(${membershipType === 'allPublic' ? 1 : 2})`);
+    const selectedButton =
+        document.querySelector(`.collection-membership-choose-box button[name="membershipType"][data-membership-type="${membershipType}"]`);
     selectedButton.classList.add('selected');
 
-    // 섹션을 표시하거나 숨기기
     toggleMembershipSection(membershipType === 'paidPublic');
 }
 
-function toggleGrade(grade) {
-        const gradeButtons = document.querySelectorAll('.collection-membership-choose-select-box button');
+function toggleGrade(tierId) {
+    const gradeButtons = document.querySelectorAll('.collection-membership-choose-select-box button');
 
-        gradeButtons.forEach(button => {
-            button.classList.remove('selected');
-        });
+    gradeButtons.forEach(button => {
+        button.classList.remove('selected');
+    });
 
-        const selectedGradeButton = Array.from(gradeButtons).find(button => containsText(button.querySelector('span'), grade));
+    const selectedGradeButton =
+        document.querySelector(`.collection-membership-choose-select-box button[name="tierId"][data-tier-id="${tierId}"]`);
 
-        if (selectedGradeButton) {
-            selectedGradeButton.classList.add('selected');
-        }
+    if (selectedGradeButton) {
+        selectedGradeButton.classList.add('selected');
     }
+}
 
 document.getElementById('blogForm').addEventListener('submit', function (event) {
-    const selectedMembershipType = document.querySelector('.collection-membership-choose-box button.selected span').innerText;
-    const selectedGrade = document.querySelector('.collection-membership-choose-select-box button.selected span').innerText;
+    const selectedMembershipType =
+        document.querySelector('.collection-membership-choose-box button[name="membershipType"].selected')
+        .getAttribute('data-membership-type');
 
-    console.log('폼 제출됨!', selectedMembershipType, selectedGrade);
+    const selectedGradeButton =
+        document.querySelector('.collection-membership-choose-select-box button[name="tierId"].selected');
 
-    // 폼을 실제로 서버로 제출하는 로직을 여기에 추가하세요.
-    // 예: event.preventDefault(); 와 AJAX 요청 등
+    const tierId = selectedGradeButton.getAttribute('data-tier-id');
+
+    const membershipTypeInput = document.createElement('input');
+    membershipTypeInput.type = 'hidden';
+    membershipTypeInput.name = 'membershipType';
+    membershipTypeInput.value = selectedMembershipType;
+    event.target.appendChild(membershipTypeInput);
+
+    const gradeInput = document.createElement('input');
+    gradeInput.type = 'hidden';
+    gradeInput.name = 'tierId';
+    gradeInput.value = tierId;
+    event.target.appendChild(gradeInput);
+    console.log(tierId);
+
+    return true;
 });
-// 대체된 containsText 함수
+
 function containsText(element, text) {
     return element.textContent.toUpperCase().includes(text.toUpperCase());
 }

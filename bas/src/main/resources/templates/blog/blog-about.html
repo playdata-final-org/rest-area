@@ -7,11 +7,11 @@
 </head>
 <body>
 
-
-<section class="blogAbout" >
+<section class="blogAbout" th:each="about : ${about}">
     <div class="aboutContainer">
         <div class="card">
-            <p>소개</p>
+            <span th:text="${about.aboutTitle}"></span>
+            <span th:text="${about.aboutContent}"></span>
         </div>
     </div>
 </section>

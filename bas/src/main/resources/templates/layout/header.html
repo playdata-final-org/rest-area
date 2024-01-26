@@ -1,9 +1,12 @@
 <header th:fragment="header" class="fragment-header" xmlns="http://www.w3.org/1999/html">
     <div class="fragmentHeader">
-        <h1 class="fragmentLogo"><a href="index.html"><img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>
+        <h1 class="fragmentLogo">
+            <a href="/main">
+            </a>
+            <img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>
         <nav class="gnb">
             <ul>
-                <li><a href="#">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
+                <li><a th:href="@{/creator-search}">크리에이터 찾기 <i class="fa fa-search" aria-hidden="true"></i></a></li>
             </ul>
         </nav>
 
@@ -12,8 +15,7 @@
                 <li>
                     <div class="upload-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
                         <img id="imagePreview" alt="Profile Image"
-                             th:src="@{/img/users/{uuid}{fileName}(uuid=${profileImageUuid != null ? profileImageUuid : ''},
-                             fileName=${profileImageFileName != null ? '_' + profileImageFileName : '' + 'ai.png'})}"
+                             th:src="${#authentication.principal.users.profileImage.fileUrl}"
                              style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
                     </div>
                 </li>
@@ -26,13 +28,25 @@
                             aria-controls="sidebarMenu"
                             aria-expanded="false"
                             aria-label="Toggle navigation"
+                            style="display: flex; flex-direction: column;"
                     >
-                        <span th:text="${booster.username}">username</span></br>
-                        <span th:text="${booster.authority.authorityName}">role</span>
+                        <span th:text="${#authentication.principal.users.nickName}">username</span>
+                        <span th:text="${#authentication.principal.users.currentRole eq 'ROLE_BOOSTER'} ? '부스터' : '크리에이터'"
+                            style="color: #c4a9a9; font-size: 18px margin-top: 5px;">role</span>
                     </button>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
+                    <a th:href="@{/chargeChoose/{userId}(userId=${#authentication.principal.users.userId})}"
+                        style="display: flex;
+                               flex-direction: row;
+                               align-items: center;
+                               justify-content: center;">
+                        <img th:src="@{/assets/point.png}" style="width: 50px;">
+                        <span id="pointAmount" th:text="${#authentication.principal.users.point}" style="font-size: 25px; margin-left:5px;"></span>
+                        <span style="font-size: 25px;">개</span>
+                    </a>
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                    <script src="/js/pointUpdate.js" type="text/javascript"></script>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bell fa-2x" aria-hidden="true" ></i></a>

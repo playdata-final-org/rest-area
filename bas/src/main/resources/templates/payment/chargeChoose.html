@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>blog-write</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <section class="charge-about">
+            <span>감자란</span>
+            <div class="potato-about">
+                <span>크리에이터의 멤버십을 구독하기 위한 결제수단입니다.</span>
+            </div>
+        </section>
+        <section class="charge-view-container">
+            <section class="charge-view-box">
+                <div class="charge-view">
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 1개</span>
+                        </div>
+                        <button name="cp_item" value="100" onclick="handleButtonClick(100)">100원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 5개</span>
+                        </div>
+                        <button name="cp_item" value="500" onclick="handleButtonClick(500)">500원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 10개</span>
+                        </div>
+                        <button name="cp_item" value="1000" onclick="handleButtonClick(1000)">1,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 50개</span>
+                        </div>
+                        <button name="cp_item" value="5000" onclick="handleButtonClick(5000)">5,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 100개</span>
+                        </div>
+                        <button name="cp_item" value="10000" onclick="handleButtonClick(10000)">10,000원</button>
+                    </div>
+                    </div>
+            </section>
+
+            <section class="charge-second-view-box">
+                <div class="charge-second-view">
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 200개</span>
+                        </div>
+                        <button name="cp_item" value="20000" onclick="handleButtonClick(20000)">20,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 300개</span>
+                        </div>
+                        <button name="cp_item" value="30000" onclick="handleButtonClick(30000)">30,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 500개</span>
+                        </div>
+                        <button name="cp_item" value="50000" onclick="handleButtonClick(50000)">50,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 700개</span>
+                        </div>
+                        <button name="cp_item" value="70000" onclick="handleButtonClick(70000)">70,000원</button>
+                    </div>
+                    <div class="charge-potato">
+                        <div class="charge-potato-about">
+                            <img th:src="@{/assets/point.png}" style="width: 50px;">
+                            <span>감자 1000개</span>
+                        </div>
+                        <button name="cp_item" value="100000" onclick="handleButtonClick(100000)">100,000원</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <th:block th:fragment="add_bottom">
+        <script src="http://cdn.iamport.kr/v1/iamport.js"></script>
+        <script src="/js/main.js" type="text/javascript"></script>
+    </th:block>
+
+</th:block>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>blog-write</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <form action="#" method="post" class="container" id="blogForm">
+            <section class="creatorSearchListContainer">
+                <div class="creatorSearchListContainer-box">
+                    <section class="creator-search-list" th:if="${not #lists.isEmpty(foundCreators)}">
+                        <p>마음에 드는 크리에이터 찾기</p>
+                    </section>
+
+                    <section class="creator-search-list-bar">
+                        <div class="creator-search-list-bar-box">
+                            <label for="creator-list-search-bar-titleInput" >
+                                <input type="text" id="creator-list-search-bar-titleInput" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
+                            </label>
+                        </div>
+                    </section>
+
+                    <section class="creator-search-list">
+                        <div class="creator-search-list-box" th:each="creator : ${foundCreators}">
+                            <div class="creator-search-info">
+                                <a th:href="@{'/blog/' + ${creator.blogId}}">
+                                    <div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                                        <img id="imagePreview" alt="Profile Image"
+                                             th:src="${creator.profileImageUrl}"
+                                        style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                                    </div>
+                                    <div>
+                                        <h5 >th:text="${creator.creatorName}"</h5>
+                                        <span >th:text="${creator.creatorAbout}"</span>
+                                        <span >th:text="'게시글: ' + ${creator.postCount}"</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </form>
+    </div>
+    <th:block th:fragment="add_bottom">
+
+    </th:block>
+
+</th:block>

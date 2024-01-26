@@ -26,41 +26,39 @@
             <!-- 세션 있을때 -->
 
             <!-- 세션 없을때 -->
-            <a th:if="${session.user == null}"
-               href="#"
+            <a  th:href="@{/myPage}"
                class="list-group-item list-group-item-action py-2 ripple"
                aria-current="true"
-               th:href="@{/user/profile}"
-            >
-                <i class="fa fa-address-book-o" aria-hidden="true"></i>
+            ><i class="fa fa-address-book-o" aria-hidden="true"></i>
 
                 <span>마이페이지</span>
             </a>
-            <a
-                    href="#"
+
+            <a href="#"
                     class="list-group-item list-group-item-action py-2 ripple active"
                     th:href="@{/content/feed}"
-            >
-                <i class="fa fa-search" aria-hidden="true"></i>
+            ><i class="fa fa-search" aria-hidden="true"></i>
                 <span>크리에이터찾기</span>
             </a>
+
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/content/map}"
             >
                 <i class="fa fa-handshake-o" aria-hidden="true"></i><span>후원중인크리에이터</span></a
             >
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-               th:href="@{/content/rank}"
-            ><i class="fa fa-credit-card" aria-hidden="true"></i><span>후원이력</span></a
+
+            <a th:href="@{/transCreator(userId=${booster.userId})}" class="list-group-item list-group-item-action py-2 ripple"
+
+            ><i class="fa fa-credit-card" aria-hidden="true"></i><span>크리에이터로 전환하기</span></a
             >
+
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-               th:href="@{/board/qna}"
-            >
-                <i class="fa fa-heart-o" aria-hidden="true"></i><span>메일 서비스로 이동하기</span>
+               th:href="@{/transBooster(userId=${booster.userId})}"
+            ><i class="fa fa-heart-o" aria-hidden="true"></i><span>부스터로 전환하기</span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-               th:href="@{/board/notice}"
-            ><i class="fa fa-heart-o" aria-hidden="true"></i><span>커뮤니티 서비스로 이동하기</span></a
+               th:href="@{/chargeChoose/{userId}(userId=${booster.userId})}"
+            ><i class="fa fa-heart-o" aria-hidden="true"></i><span>포인트충전하기</span></a
             >
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/logout}"

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>blog-write</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <form  th:action="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}" method="post" class="container" id="blogForm">
+            <section class="collection-title">
+                <div class="collection-title-box">
+                    <label for="titleInput" >
+                        <input type="text" id="titleInput" name="aboutTitle" placeholder="제목입력">
+                    </label>
+                </div>
+            </section>
+
+            <section class="collection-content">
+                <div class="collection-content-box">
+                    <label for="collection-content-Input" >
+                        <input type="text" id="collection-content-Input" name="aboutContent">
+                    </label>
+                </div>
+            </section>
+
+            <section class="collection-file-upload">
+                <div style="display: flex; justify-content: space-between; flex-direction: row; width:800px;">
+                    <h2>첨부파일</h2>
+                    <label for="file" class="upload-form" style="cursor: pointer; margin-left: 150px;">
+                        <input type="file" id="file" name="file" style="display: none">
+                        업로드
+                    </label>
+                </div>
+                <div id="filenameDisplay" class="filename-display"></div>
+            </section>
+
+            <section class="collection-button">
+                <div class="collection-button-box">
+                    <button type="submit">업로드</button>
+                    <button type="submit">수정</button>
+                    <button type="submit">삭제</button>
+                </div>
+            </section>
+        </form>
+    </div>
+    <th:block th:fragment="add_bottom">
+
+    </th:block>
+
+</th:block>

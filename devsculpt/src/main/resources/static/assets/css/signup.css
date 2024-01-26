@@ -1,0 +1,68 @@
+body {
+  background-color: #212529 !important;
+  color: #fff !important; /* 전체 텍스트 색상을 흰색으로 설정 */
+}
+
+.container {
+  text-align: center; /* 부모 요소인 .container에 text-align 속성 추가 */
+}
+
+.form-container {
+  background-color: #212529; /* .form-container의 배경색 설정 */
+  margin: 50px auto;
+  width: 400px;
+}
+
+.form-container img {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.form-intro-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* .form-group 클래스 내부의 요소들에 대한 배경색 설정 */
+.form-group {
+  background-color: #212529;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: left; /* 라벨을 왼쪽으로 정렬 */
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #fff !important; /* 라벨 글자 색상을 흰색으로 설정 */
+  margin-bottom: 5px; /* 라벨과 입력 텍스트 간의 마진 설정 */
+}
+
+/* 버튼의 배경색을 #343a40로 설정 */
+.btn-dark {
+  width: 100%;
+  margin-top: 15px;
+  background-color: #343a40;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn-dark:hover {
+  background-color: #545b62;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-intro {
+   font-size: 12px;
+ }
+
+ #checkDuplicate {
+   color: #fff;
+ }
+ .welcome-message {
+   font-size: 22px; /* 원하는 폰트 사이즈로 조절 */
+ }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Devsculpt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <style>
+        body {
+         background-color: #212529; /* 전체 페이지의 배경색 설정 */
+         color: white; /* 전체 페이지의 텍스트 색상 설정 */
+     }
+
+     .summernote {
+         background-color: white !important; /* Summernote 에디터의 배경색을 재정의 */
+         color: black !important; /* Summernote 에디터의 텍스트 색상 설정 */
+     }
+    </style>
+</head>
+<body>
+<div th:replace="~{layout/header}"></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="/dev/board/create" method="post" enctype="multipart/form-data" th:object="${boardRequestDTO}">
+                <div class="form-group">
+                    <label for="title">제목</label>
+                    <input type="text" class="form-control" placeholder="제목을 입력하세요." id="title" name="title"
+                           th:field="*{title}">
+                </div>
+                <div class="form-group">
+                    <label for="category">카테고리</label>
+                    <select class="form-control" id="category" name="category" th:field="*{category}">
+                        <option value="Q&A">Q&A</option>
+                        <option value="knowledge">지식</option>
+                        <option value="community">커뮤니티</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="content">본문</label>
+                    <textarea class="form-control summernote"
+                              rows="5" id="summernote" name="content" th:field="*{content}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">글쓰기</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- 서머노트를 위해 추가해야할 부분 -->
+<script src="/assets/js/summernote-lite.js"></script>
+<script src="/assets/js/summernote-ko-KR.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 300,
+            lang: "ko-KR",
+            styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['insert', ['link', 'picture', 'video', 'table', 'hr']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            callbacks: {
+                onInit: function() {
+                    $('.note-editable').css({
+                        'background-color': 'white',  // 에디터 내부의 배경색 설정
+                        'color': 'black'  // 에디터 내부의 텍스트 색상 설정
+                    });
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

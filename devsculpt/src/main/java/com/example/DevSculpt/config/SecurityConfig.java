@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -15,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -33,8 +32,9 @@ public class SecurityConfig {
                 csrf(CsrfConfigurer::disable);
         http.
                 authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/dev/login").permitAll()
+                        .requestMatchers("/dev/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()
+                        .requestMatchers("/upload/**").permitAll()
                         .requestMatchers("/api/**").permitAll() // api테스트용 허용
                         .anyRequest().authenticated() // permitAll()처리한 요청을 제외한 것에 대해서는 인증을 받도록 처리
                 )

@@ -1,4 +1,4 @@
-package com.example.BAS.entitiy.image;
+package com.example.BAS.entitiy.files;
 
 import jakarta.persistence.Entity;
 import lombok.*;

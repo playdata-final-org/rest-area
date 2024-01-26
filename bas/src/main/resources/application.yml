@@ -9,6 +9,9 @@ spring:
       host: 192.168.0.147
       port: 6379
       password: test1234
+#  storage:
+#    location: C:/back_msa/source
+#    webLocation: /uploads
   sql:
     init:
       encoding: UTF-8
@@ -32,6 +35,8 @@ spring:
         use_sql_comments: true
 
 
+
+
   mail:
     host: smtp.naver.com
     port: 465
@@ -45,12 +50,16 @@ spring:
     multipart:
       max-file-size: 4MB
       max-request-size: 4MB
-      location: C:/back_msa/rest-area/bas/src/main/resources/static/img
+      location: C:\back_msa\source
+
+
+  Post: /v1/payment/approve
+  Host: kapi.kakao.com
+  Authorization: KakaoAK ${SERVICE_APP_ADMIN_KEY}
+  Content-type: application/x-www-form-urlencoded;charset=utf-8
 
 
 
-#  resources:
-#    static-locations=classpath:/static/**
 
 #  security:
 #    oauth2:

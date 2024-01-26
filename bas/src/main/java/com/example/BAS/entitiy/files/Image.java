@@ -1,10 +1,12 @@
-package com.example.BAS.entitiy.image;
+package com.example.BAS.entitiy.files;
 
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
@@ -14,13 +16,13 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public abstract class Image {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long imageId;
-    @NotNull
+
     private String uuid;
-    @NotNull
+
     private String fileName;
-    @NotNull
+
     private String fileUrl;
 
 }

@@ -44,7 +44,8 @@ public class CollectionServiceImpl implements CollectionService {
     private String uploadPath;
 
     @Override
-    public CollectionRequestDTO save(Long blogId, CollectionResponseDTO collectionResponseDTO, String membershipType, Long tierId) throws IOException {
+    public CollectionRequestDTO save(Long blogId, CollectionResponseDTO collectionResponseDTO,
+                                     String membershipType, Long tierId,String tierName) throws IOException {
         ModelMapper mapper = new ModelMapper();
         Collections collections = mapper.map(collectionResponseDTO, Collections.class);
 
@@ -79,6 +80,7 @@ public class CollectionServiceImpl implements CollectionService {
         collections.setTitle(savedCollection.getTitle());
         collections.setMembershipType(savedCollection.getMembershipType());
         collections.setTierId(tierId);
+        collections.setTierName(tierName);
 
         return collectionRequestDTO;
     }

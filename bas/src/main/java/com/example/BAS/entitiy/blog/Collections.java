@@ -34,7 +34,7 @@ public class Collections {
 
     private String membershipType;
     private Long tierId;
-    private String grade;
+    private String tierName;
 
     @OneToOne(mappedBy = "collections", cascade = CascadeType.ALL)
     @ToString.Exclude

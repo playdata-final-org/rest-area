@@ -21,9 +21,9 @@ public class CollectionRequestDTO {
     private CollectionFiles collectionFiles;
     private String title;
     private String content;
-    private String grade;
     private String membershipType;
     private Long tierId;
+    private String tierName;
     private List<String> imageUrls;
     private String fileUrl;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -32,5 +32,4 @@ public class CollectionRequestDTO {
     private LocalDateTime updateDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime deleteDate;
-
 }

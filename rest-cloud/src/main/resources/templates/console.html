@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>콘솔 홈</title>
+  <div th:replace="~{/include/top::top}"></div>
+</head>
+
+<body >
+<div th:replace="~{components/nav::console}"></div>
+<div class="container-fluid main-min-height footer-no-fix" id="content">
+  <div class="row justify-content-center">
+    <th:block th:replace="~{/components/sidebar::sidebar}"></th:block>
+    <main class="col-md-9 col-lg-10 pt-3"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+      <div class="row justify-content-center mb-3">
+
+        <div class="col-12 px-0 mt-2 col-sm-10 col-md-10">
+
+          <h4><strong>RCloud</strong>에 오신 것을 환영합니다</h4>
+          <br/><br/>
+          <h5>당신의 디지털 경험을 혁신합니다</h5>
+          디지털 시대에서, 효율성, 보안, 접근성은 사치가 아닌 필수입니다. 이에 <strong>RCloud</strong>은 비즈니스와 개인의 발전하는 요구를 충족시키기 위해 맞춤형 클라우드 서비스를 제공하는 데 전념하고 있습니다.
+          <br/>
+          <br/>
+          <h5>비교할 수 없는 성능과 신뢰성</h5>
+          최첨단 클라우드 인프라로 번개같은 속도와 뛰어난 가용성을 경험하세요. 전 세계에 분포된 데이터 센터가 여러분의 데이터를 항상 사용할 수 있도록 보장합니다.
+          <br/>
+          <br/>
+          <h5>믿을 수 있는 보안</h5>
+          여러분의 안심이 우리의 최우선 과제입니다. 고급 암호화, 다중 인증, 지속적인 네트워크 모니터링을 포함한 강력한 보안 조치로 여러분의 데이터를 위협으로부터 보호합니다. <strong>RCloud</strong>과 함께라면 정보가 안전한 손에 있습니다.
+          모든 필요에 맞는 확장 가능한 솔루션
+          <br/>스타트업이든, 이미 자리 잡은 기업이든, 개인적인 스토리지 솔루션이 필요하든, 저희의 유연하고 확장 가능한 서비스는 여러분과 함께 성장합니다. 간단한 클라우드 스토리지부터 복잡한 클라우드 컴퓨팅까지, 우리는 여러분을 지원합니다.
+          무이음 통합 및 쉬운 관리
+          <br/>사용자 친화적인 인터페이스와 API 통합으로 클라우드 리소스 관리가 쉬워집니다. 기존 도구 및 워크플로와의 원활한 통합을 즐기고, 직관적인 대시보드의 편리함을 경험하세요.
+          <br/>
+          <br/>
+          <h5>24시간 전담 지원</h5>
+          고객님의 클라우드 경험이 원활하고 무리 없이 진행될 수 있도록 저희는 언제나 지원합니다. 전문가 팀이 24/7로 여러분의 문의나 문제에 대해 도와드릴 준비가 되어 있습니다.
+          오늘 클라우드 혁명에 동참하세요
+          <br/>디지털 경험을 새로운 차원으로 끌어올릴 준비가 되셨나요? <strong>RCloud</strong>에 가입하시고 클라우드 혁명의 일원이 되세요. 오늘 가입하셔서 저희의 혁신적인 클라우드 솔루션이 어떻게 여러분의 업무와 생활을 변화시킬 수 있는지 발견하세요.
+        </div>
+        <div class="col-12 px-0 mb-2 col-sm-10 col-md-10">
+          <hr/>
+          <p>동영상을 시청하시고 클라우드 사용법을 배우세요</p>
+          <video controls="" width="400" height="200" src="/asset/movie/testmovie.mov"></video>
+        </div>
+
+      </div>
+
+
+    </main>
+  </div>
+</div>
+<div th:replace="~{/components/footer}"></div>
+
+</body>
+<th:block th:replace="~{/include/bottom::bottom}"></th:block>
+<script  th:src="${staticPath} + '/js/page/console.js'"></script>
+</html>

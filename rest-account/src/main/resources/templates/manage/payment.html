@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RestArea</title>
+    <link rel="icon" href="/asset/favicon.png" />
+</head>
+<div th:replace="~{/include/top::top}"></div>
+<body >
+<div th:replace="~{/components/nav::nav}"></div>
+<div class="container-fluid mb-3" id="content">
+    <div class="row">
+
+        <th:block th:replace="~{/components/sidebar::sidebar}"></th:block>
+        <main class="main-min-height col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+
+
+            <div class="row justify-content-center mb-3">
+                <h3 class="h2 col-12  col-sm-10 col-md-10">카드정보</h3>
+                <div class="card col-12  col-sm-10 col-md-10">
+                    <div class="card-body">
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">등록카드</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" id="payment-card">
+                                    <span>**** **** **** 1232</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">등록일</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start disabled" disabled>
+                                    <span>2023-10-13</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center mb-3">
+                <h3 class="h2 col-12  col-sm-10 col-md-10">결제정보</h3>
+                <div class="card col-12  col-sm-10 col-md-10" >
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <table class="table table-responsive table-hover payment-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">결제일</th>
+                                    <th scope="col">카드번호</br>(뒷 8자리)</th>
+                                    <th scope="col">금액(₩)</th>
+                                    <th scope="col">결제유형</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th>2023-01-01</th>
+                                    <td>**** 3232</td>
+                                    <td>18223.0</td>
+                                    <td>Cloud</td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                            <div class="col-12">
+                                <button class="btn w-100 btn-primary">더보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+</div>
+<div th:replace="~{/components/footer::footer}"></div>
+
+</body>
+<th:block th:replace="~{include/bottom::bottom}"></th:block>
+<script  th:src="${@environment.getProperty('resource.request-path')} + '/js/page/payment.js'"></script>
+</html>

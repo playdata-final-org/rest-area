@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RestArea</title>
+    <link rel="icon" href="/asset/favicon.png" />
+</head>
+<div th:replace="~{/include/top::top}"></div>
+<body >
+<div th:replace="~{/components/nav::nav}"></div>
+<div class="container-fluid mb-3" id="content">
+    <div class="row">
+
+        <th:block th:replace="~{/components/sidebar::sidebar}"></th:block>
+        <main class="main-min-height col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+
+
+            <div class="row justify-content-center mb-3">
+                <h3 class="h2 col-12  col-sm-10 col-md-10">기본정보</h3>
+                <div class="card col-12  col-sm-10 col-md-10  " >
+                    <div class="card-body">
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">프로필</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="btn btn-link" id="profile">프로필 수정<img  height="30" width="30" src="/static/asdfasdf.png" onerror="this.src='/asset/favicon.png'"/></button>
+                                <input type="file" class="d-none" data-target="profile" >
+                                <button class="btn btn-primary d-none" id="profile-save">저장</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">이름</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="name">
+                                    <span>김길동</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">생년월일</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="birth">
+                                    <span>1999-01-01</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">성별</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="gender">
+                                    <span>공개안함</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-1">
+                            <div class="col-12 col-sm-4">이메일</div>
+                            <div class="col-12 col-sm-8"><p><strong>foobar@restarea.com</strong></p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center mb-3">
+                <h3 class="h2 col-12  col-sm-10 col-md-10">비밀번호 설정</h3>
+                <div class="card col-12  col-sm-10 col-md-10" >
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-4">비밀번호</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="password">
+                                    <span>*********</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <h3 class="h2 col-12  col-sm-10 col-md-10">주소</h3>
+                <div class="card col-12  col-sm-10 col-md-10" >
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-4">우편번호</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="address">
+                                    <span>82373</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-4">상세주소</div>
+                            <div class="col-12 col-sm-8">
+                                <button class="form-control text-start" name="open-modal" id="address-detail">
+                                    <span>개나리아파트 101동 101호</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi bi-arrow-right" viewBox="0 0 16 16" style="
+                                        float: right;
+                                    ">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+</div>
+<div th:replace="~{/components/footer::footer}"></div>
+
+</body>
+<th:block th:replace="~{include/bottom::bottom}"></th:block>
+<script  th:src="${@environment.getProperty('resource.request-path')} + '/js/page/personal-info.js'"></script>
+</html>

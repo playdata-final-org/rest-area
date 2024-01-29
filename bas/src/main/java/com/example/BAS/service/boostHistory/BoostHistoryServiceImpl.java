@@ -54,4 +54,9 @@ public class BoostHistoryServiceImpl implements BoostHistoryService{
     public List<BoostHistory> findByUserId(Long userId) {
         return boostHistoryDAO.findByUserId(userId);
     }
+
+    @Override
+    public int getBoostersCount(Long blogId) {
+        return boostHistoryDAO.getBoostersCount(blogId);
+    }
 }

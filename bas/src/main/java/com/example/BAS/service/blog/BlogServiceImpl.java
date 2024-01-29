@@ -6,6 +6,7 @@ import com.example.BAS.dto.About.AboutRequestDTO;
 import com.example.BAS.dto.About.AboutResponseDTO;
 import com.example.BAS.dto.blog.BlogRequestDTO;
 import com.example.BAS.entitiy.blog.BlogAbout;
+import com.example.BAS.entitiy.blog.BlogCategory;
 import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.users.Users;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,19 @@ public class BlogServiceImpl implements BlogService {
 
         return mapper.map(savedBlog, BlogRequestDTO.class);
     }
+
+    @Override
+    public BlogRequestDTO saveBlog(Long blogId,BlogCategory blogCategory) {
+        Blogs blog = blogDAO.findByBlogId(blogId);
+        System.out.println("blogCategory ============================== " + blogCategory);
+        System.out.println("blog ========================================= " + blog);
+        blog.setCategory(blogCategory);
+        Blogs savedBlog = blogDAO.saves(blog);
+        ModelMapper mapper = new ModelMapper();
+
+        return mapper.map(savedBlog, BlogRequestDTO.class);
+    }
+
     @Override
     public Blogs findByBlogId(Long blogId) {
         return blogDAO.findByBlogId(blogId) ;

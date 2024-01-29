@@ -26,6 +26,11 @@ public class CollectionDAOImpl implements CollectionDAO {
     public Collections findById(Long collectionId) {
         return collectionRepository.findByCollectionId(collectionId);
     }
+
+    @Override
+    public int getCollectionCount(Long blogId) {
+        return collectionRepository.countDistinctCollectionIdsByBlogId(blogId);
+    }
 }
 
 

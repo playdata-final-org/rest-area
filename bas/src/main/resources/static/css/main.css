@@ -1116,6 +1116,58 @@ section.blogCollection .collectionContainer .membershipButton button{
      cursor: pointer;
 }
 
+/*categoryModal*/
+
+section.categoryModalContainer .categoryModalBox{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    width: 400px;
+    height: 380px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+section.categoryModalContainer .modalContent {
+     text-align: center;
+}
+
+section.categoryModalContainer .modalClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+section.categoryModalContainer .modalClose:hover {
+    color: #333;
+}
+
+section.categoryModalContainer ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+section.categoryModalContainer ul li{
+    margin-bottom: 10px;
+}
+
+section.categoryModalContainer ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+section.categoryModalContainer ul li a:hover {
+    color: #555;
+}
+
 /*blogModal*/
 
 section.blogModal{

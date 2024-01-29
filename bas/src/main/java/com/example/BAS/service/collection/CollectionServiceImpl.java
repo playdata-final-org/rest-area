@@ -212,6 +212,11 @@ public class CollectionServiceImpl implements CollectionService {
     }
 
     @Override
+    public int getCollectionCount(Long blogId) {
+        return collectionDAO.getCollectionCount(blogId);
+    }
+
+    @Override
     public InputStreamResource downloadFile(String fileName) throws IOException {
         Path downloadPath = Paths.get(uploadPath, "collectionFiles", fileName);
 

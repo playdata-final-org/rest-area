@@ -20,6 +20,12 @@ public class BlogDAOImpl implements BlogDAO{
     public Blogs save(Blogs createBlog) {
         return blogRepository.save(createBlog);
     }
+
+    @Override
+    public Blogs saves(Blogs blogs) {
+        return blogRepository.save(blogs);
+    }
+
     @Override
     public Long findBlogIdByUserId(Long userId) {
         return blogRepository.findBlogIdByUserId(userId);

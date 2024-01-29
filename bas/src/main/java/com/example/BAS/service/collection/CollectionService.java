@@ -17,4 +17,5 @@ public interface CollectionService {
     InputStreamResource downloadFile(String fileName) throws IOException;
     String getCollectionFileName(Long collectionId);
     String getCollectionFileUuid(Long collectionId);
+    int getCollectionCount(Long blogId);
 }

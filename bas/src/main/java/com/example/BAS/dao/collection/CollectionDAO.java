@@ -10,4 +10,6 @@ public interface CollectionDAO {
     List<Collections> findByBlogs_BlogId(Long blogId);
 
     Collections findById(Long collectionId);
+
+    int getCollectionCount(Long blogId);
 }

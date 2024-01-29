@@ -10,4 +10,6 @@ import java.util.List;
 public interface BoostHistoryRepository extends JpaRepository<BoostHistory,Long> {
     @Query("SELECT bh FROM BoostHistory bh WHERE bh.user.userId = :userId")
     List<BoostHistory> findByUserId(@Param("userId") Long userId);
+    @Query("SELECT COUNT(DISTINCT bh.user) FROM BoostHistory bh WHERE bh.blogs.blogId = :blogId")
+    int countDistinctUserIdsByBlogId(@Param("blogId") Long blogId);
 }

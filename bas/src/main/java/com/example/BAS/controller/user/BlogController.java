@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -50,8 +51,21 @@ public class BlogController {
                                  Model model, HttpServletRequest request) {
         Blogs blog = blogService.findByBlogId(blogId);
 
+        String blogCategory = String.valueOf(blog.getCategory());
+
+        int boostersCount = 0;
+        int collectionCount = 0;
+        if (blog != null) {
+            boostersCount = boostHistoryService.getBoostersCount(blogId);
+            collectionCount = collectionService.getCollectionCount(blogId);
+        }
+
         Long ownerId = blog.getUsers().getUserId();
         Users owner = authService.findByUserId(ownerId);
+
+        List<BlogCategory> categories = Arrays.asList(BlogCategory.values());
+
+        String category = String.valueOf(blog.getCategory());
 
         if (owner.getCurrentRole() == null) {
             return "user/main";
@@ -63,7 +77,10 @@ public class BlogController {
 
         model.addAttribute("booster", owner);
         model.addAttribute("blog", blog);
-
+        model.addAttribute("categories",categories);
+        model.addAttribute("boostersCount",boostersCount);
+        model.addAttribute("collectionCount",collectionCount);
+        model.addAttribute("blogCategory",blogCategory);
         return "blog/blog";
     }
 
@@ -78,6 +95,7 @@ public class BlogController {
                                      Model model) {
 
         List<CollectionRequestDTO> collections = collectionService.getCollectionList(blogId);
+
         String rolePage = principalDetails.rolePage();
 
         Blogs blog = blogService.findByBlogId(blogId);

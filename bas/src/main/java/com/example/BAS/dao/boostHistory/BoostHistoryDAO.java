@@ -13,4 +13,6 @@ public interface BoostHistoryDAO {
     void deletedMembership(BoostHistory boostHistory);
 
     List<BoostHistory> findByUserId(Long userId);
+
+    int getBoostersCount(Long blogId);
 }

@@ -8,6 +8,7 @@ import java.util.List;
 public interface BlogDAO {
     Blogs findByBlogId(Long blogId);
     Blogs save(Blogs createBlog);
+    Blogs saves(Blogs blogs);
     Long findBlogIdByUserId(Long userId);
     List<Blogs> findByUsers(Users savedUser);
     Blogs getByBlogId(Long userId);

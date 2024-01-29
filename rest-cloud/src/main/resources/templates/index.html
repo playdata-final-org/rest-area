@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <title>RestArea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <div th:replace="~{/include/top::top}"></div>
+</head>
+
+<body>
+<div th:replace="~{/components/nav::no-sidebar}"></div>
+<div class="bd-masthead mb-3 " id="content">
+    <div class="container-xxl bd-gutter">
+        <div class="row justify-content-center">
+            <div class="p-0 col-12">
+                <img src="/asset/images/main_cover.png" width="100%" alt="Bootstrap" class="d-block mx-auto mb-3"
+                     style="
+    width: 100%;
+    height: 451px;
+    opacity: 0.5;
+">
+            </div>
+
+        </div>
+        <div class="col-md-4 col-sm-9 col-12 col-lg-4 mx-auto text-center">
+            <button class="btn btn-lg btn-primary w-100" onclick="location.href='/console'">
+                시작하기
+            </button>
+        </div>
+
+        <hr>
+        <div class="row mt-3 gap-3 justify-content-start">
+            <div class="col-12">
+                <h3>공지사항</h3>
+            </div>
+            <div class="card col-12 col-sm-5 col-md-3 notice-card">
+                <div class="card-body">
+                    <h5 class="card-title">신규 서비스 오픈 안내</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">안내</h6>
+                    <p class="card-text line-over-dot-3">군인 또는 군무원이 아닌 국민은 대한민국의 영역안에서는 중대한 군사상 기밀·초병·초소·유독음식물공급·포로·군용물에 관한 죄중 법률이 정한 경우와 비상계엄이 선포된 경우를 제외하고는 군사법원의 재판을 받지 아니한다. 누구든지 병역의무의 이행으로 인하여 불이익한 처우를 받지 아니한다. 국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고 균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에 관한 필요한 제한과 의무를 과할 수 있다. 대한민국은 국제평화의 유지에 노력하고 침략적 전쟁을 부인한다. 국가는 전통문화의 계승·발전과 민족문화의 창달에 노력하여야 한다.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card col-12 col-sm-5 col-md-3 notice-card">
+                <div class="card-body">
+                    <h5 class="card-title">서비스 요금 30% 할인 이벤트</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">이벤트</h6>
+                    <p class="card-text line-over-dot-3">국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 국무총리는 대통령을 보좌하며, 행정에 관하여 대통령의 명을 받아 행정각부를 통할한다. 대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 중앙선거관리위원회는 법령의 범위안에서 선거관리·국민투표관리 또는 정당사무에 관한 규칙을 제정할 수 있으며, 법률에 저촉되지 아니하는 범위안에서 내부규율에 관한 규칙을 제정할 수 있다. 국가원로자문회의의 의장은 직전대통령이 된다. 다만, 직전대통령이 없을 때에는 대통령이 지명한다. 국회는 국민의 보통·평등·직접·비밀선거에 의하여 선출된 국회의원으로 구성한다. </p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{components/footer::footer}"></div>
+
+</body>
+<th:block th:replace="include/bottom"></th:block>
+<!--  <script src="/static/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>-->
+<!--  <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>-->
+</html>

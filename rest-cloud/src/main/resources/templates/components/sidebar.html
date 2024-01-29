@@ -1,0 +1,37 @@
+<th:block th:fragment="sidebar">
+  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
+    <div class="position-sticky pt-2">
+      <div class="d-md-none" name="project-dropdown">
+<!--        <th:block th:replace="~{/components/project-dropdown::dropdown}"></th:block>-->
+      </div>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>API</span>
+      </h6>
+      <ul class="nav flex-column">
+        <li class="nav-item"
+            th:classappend="${#strings.startsWith(servletPath,'/manage/personal-info')} == true ? 'active' ">
+          <a class="nav-link " aria-current="page" href="/manage/personal-info">
+            Send Mail
+          </a>
+        </li>
+      </ul>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>인증</span>
+      </h6>
+      <ul class="nav flex-column">
+        <li class="nav-item"
+            th:classappend="${#strings.startsWith(servletPath,'/manage/personal-info')} == true ? 'active' ">
+          <a class="nav-link " aria-current="page" href="/manage/personal-info">
+            OAuth Login
+          </a>
+        </li>
+      </ul>
+      <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <a href="/payment"><span>결제</span></a>
+      </h5>
+      <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <a href="/notice"><span>공지사항</span></a>
+      </h5>
+    </div>
+  </nav>
+</th:block>

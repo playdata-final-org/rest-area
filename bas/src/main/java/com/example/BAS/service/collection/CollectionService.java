@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CollectionService {
 
-    CollectionRequestDTO save(Long blogId, CollectionResponseDTO collectionResponseDTO,String membershipType, Long tierId) throws IOException;
+    CollectionRequestDTO save(Long blogId, CollectionResponseDTO collectionResponseDTO,String membershipType, Long tierId,String tierName) throws IOException;
     List<CollectionRequestDTO> getCollectionList(Long blogId);
     ByteArrayResource downloadFiles(String fileUrl) throws IOException;
     List<String> getCollectionImagesUrls(Long collectionId);

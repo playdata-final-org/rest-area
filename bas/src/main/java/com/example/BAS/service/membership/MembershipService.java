@@ -14,4 +14,5 @@ public interface MembershipService {
     Memberships findByMembershipId(Long blogId);
     List<MembershipTierRequestDTO> findTierInfoByMembershipId(Long membershipId);
 
+    Membership_tier findByTierId(Long tierId);
 }

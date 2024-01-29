@@ -5,10 +5,7 @@ import com.example.BAS.dto.About.AboutResponseDTO;
 import com.example.BAS.dto.collection.CollectionRequestDTO;
 import com.example.BAS.dto.collection.CollectionResponseDTO;
 import com.example.BAS.dto.membership.MembershipTierRequestDTO;
-import com.example.BAS.entitiy.blog.BlogAbout;
-import com.example.BAS.entitiy.blog.Blogs;
-import com.example.BAS.entitiy.blog.BoostHistory;
-import com.example.BAS.entitiy.blog.Memberships;
+import com.example.BAS.entitiy.blog.*;
 import com.example.BAS.entitiy.users.Users;
 import com.example.BAS.service.auth.AuthService;
 import com.example.BAS.service.blog.BlogService;
@@ -203,12 +200,13 @@ public class BlogController {
                              ) throws IOException {
 
         Long tierId = Long.parseLong(tierIdStr);
-
+        Membership_tier membershipTier = membershipService.findByTierId(tierId);
+        String tierName = membershipTier.getTierName();
         Long userId = principalDetails.getUsers().getUserId();
         collectionResponseDTO.setCollectionImages(imageFiles);
         collectionResponseDTO.setCollectionFiles(file);
 
-        collectionService.save(blogId, collectionResponseDTO, membershipType, tierId);
+        collectionService.save(blogId, collectionResponseDTO, membershipType, tierId, tierName);
 
         return "redirect:/blog/" + blogId + "?userId=" + userId;
     }

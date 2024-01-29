@@ -83,6 +83,11 @@ public class MembershipServiceImpl implements MembershipService{
     }
 
     @Override
+    public Membership_tier findByTierId(Long tierId) {
+        return membershipDAO.findByTierId(tierId);
+    }
+
+    @Override
     public Membership_tier findById(Long selectedTierId) {
         return membershipDAO.findById(selectedTierId);
     }

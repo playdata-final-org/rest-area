@@ -74,6 +74,16 @@ public class BlogServiceImpl implements BlogService {
         }
     }
 
+    @Override
+    public List<Blogs> getBlogsByCategory(BlogCategory category) {
+        return blogDAO.findByCategory(category);
+    }
+
+    @Override
+    public Blogs findByUserId(Long userId) {
+        return blogDAO.findByBlogId(userId);
+    }
+
     private BlogTitleImages defaultProfileImage() throws IOException {
         String defaultProfileImage = "ai.png";
         Path root = Paths.get(uploadPath, "blogs");
@@ -154,7 +164,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogAbout> findByAbout(Long blogId) {
+    public BlogAbout findByAbout(Long blogId) {
         return blogAboutDAO.findByAbout(blogId);
     }
 

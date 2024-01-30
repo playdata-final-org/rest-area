@@ -1,5 +1,6 @@
 package com.example.BAS.dao.blog;
 
+import com.example.BAS.entitiy.blog.BlogCategory;
 import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.files.BlogTitleImages;
 import com.example.BAS.entitiy.users.Users;
@@ -55,6 +56,12 @@ public class BlogDAOImpl implements BlogDAO{
     @Override
     public BlogTitleImages saved(BlogTitleImages newImage) {
         return blogTitleImageRepository.save(newImage);
+    }
+
+    @Override
+    public List<Blogs> findByCategory(BlogCategory category) {
+
+        return blogRepository.findByCategory(category);
     }
 
 }

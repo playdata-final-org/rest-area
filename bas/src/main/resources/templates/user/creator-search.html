@@ -6,38 +6,44 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form th:action="@{/creator-search}" method="post" class="container" id="blogForm">
+
             <div class="creator-search-container">
                 <section class="creator-search-icon">
                     <i class="fa fa-search fa-3x" aria-hidden="true"></i>
                 </section>
 
                 <section class="creator-search">
-                 <a  th:href="@{/creatorSearchList}"> <p>크리에이터찾기</p></a>
+                     <p>크리에이터찾기</p>
                 </section>
 
-                <section class="creator-search-bar">
-                    <div class="creator-search-bar-box">
-                        <label for="creator-search-bar-titleInput" >
-                            <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>
-                            <input type="text" id="creator-search-bar-titleInput" name="nickName" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
-                        </label>
+                <div class="container2">
+                    <div class="creator-search-bar" style="display: flex; justify-content: center;">
+                        <div class="creator-search-bar-box">
+                            <label for="creator-search-bar-titleInput" >
+                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>
+                                <input type="text" id="creator-search-bar-titleInput" name="nickName" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
+                            </label>
+                        </div>
                     </div>
-                </section>
 
-                <section class="creator-search-bar-button">
-                    <div class="creator-search-bar-button-box">
-                        <button type="submit">템플릿</button>
-                        <button type="submit">리엑트</button>
-                        <button type="submit">스프링</button>
-                        <button type="submit">디자인</button>
-                    </div>
-                </section>
+                    <section class="creator-search-bar-button" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                        <div id="categoryContainer" class="creator-search-bar-button-box" th:each="category : ${categories}" style="margin:10px;">
+                            <button id="categoryItemBtn" class="categoryItem" th:text="${category}"></button>
+                        </div>
+                    </section>
+                </div>
+                <div id="blogList" class="creator-search-list-box">
+
+                </div>
             </div>
-        </form>
+        <div>
     </div>
-    <th:block th:fragment="add_bottom">
 
+
+    <th:block th:fragment="add_bottom">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="/js/creatorCategorySearch.js" type="text/javascript"></script>
+        <script src="/js/creator-search.js" type="text/javascript"></script>
     </th:block>
 
 </th:block>

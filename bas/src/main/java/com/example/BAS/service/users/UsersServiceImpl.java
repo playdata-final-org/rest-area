@@ -25,4 +25,14 @@ public class UsersServiceImpl implements UsersService{
     public List<Users> searchCreatorsByNickname(String nickName) {
         return userDAO.findByNickNameContainingIgnoreCase(nickName);
     }
+
+    @Override
+    public Users findCreators(Long userId) {
+        return userDAO.findByUserId(userId);
+    }
+
+    @Override
+    public List<Users> findLikeUser(String userInput) {
+        return userDAO.findLikeUser(userInput);
+    }
 }

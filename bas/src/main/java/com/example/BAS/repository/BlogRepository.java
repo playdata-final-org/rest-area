@@ -1,5 +1,6 @@
 package com.example.BAS.repository;
 
+import com.example.BAS.entitiy.blog.BlogCategory;
 import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.users.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,6 @@ public interface BlogRepository extends JpaRepository<Blogs,Long> {
     Long findBlogIdByUserId(@Param("userId") Long userId);
 
     List<Blogs> findByUsers(Users savedUser);
+
+    List<Blogs> findByCategory(BlogCategory category);
 }

@@ -237,7 +237,7 @@ public class BlogController {
                                 @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         String rolePage = principalDetails.rolePage();
         Blogs blog = blogService.findByBlogId(blogId);
-        List<BlogAbout> blogAbout = blogService.findByAbout(blogId);
+        BlogAbout blogAbout = blogService.findByAbout(blogId);
         System.out.println("blogAbout ========================================== " + blogAbout);
         if (rolePage == null) {
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());

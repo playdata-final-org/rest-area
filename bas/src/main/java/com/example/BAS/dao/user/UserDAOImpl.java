@@ -61,7 +61,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public List<Users> findByNickNameContainingIgnoreCase(String nickName){
-        return userRepository.findByNickNameContainingIgnoreCase(nickName);
+        return userRepository.findByNickNameStartingWith(nickName);
+    }
+    @Override
+    public List<Users> findLikeUser(String userInput) {
+        return userRepository.findByNickNameContains(userInput);
     }
 
 }

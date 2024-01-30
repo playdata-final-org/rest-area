@@ -17,7 +17,7 @@ public class BlogAboutDAOImpl implements BlogAboutDAO{
         return blogAboutRepository.save(blogAbout);
     }
     @Override
-    public List<BlogAbout> findByAbout(Long blogId) {
+    public BlogAbout findByAbout(Long blogId) {
         return blogAboutRepository.findAllByBlogs_BlogId(blogId);
     }
 }

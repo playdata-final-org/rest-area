@@ -58,7 +58,7 @@ public class BoardController {
             fileService.saveFiles(files, createBoard.getBoardId());
         }
         model.addAttribute("createBoard", createBoard);
-        return "main/index";
+        return "redirect:/dev/index";
     }
 
     @GetMapping("/posts/{category}/page/{pageNumber}")
@@ -85,7 +85,6 @@ public class BoardController {
         model.addAttribute("category", category);
         model.addAttribute("pageNumber", pageNumber); // 수정된 부분
         model.addAttribute("search", search);
-        System.out.println(category.toLowerCase());
         return "board/" + category.toLowerCase() + "-list";
     }
 

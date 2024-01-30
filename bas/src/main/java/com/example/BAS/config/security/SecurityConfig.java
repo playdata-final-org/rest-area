@@ -37,28 +37,35 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(CsrfConfigurer::disable);
+        http.csrf(CsrfConfigurer::disable)
 
-        http.authorizeHttpRequests(request -> {
+        .authorizeHttpRequests(request -> {
             request.requestMatchers(
-                            new AntPathRequestMatcher("/**"),
                             new AntPathRequestMatcher("/main"),
-                            new AntPathRequestMatcher("/signin"),
-                            new AntPathRequestMatcher("/signup"),
-                            new AntPathRequestMatcher("/static/**")
+                            new AntPathRequestMatcher("/signin/**"),
+                            new AntPathRequestMatcher("/signup/**"),
+                            new AntPathRequestMatcher("/img/**"),
+                            new AntPathRequestMatcher("/js/**"),
+                            new AntPathRequestMatcher("/assets/**"),
+                            new AntPathRequestMatcher("/css/**"),
+                            new AntPathRequestMatcher("/fonts/**"),
+                            new AntPathRequestMatcher("/MDB5-STANDARD-UI-KIT-Free-6.4.1/**")
                     )
                     .permitAll()
                     .anyRequest().authenticated();
-        });
-        // 폼 로그인
-        http.formLogin(formLogin ->
+        })
+        .formLogin(formLogin ->
                 formLogin
                         .loginPage("/signin")
                         .permitAll()
                         .loginProcessingUrl("/signin")
                         .successHandler(customSuccessHandler())
                         .failureHandler(customFailureHandler)
-        );
+        )
+                .exceptionHandling((exception)->
+                        exception.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                                .accessDeniedHandler(new CustomAccessDeniedHandler()));
+
         return http.build();
     }
 

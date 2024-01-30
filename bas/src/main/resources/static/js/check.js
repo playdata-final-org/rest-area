@@ -5,7 +5,7 @@ function checkDuplicateUsername() {
 
     var duplicateUsernameMessage = document.getElementById('duplicateUsernameMessage');
 
-    $.post(contextPath + '/checkDuplicateUsername', { username: username }, function (response) {
+    $.post(contextPath + '/signup/checkDuplicateUsername', { username: username }, function (response) {
 
         duplicateUsernameMessage.textContent = response;
     });
@@ -17,7 +17,7 @@ function checkDuplicateNickName() {
 
     var duplicateNickNameMessage = document.getElementById('duplicateNickNameMessage');
 
-    $.post(contextPath + '/checkDuplicateNickName', { nickName: nickName }, function (response) {
+    $.post(contextPath + '/signup/checkDuplicateNickName', { nickName: nickName }, function (response) {
 
         duplicateNickNameMessage.textContent = response;
     });
@@ -27,7 +27,7 @@ function checkDuplicatePassword() {
         var password = document.getElementById('oldPassword').value;
         var duplicatePasswordMessage = document.getElementById('duplicatePasswordMessage');
 
-        $.post(contextPath + '/checkDuplicatePassword', { password: password }, function (response) {
+        $.post(contextPath + '/signup/checkDuplicatePassword', { password: password }, function (response) {
             duplicatePasswordMessage.textContent = response;
         });
     }

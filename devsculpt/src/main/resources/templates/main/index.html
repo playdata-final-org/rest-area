@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Devsculpt</title>
-    <link href="/assets/css/index.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <link href="/assets/css/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
 </head>
+
 <body class="body">
 <div th:replace="layout/header" ::header></div>
 
@@ -13,8 +15,9 @@
     <div class="row">
         <!-- Q&A 섹션 -->
         <div class="col-md-6">
-            <a th:href="@{'/dev/board/posts/Q&A/page/1'}" class="category-link">
-            <div class="category-name">Q&A</div>
+            <div class="category-name">
+                <a th:href="@{'/dev/board/posts/Q&A/page/1'}" class="category-link">Q&A</a>
+            </div>
             <div class="custom-div">
                 <div class="category-div">
                     <ul>
@@ -22,9 +25,9 @@
                             <div class="board-item">
                                 <div class="profile-section">
                                     <img th:if="${board.profileImage == null}"
-                                         th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
+                                         th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지" />
                                     <img th:if="${board.profileImage != null}"
-                                         th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
+                                         th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지" />
                                     <p class="nickname" th:text="${board.nickName}"></p>
                                 </div>
                                 <a th:href="@{'/dev/board/' + ${board.boardId}}" th:text="${board.title}"
@@ -38,18 +41,57 @@
 
         <!-- 커뮤니티 섹션 -->
         <div class="col-md-6">
-            <a th:href="@{'/dev/board/posts/community/page/1'}" class="category-link">
-            <div class="category-name">커뮤니티</div>
+            <div class="custom-div">
+                <div class="category-name">
+                    <a th:href="@{'/dev/board/posts/community/page/1'}" class="category-link">커뮤니티</a>
+                </div>
+                <ul class="board-list"> <!-- 추가된 클래스 -->
+                    <li th:each="board : ${communityList}" class="board-list-item"> <!-- 추가된 클래스 -->
+                        <div class="board-item">
+                            <div class="profile-section">
+                                <img th:if="${board.profileImage == null}"
+                                     th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지" />
+                                <img th:if="${board.profileImage != null}"
+                                     th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지" />
+                                <p class="nickname" th:text="${board.nickName}"></p>
+                            </div>
+                            <a th:href="@{'/dev/board/' + ${board.boardId}}" th:text="${board.title}"
+                               class="board-link"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- 에디터의 추천 섹션 -->
+        <div class="col-md-6">
+            <div class="category-name">에디터의 추천</div>
             <div class="custom-div">
                 <div class="category-div">
                     <ul>
-                        <li th:each="board : ${communityList}">
+                        <!-- 에디터의 추천 아이템 추가 -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 지식 섹션 -->
+        <div class="col-md-6">
+            <div class="category-name">
+                <a th:href="@{'/dev/board/posts/knowledge/page/1'}" class="category-link">지식</a>
+            </div>
+            <div class="custom-div">
+                <div class="category-div">
+                    <ul>
+                        <li th:each="board : ${knowledgeList}">
                             <div class="board-item">
                                 <div class="profile-section">
                                     <img th:if="${board.profileImage == null}"
-                                         th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
+                                         th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지" />
                                     <img th:if="${board.profileImage != null}"
-                                         th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
+                                         th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지" />
                                     <p class="nickname" th:text="${board.nickName}"></p>
                                 </div>
                                 <a th:href="@{'/dev/board/' + ${board.boardId}}" th:text="${board.title}"
@@ -60,45 +102,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="row mt-4">
-            <!-- 에디터의 추천 섹션 -->
-            <div class="col-md-6">
-                <div class="category-name">에디터의 추천</div>
-                <div class="custom-div">
-                    <div class="category-div">
-                        <ul>
-                            <!-- 에디터의 추천 아이템 추가 -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 지식 섹션 -->
-            <div class="col-md-6">
-                <a th:href="@{'/dev/board/posts/knowledge/page/1'}" class="category-link">
-                <div class="category-name">지식</div>
-                <div class="custom-div">
-                    <div class="category-div">
-                        <ul>
-                            <li th:each="board : ${knowledgeList}">
-                                <div class="board-item">
-                                    <div class="profile-section">
-                                        <img th:if="${board.profileImage == null}"
-                                             th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
-                                        <img th:if="${board.profileImage != null}"
-                                             th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
-                                        <p class="nickname" th:text="${board.nickName}"></p>
-                                    </div>
-                                    <a th:href="@{'/dev/board/' + ${board.boardId}}" th:text="${board.title}"
-                                       class="board-link"></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

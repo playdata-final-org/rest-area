@@ -27,7 +27,6 @@ public class IndexController {
         model.addAttribute("communityList", communityList.getContent());
         model.addAttribute("knowledgeList", knowledgeList.getContent());
 
-
         return "main/index";
     }
 }

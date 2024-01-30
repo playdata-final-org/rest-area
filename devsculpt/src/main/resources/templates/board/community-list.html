@@ -1,95 +1,86 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>Devsculpt</title>
-    <link href="/assets/css/index.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="/assets/css/boardlist.css" rel="stylesheet" type="text/css"/>
 </head>
-<body class="body">
-<div th:replace="layout/header" ::header></div>
 
-<div class="container mt-4">
+<body>
+<div th:replace="~{layout/header}"></div>
+<div class="container mt-3">
     <div class="row">
-        <!-- Q&A 섹션 -->
-        <div class="col-md-6">
-            <h2>Q&A</h2>
-            <div class="custom-div">
-                <div class="category-div">
-                    <ul>
-                        <li th:each="board : ${qaList}">
-                            <div class="board-item">
-                                <div class="profile-section">
-                                    <img th:if="${board.profileImage != null}" th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
-                                    <img th:unless="${board.profileImage != null}" th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
-                                    <p class="nickname" th:text="${board.nickName}"></p>
-                                </div>
-                                <p class="title" th:text="${board.title}"></p>
-                            </div>
-                        </li>
-                    </ul>
+        <div class="col-12 text-center mb-3">
+            <h2>커뮤니티 리스트</h2>
+            <!-- 검색 창 추가 -->
+            <form th:action="@{'/dev/board/posts/' + ${category} + '/page/1'}" method="get">
+                <div class="input-group mb-3" style="max-width: 400px; margin: auto;">
+                    <input type="text" class="form-control" placeholder="검색어를 입력하세요"
+                           aria-describedby="button-addon2" name="search" id="search">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                        <i class="bi bi-search"></i> 검색
+                    </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- 커뮤니티 섹션 -->
-        <div class="col-md-6">
-            <h2>커뮤니티</h2>
-            <div class="custom-div">
-                <div class="category-div">
-                    <ul>
-                        <li th:each="board : ${communityList}">
-                            <div class="board-item">
-                                <div class="profile-section">
-                                    <img th:if="${board.profileImage != null}" th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
-                                    <img th:unless="${board.profileImage != null}" th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
-                                    <p class="nickname" th:text="${board.nickName}"></p>
-                                </div>
-                                <p class="title" th:text="${board.title}"></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <div class="row mt-4">
-        <!-- 에디터의 추천 섹션 -->
-        <div class="col-md-6">
-            <h2>에디터의 추천</h2>
-            <div class="custom-div">
-                <div class="category-div">
-                    <ul>
-                        <!-- 에디터의 추천 아이템 추가 -->
-                    </ul>
-                </div>
-            </div>
+    <div class="row btn-container">
+        <div class="col-md-7 text-md-end">
+            <a th:href="@{'/dev/board/create'}" class="btn btn-dark">
+                <i class="bi bi-pencil-fill"></i> 작성하기
+            </a>
         </div>
+    </div>
 
-        <!-- 지식 섹션 -->
-        <div class="col-md-6">
-            <h2>지식</h2>
-            <div class="custom-div">
-                <div class="category-div">
-                    <ul>
-                        <li th:each="board : ${knowledgeList}">
-                            <div class="board-item">
-                                <div class="profile-section">
-                                    <img th:if="${board.profileImage != null}" th:src="'/upload/' + ${board.profileImage}" alt="프로필 이미지"/>
-                                    <img th:unless="${board.profileImage != null}" th:src="@{/assets/image/defaultprofile.png}" alt="기본 프로필 이미지"/>
-                                    <p class="nickname" th:text="${board.nickName}"></p>
-                                </div>
-                                <p class="title" th:text="${board.title}"></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="text-center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">작성자</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${postList}">
+                <td>
+                    <div class="row align-items-center">
+                        <div class="col-md-auto">
+                            <img th:if="${board.profileImage != null}" th:src="'/upload/' + ${board.profileImage}"
+                                 class="rounded-circle" width="30" height="30" alt="프로필 이미지"/>
+                            <img th:unless="${board.profileImage != null}" th:src="@{/assets/image/defaultprofile.png}"
+                                 class="rounded-circle" width="30" height="30" alt="기본 프로필 이미지"/>
+                            <span th:text="${board.nickName}" class="ml-2"></span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a th:href="@{'/dev/board/' + ${board.boardId}}" th:text="${board.title}"></a>
+                </td>
+                <td th:text="${#temporals.format(board.creationDate, 'yyyy-MM-dd')}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 페이징 -->
+        <div class="pagination-container">
+            <ul class="pagination">
+                <li th:each="pageNum : ${#numbers.sequence(0, page.totalPages - 1)}" class="page-item"
+                    th:class="${pageNum == page.number ? 'active' : ''}" >
+
+                    <a th:href="@{'/dev/board/posts/' + ${category} + '/page/' + ${pageNum+1} + '?search=' + ${search}}" class="page-link"
+                       th:text="${pageNum + 1}"></a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

@@ -1,6 +1,28 @@
+/* 작성하기 버튼을 반응형으로 만들기 */
+@media (max-width: 768px) {
+    .col-md-7 {
+        text-align: center;
+    }
+
+    .btn-dark {
+        margin-right: 0;
+        margin-top: 10px; /* 간격을 위한 top margin 추가 */
+    }
+}
+
+/* 작성하기 버튼 위치 조정 */
+@media (min-width: 768px) {
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px; /* 원하는 간격으로 조정 */
+    }
+}
+
 /* 스타일링 */
 body {
     background-color: #212529;
+    color: #ffffff; /* 높은 대비를 위한 텍스트 색상 추가 */
 }
 
 .container {
@@ -8,11 +30,12 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* 간격을 위한 margin-top 추가 */
 }
 
 h2 {
     color: #343a40;
-    text-align: center; /* 텍스트 가운데 정렬 */
+    text-align: center;
 }
 
 .btn-dark {
@@ -38,9 +61,10 @@ th, td {
 }
 
 .input-group {
-    text-align: center; /* 내용 가운데 정렬 */
-    max-width: 300px; /* 검색 입력창 최대 너비 지정 */
-    margin: auto; /* 가운데 정렬을 위해 추가 */
+    text-align: center;
+    max-width: 400px; /* 검색 입력창의 최대 너비를 늘림 */
+    margin: auto;
+    margin-bottom: 20px; /* 간격을 위한 margin-bottom 추가 */
 }
 
 /* a 태그의 밑줄 제거 */
@@ -66,18 +90,14 @@ a {
     border-color: #343a40;
 }
 
-/* 페이지마다 현재 페이지 버튼 색상 변경 */
 .page-item.active .page-link,
 .page-link:hover {
     color: #ffffff;
-    background-color: #6c757d; /* 회색으로 변경 */
-    border-color: #6c757d; /* 회색으로 변경 */
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
 /* 작성하기 버튼 아이콘 스타일 */
 .btn-dark i {
-    margin-right: 5px; /* 아이콘과 텍스트 간격 조정 */
-}
-.btn-dark {
-    margin-right: -410px;
+    margin-right: 5px;
 }

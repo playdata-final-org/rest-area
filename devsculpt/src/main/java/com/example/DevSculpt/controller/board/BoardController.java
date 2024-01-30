@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +36,7 @@ public class BoardController {
     public String showBoardList(Model model) {
         List<BoardResponseDTO> boardList = boardService.getAllBoards();
         model.addAttribute("boardlist", boardList);
-        return "board/boardlist";
+        return "board/community-list";
     }
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
@@ -65,20 +64,20 @@ public class BoardController {
     @GetMapping("/posts/{category}/page/{pageNumber}")
     public String categoryPostsByPage(@PathVariable String category,
                                       @PathVariable int pageNumber,
-                                      @RequestParam(defaultValue = "10") int size,
+                                      @RequestParam(defaultValue = "8") int size,
                                       @RequestParam(required = false) String search,
                                       Model model) {
         // 페이지 번호를 0부터 시작하지 않고 1부터 시작하도록 수정
         Pageable pageable = PageRequest.of(pageNumber - 1, size); // 페이지 번호 수정
 
         Page<BoardResponseDTO> posts;
+        if (search == null || search.equals("null")) {
+            // 검색어가 없는 경우
 
-        if (StringUtils.hasText(search)) {
+            posts = boardService.getBoardsByCategory(category, pageable);
+        } else {
             // 검색어가 있는 경우
             posts = boardService.searchBoard(category, search, pageable);
-        } else {
-            // 검색어가 없는 경우
-            posts = boardService.getBoardsByCategory(category, pageable);
         }
 
         model.addAttribute("postList", posts.getContent());
@@ -86,7 +85,7 @@ public class BoardController {
         model.addAttribute("category", category);
         model.addAttribute("pageNumber", pageNumber); // 수정된 부분
         model.addAttribute("search", search);
-
+        System.out.println(category.toLowerCase());
         return "board/" + category.toLowerCase() + "-list";
     }
 

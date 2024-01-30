@@ -1,16 +1,92 @@
 .body {
-    background-color: #f8f9fa; /* Set a light background color */
+    background-color: #212529;
 }
 
-.container {
-    max-width: 800px; /* Set a maximum width for the content */
-    margin: 0 auto; /* Center the container */
+/* Board Item Style */
+.board-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Profile Section Style */
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile Image Style */
+.profile-section img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+/* Nickname Style */
+.profile-section p.nickname {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Board Link Style */
+.board-item a.board-link {
+    margin: 5px 0 0 70px;
+    text-decoration: none;
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+}
+
+/* Custom Div Style */
 .custom-div {
-    background-color: #ffffff; /* Set a white background color for the divs */
-    padding: 20px; /* Add some padding for spacing */
-    margin-bottom: 20px; /* Add some bottom margin for spacing */
-    border: 1px solid #dee2e6; /* Add a border for styling */
-    border-radius: 8px; /* Add rounded corners for styling */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Category Div Style */
+.category-div ul {
+    list-style: none;
+    padding: 0;
+}
+.category-div {
+    flex: 1;
+    width: 100%;
+}
+
+/* Row Style */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Column Style */
+.col-md-6 {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+/* Category Section Style */
+.category-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Category Name Style */
+.category-name {
+    background-color: #212529;
+    color: #fff;
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #fff;
 }

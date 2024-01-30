@@ -16,10 +16,10 @@
         <div class="col-12 text-center mb-3">
             <h2>Q&A 리스트</h2>
             <!-- 검색 창 추가 -->
-            <form th:action="@{'/dev/board/posts/' + ${category} + '/search/page/' + ${pageNumber}}" method="get">
+            <form th:action="@{'/dev/board/posts/' + ${category} + '/page/1'}" method="get">
                 <div class="input-group mb-3" style="max-width: 400px; margin: auto;">
                     <input type="text" class="form-control" placeholder="검색어를 입력하세요"
-                           aria-describedby="button-addon2" name="search" th:value="${search}">
+                           aria-describedby="button-addon2" name="search" id="search">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
                         <i class="bi bi-search"></i> 검색
                     </button>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row btn-container">
         <div class="col-md-7 text-md-end">
             <a th:href="@{'/dev/board/create'}" class="btn btn-dark">
                 <i class="bi bi-pencil-fill"></i> 작성하기
@@ -66,31 +66,21 @@
             </tbody>
         </table>
 
+        <!-- 페이징 -->
         <div class="pagination-container">
             <ul class="pagination">
-                <!-- 이전 페이지 링크 -->
-                <li class="page-item" th:class="${page.number == 0 ? 'disabled' : ''}">
-                    <a th:if="${page.number != 0}" th:href="@{'/dev/board/posts/' + ${category} + '/page/' + ${page.number - 1} + '?search=' + ${search}}" class="page-link">이전</a>
-                    <span th:unless="${page.number != 0}" class="page-link">이전</span>
-                </li>
-
-                <!-- 페이지 번호 -->
                 <li th:each="pageNum : ${#numbers.sequence(0, page.totalPages - 1)}" class="page-item"
-                    th:class="${pageNum == page.number ? 'active' : ''}">
-                    <a th:href="@{'/dev/board/posts/' + ${category} + '/page/' + ${pageNum} + '?search=' + ${search}}" class="page-link"
-                       th:text="${pageNum + 1}"></a>
-                </li>
+                    th:class="${pageNum == page.number ? 'active' : ''}" >
 
-                <!-- 다음 페이지 링크 -->
-                <li class="page-item" th:class="${page.number == page.totalPages - 1 ? 'disabled' : ''}">
-                    <a th:if="${page.number != page.totalPages - 1}" th:href="@{'/dev/board/posts/' + ${category} + '/page/' + ${page.number + 1} + '?search=' + ${search}}" class="page-link">다음</a>
-                    <span th:unless="${page.number != page.totalPages - 1}" class="page-link">다음</span>
+                    <a th:href="@{'/dev/board/posts/' + ${category} + '/page/' + ${pageNum+1} + '?search=' + ${search}}" class="page-link"
+                       th:text="${pageNum + 1}"></a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.example.BAS.entitiy.blog;
 
 
+import com.example.BAS.entitiy.files.BlogTitleImages;
 import com.example.BAS.entitiy.users.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -28,6 +29,10 @@ public class Blogs {
 
     private int countBoosters;
     private int countCollections;
+
+    @OneToOne(mappedBy = "blogs",cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private BlogTitleImages blogTitleImages;
 
     @OneToMany(mappedBy = "blogs")
     @ToString.Exclude

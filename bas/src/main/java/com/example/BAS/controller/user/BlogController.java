@@ -46,6 +46,9 @@ public class BlogController {
     private final CollectionService collectionService;
     private final BoostHistoryService boostHistoryService;
 
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadPath;
+
     @GetMapping("/blog/{blogId}")
     public String showBlogDetail(@PathVariable("blogId") Long blogId,
                                  Model model, HttpServletRequest request) {
@@ -77,6 +80,7 @@ public class BlogController {
 
         model.addAttribute("booster", owner);
         model.addAttribute("blog", blog);
+        model.addAttribute("titleImageUrl",blog.getBlogTitleImages().getFileUrl());
         model.addAttribute("categories",categories);
         model.addAttribute("boostersCount",boostersCount);
         model.addAttribute("collectionCount",collectionCount);
@@ -142,8 +146,7 @@ public class BlogController {
             return "user/main";
         }
     }
-    @Value("${spring.servlet.multipart.location}")
-    private String uploadPath;
+
 
     @GetMapping("/download/img/collectionFiles/{uuid}_{fileName}")
     public ResponseEntity<Resource> downloadFile(@PathVariable("uuid") String uuid,

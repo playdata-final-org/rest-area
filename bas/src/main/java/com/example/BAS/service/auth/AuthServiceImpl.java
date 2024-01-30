@@ -240,9 +240,7 @@ public class AuthServiceImpl implements AuthService {
                 List<Blogs> userBlogs = blogDAO.findByUsers(savedUser);
 
                 if (userBlogs.isEmpty()) {
-                    Blogs createBlog = new Blogs();
-                    createBlog.setUsers(savedUser);
-                    blogDAO.save(createBlog);
+                    blogService.saveBlog(savedUser);
                 }
 
                 return mapper.map(savedUser, AuthDTO.class);

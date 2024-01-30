@@ -6,8 +6,11 @@ import com.example.BAS.dto.blog.BlogRequestDTO;
 import com.example.BAS.entitiy.blog.BlogAbout;
 import com.example.BAS.entitiy.blog.BlogCategory;
 import com.example.BAS.entitiy.blog.Blogs;
+import com.example.BAS.entitiy.files.BlogTitleImages;
 import com.example.BAS.entitiy.users.Users;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface BlogService {
@@ -24,4 +27,6 @@ public interface BlogService {
 
 
     BlogRequestDTO saveBlog(Long blogId, BlogCategory blogCategory);
+
+    BlogTitleImages uploadImage(MultipartFile file,Long blogId) throws IOException;
 }

@@ -128,17 +128,17 @@ public class AuthController {
 
         return "redirect:/creator-search";
     }
-    @PostMapping("/checkDuplicatePassword")
+    @PostMapping("/signup/checkDuplicatePassword")
     @ResponseBody
     public String checkDuplicatePassword(@RequestParam String password) {
         return authService.checkDuplicatePassword(password);
     }
-    @PostMapping("/checkDuplicateUsername")
+    @PostMapping("/signup/checkDuplicateUsername")
     @ResponseBody
     public String checkDuplicateUsername(@RequestParam String username) {
         return authService.checkDuplicateUsername(username);
     }
-    @PostMapping("/checkDuplicateNickName")
+    @PostMapping("/signup/checkDuplicateNickName")
     @ResponseBody
     public String checkDuplicateEmail(@RequestParam String nickName) {
         return authService.checkDuplicateNickName(nickName);

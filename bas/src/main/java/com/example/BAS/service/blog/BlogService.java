@@ -21,7 +21,7 @@ public interface BlogService {
     Long findBlogIdByUserId(Long userId);
 
     AboutRequestDTO save(Long blogId, AboutResponseDTO aboutResponseDTO);
-    List<BlogAbout> findByAbout(Long blogId);
+    BlogAbout findByAbout(Long blogId);
 
     Blogs getByBlogId(Long userId);
 
@@ -29,4 +29,8 @@ public interface BlogService {
     BlogRequestDTO saveBlog(Long blogId, BlogCategory blogCategory);
 
     BlogTitleImages uploadImage(MultipartFile file,Long blogId) throws IOException;
+
+    List<Blogs> getBlogsByCategory(BlogCategory category);
+
+    Blogs findByUserId(Long userId);
 }

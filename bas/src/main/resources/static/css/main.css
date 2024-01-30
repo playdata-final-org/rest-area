@@ -974,8 +974,9 @@ section.creator-search-list .creator-search-list-bar-box {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    width: 100%;
-    margin-bottom: 5px;
+    width: 800px;
+    margin-top:10px;
+    margin-bottom: 10px;
 }
 
 .creator-blog-img {

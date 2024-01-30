@@ -1,5 +1,6 @@
 package com.example.BAS.dao.blog;
 
+import com.example.BAS.entitiy.blog.BlogCategory;
 import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.files.BlogTitleImages;
 import com.example.BAS.entitiy.users.Users;
@@ -17,4 +18,6 @@ public interface BlogDAO {
     BlogTitleImages getBlogTitleImageByBlogId(Long blogId);
 
     BlogTitleImages saved(BlogTitleImages newImage);
+
+    List<Blogs> findByCategory(BlogCategory category);
 }

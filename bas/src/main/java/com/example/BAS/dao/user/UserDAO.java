@@ -17,4 +17,6 @@ public interface UserDAO {
     int findPointByUserId(Long userId);
     Long getBlogIdByUserId(Long userId);
     List<Users> findByNickNameContainingIgnoreCase(String nickName);
+
+    List<Users> findLikeUser(String userInput);
 }

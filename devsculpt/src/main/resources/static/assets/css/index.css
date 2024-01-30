@@ -1,9 +1,12 @@
+/* index.css */
+
 .body {
     background-color: #212529;
 }
 
 /* Board Item Style */
 .board-item {
+    flex-grow: 1;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
@@ -90,6 +93,18 @@
     margin-bottom: 10px;
     border: 1px solid #fff;
 }
+
 .category-link {
-   text-decoration: none;
+    text-decoration: none;
+    color: #fff;
+}
+.board-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board-list-item {
+    width: 100%; /* 모든 리스트 아이템이 균등한 너비를 가지도록 함 */
 }

@@ -145,75 +145,63 @@
             <strong>&lt; 휴지통</strong>
           </a>
           <br />
-          <form>
-            <div class="row mb-3">
-              <label
-                for="inputTitle
-              3"
-                class="col-sm-2 col-form-label"
-                >제목</label
-              >
-              <div class="col-sm-10">안녕하세요</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >보낸사람</label
-              >
-              <div class="col-sm-10">test@gmail.com</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >받는사람</label
-              >
-              <div class="col-sm-10">kasdf12347@navercom</div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >참조</label
-              >
-              <div class="col-sm-10">dudqlswjs98@naver.com</div>
-            </div>
-          </form>
+            <form>
+              <div class="row">
+                <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                  <div class="card flex-fill">
+                    <div class="row mb-3">
+                      <label for="subject" class="col-sm-2 col-form-label">제목</label>
+                      <div class="col-sm-10" id="subject">안녕하세요</div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="sender" class="col-sm-2 col-form-label">보낸사람</label
+                      >
+                      <div class="col-sm-10" id="sender">test@gmail.com</div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
+                      <div class="col-sm-10" id="recipient">kasdf12347@naver.com</div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="cc" class="col-sm-2 col-form-label">참조</label>
+                      <div class="col-sm-10" id="cc">dudqlswjs98@naver.com</div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
+                      <div class="col-sm-10" id="attachment"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="content" class="col-sm-2 col-form-label2">내용</label>
+                      <div class="form-control-maildetail" id="content">
+                        <h2>안녕하세요 playdata 백엔드 4기 전영빈 학생입니다.</h2>
 
-          <form class="was-validated">
-            <div class="mb-3">
-              <div class="form-control-maildetail" id="formGroupExampleInput">
-                <h2>안녕하세요 playdata 백엔드 4기 전영빈 학생입니다.</h2>
+                        <figure class="image image-style-side">
+                          <img src="https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg"
+                               srcset="
+                                https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg,
+                                https://ckeditor.com/assets/images/ckdemo/editor-types/volcano_2x.jpg 2x
+                              "
+                                  alt="A lone wanderer looking at Mount Bromo volcano in Indonesia."/>
+                          <figcaption>경치가 좋네요</figcaption>
+                        </figure>
 
-                <figure class="image image-style-side">
-                  <img
-                    src="https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg"
-                    srcset="
-                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano.jpg,
-                      https://ckeditor.com/assets/images/ckdemo/editor-types/volcano_2x.jpg 2x
-                    "
-                    alt="A lone wanderer looking at Mount Bromo volcano in Indonesia."
-                  />
-                  <figcaption>경치가 좋네요</figcaption>
-                </figure>
+                        <h3>등산을 했습니다.</h3>
 
-                <h3>등산을 했습니다.</h3>
-
-                <p>공기가 좋네요</p>
+                        <p>공기가 좋네요</p>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary" type="button" onclick="location.href='/trash'">
+                        삭제하기
+                      </button>
+                      <button class="btn btn-secondary" type="button" onclick="location.href='/trash'">
+                        뒤로가기
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-12">
-              <button
-                class="btn btn-primary"
-                type="button"
-                onclick="location.href='/trash'"
-              >
-                삭제하기
-              </button>
-              <button
-                class="btn btn-secondary"
-                type="button"
-                onclick="location.href='/trash'"
-              >
-                뒤로가기
-              </button>
-            </div>
-          </form>
+            </form>
         </main>
 
         <footer></footer>

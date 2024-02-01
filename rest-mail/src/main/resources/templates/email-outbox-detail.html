@@ -148,56 +148,58 @@
           </a>
           <br />
           <form>
-            <!-- 메일 정보를 표시할 부분 -->
-            <div class="row mb-3">
-              <label for="subject" class="col-sm-2 col-form-label">제목</label>
-              <div class="col-sm-10" id="subject"><span th:text="${mail.subject}"></span></div>
-            </div>
-            <div class="row mb-3">
-              <label for="sender" class="col-sm-2 col-form-label">보낸사람</label>
-              <div class="col-sm-10" id="sender"><span th:text="${mail.sender}"></span></div>
-            </div>
-            <div class="row mb-3">
-              <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
-              <div class="col-sm-10" id="recipient"><span th:text="${mail.recipient}"></span></div>
-            </div>
-            <div class="row mb-3">
-              <label for="cc" class="col-sm-2 col-form-label">참조</label>
-              <div class="col-sm-10" id="cc"><span th:text="${mail.cc}"></span></div>
-            </div>
-            <div class="row mb-3">
-              <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
-              <div class="col-sm-10" id="attachment">
-                <a th:if="${mail.attachmentData}" th:href="@{'/download/' + ${mail.id}}">
-                  <span th:text="${mail.attachment}"></span>
-                </a>
-                <span th:if="${not #strings.isEmpty(mail.attachment)}" th:text="${mail.attachment}"></span>
-                <div th:if="${mail.attachmentData != null}">
-                  <button class="btn btn-primary" type="button" onclick="downloadAttachment()"
-                          data-mail-id="${mail.id}" data-attachment-name="${mail.attachment}" th:text="${mail.attachmentName}"></button>
+            <div class="row">
+              <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                  <!-- 메일 정보를 표시할 부분 -->
+                  <div class="row mb-3">
+                    <label for="subject" class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10" id="subject"><span th:text="${mail.subject}"></span></div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="sender" class="col-sm-2 col-form-label">보낸사람</label>
+                    <div class="col-sm-10" id="sender"><span th:text="${mail.sender}"></span></div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
+                    <div class="col-sm-10" id="recipient"><span th:text="${mail.recipient.toString()}"></span></div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="cc" class="col-sm-2 col-form-label">참조</label>
+                    <div class="col-sm-10" id="cc"><span th:text="${mail.cc}"></span></div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
+                    <div class="col-sm-10" id="attachment">
+                      <a th:if="${mail.attachmentData}" th:href="@{'/download/' + ${mail.id}}">
+                        <span th:text="${mail.attachment}"></span>
+                      </a>
+                      <span th:if="${not #strings.isEmpty(mail.attachment)}" th:text="${mail.attachment}"></span>
+                      <div th:if="${mail.attachmentData != null}">
+                        <button class="btn btn-primary" type="button" onclick="downloadAttachment()"
+                                data-mail-id="${mail.id}" data-attachment-name="${mail.attachment}" th:text="${mail.attachmentName}"></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="content" class="col-sm-2 col-form-label2">내용</label>
+                    <div class="form-control-maildetail" id="content"><span th:utext="${mail.content}"></span></div>
+                  </div>
+                  <div class="col-13">
+                    <a class="btn btn-primary" th:href="@{'/reply/' + ${mail.id}}">
+                      회신하기
+                    </a>
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      onclick="location.href='/outbox'"
+                    >
+                      뒤로가기
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="content" class="col-sm-2 col-form-label">내용</label>
-              <div class="form-control-maildetail" id="content"><span th:utext="${mail.content}"></span></div>
-            </div>
-            <div class="col-12">
-              <button
-                class="btn btn-primary"
-                type="button"
-                onclick="location.href='/write'"
-              >
-                회신하기
-              </button>
-              <button
-                class="btn btn-secondary"
-                type="button"
-                onclick="location.href='/outbox'"
-              >
-                뒤로가기
-              </button>
             </div>
           </form>
         </main>

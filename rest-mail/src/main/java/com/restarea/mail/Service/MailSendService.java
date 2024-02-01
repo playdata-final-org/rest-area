@@ -56,8 +56,8 @@ public class MailSendService {
         Mail newMail = Mail.builder()
                 .subject(mailDto.getSubject())
                 .sender("test@gmail.com")
-                .recipient(mailDto.getRecipient())
-                .cc(mailDto.getCc())
+                .recipient(String.join(", " , mailDto.getRecipient()))
+                .cc(String.join(", " , mailDto.getCc()))
                 .attachment(mailDto.getAttachment())
                 .attachmentData(file != null ? file.getBytes() : null)
                 .attachmentName(mailDto.getAttachmentName())
@@ -76,5 +76,3 @@ public class MailSendService {
 
 
 }
-
-

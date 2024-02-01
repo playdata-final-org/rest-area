@@ -19,7 +19,6 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="shortcut icon" href="/asset/img/icons/email.png" />
-
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
     <title>메일작성</title>
@@ -29,17 +28,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
+    <!-- 폴리필 (구버젼 브라우저 지원) -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
     <!--summernote-develop-->
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
       rel="stylesheet"
@@ -78,7 +77,7 @@
               <a class="sidebar-link" href="/outbox">
                 <i class="align-middle" data-feather="arrow-up-right"></i>
                 <span class="align-middle">보낸메일함</span>
-                <span class="bsU" th:text="${sentMailCount}">205</span>
+                <span class="bsU">205</span>
               </a>
             </li>
 
@@ -156,49 +155,58 @@
 
         <main class="content">
           <h1 class="h3 mb-3"><strong>메일작성</strong></h1>
-          <form th:action="@{/mail/send}" method="post" enctype="multipart/form-data">
-            <div class="row mb-3">
-              <label
-                for="subject"
-                class="col-sm-2 col-form-label">제목</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="subject" id="subject" />
+          <div class="row">
+            <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+              <div class="card flex-fill">
+                <form th:action="@{/mail/send}" method="post" enctype="multipart/form-data" id="fileUploadForm">
+                  <div class="row mb-3">
+                    <label
+                      for="subject"
+                      class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="subject" id="subject" />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="recipient" multiple />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="cc" class="col-sm-2 col-form-label">참조</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="cc" multiple />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" name="attachment" id="attachment" aria-label="file example" />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="summernote" class="col-sm-2 col-form-label2">내용</label>
+                    <div class="col-sm-11">
+                      <textarea id="summernote" class="form-control" name="content"></textarea>
+                    </div>
+                  </div>
+                </form>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit" id="btnSubmit" >메일 보내기</button>
+                </div>
               </div>
             </div>
-            <div class="row mb-3">
-              <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" name="recipient" id="recipient" multiple />
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="cc" class="col-sm-2 col-form-label">참조</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" name="cc" id="cc" multiple />
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
-              <div class="col-sm-10">
-                <input type="file" class="form-control" name="attachment" id="attachment" aria-label="file example" />
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="summernote" class="form-label">내용</label>
-                <textarea id="summernote" class="form-control" name="content"></textarea>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary" type="submit">메일 보내기</button>
-            </div>
-          </form>
+          </div>
         </main>
 
         <footer></footer>
       </div>
     </div>
-
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/app.js'"></script>
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/summernote.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/write.js'"></script>
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/js/tagify.js'"></script>
 
   </body>
 </html>

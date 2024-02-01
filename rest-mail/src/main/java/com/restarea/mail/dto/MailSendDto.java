@@ -7,11 +7,12 @@ import lombok.*;
 @NoArgsConstructor
 public class MailSendDto {
     private String subject;
-    private String recipient;
-    private String cc;
+    private String[] recipient;
+    private String[] cc;
     private String attachment;
     private byte[] attachmentData;
     private String attachmentName;
     private String content;
+
 
 }

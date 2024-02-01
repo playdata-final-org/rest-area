@@ -92,12 +92,13 @@
           <a class="sidebar-toggle js-sidebar-toggle">
             <i class="hamburger align-self-center"></i>
           </a>
-          <form class="d-flex">
+          <form class="d-flex" action="/outbox/search" method="GET">
             <input
               class="form-control me-2"
               type="search"
               placeholder="검색"
               aria-label="Search"
+              name="query"
             />
             <button class="btn btn-outline-success" type="submit">
               <i class="align-middle" data-feather="search"></i>
@@ -226,7 +227,11 @@
                           &nbsp;
                           <div class="star-btn" onclick="toggleColor(this)"></div>
                         </td>
-                        <td class="d-xl-table-cell" th:text="${mail.recipient}"></td>
+                        <td class="d-xl-table-cell">
+                          <span th:with="recipients=${mail.recipient.split(',')}"
+                                th:text="${recipients[0] + (recipients.length > 1 ? ' 외 ' + (recipients.length - 1) + '명' : '')}">
+                          </span>
+                        </td>
                         <td class="d-xl-table-cell" th:onclick="|location.href='@{/outbox/detail/}${mail.id}'|" th:text="${mail.subject}"></td>
                         <td></td>
                         <td th:utext="${#dates.format(mail.sentDateTime, 'yyyy-MM-dd') == #dates.format(#dates.createNow(), 'yyyy-MM-dd') ? #dates.format(mail.sentDateTime, 'HH:mm:ss') : #dates.format(mail.sentDateTime, 'yyyy-MM-dd')}"></td>
@@ -250,5 +255,6 @@
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/toggleColor.js'"></script>
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/cbx_chkAll.js'"></script>
     <script th:src="${@environment.getProperty('resource.request-path')} + '/js/modal.js'"></script>
+
   </body>
 </html>

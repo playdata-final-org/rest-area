@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+            name="description"
+            content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5"
+    />
+    <meta name="author" content="AdminKit" />
+    <meta
+            name="keywords"
+            content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="/asset/img/icons/email.png" />
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+    <title>메일작성</title>
+
+    <script type="text/javascript" src="/scripts/common/common-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script th:src="${@environment.getProperty('resource.request-path')} + '/default.js'" ></script>
+    <!-- 폴리필 (구버젼 브라우저 지원) -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+            rel="stylesheet"
+    />
+    <!--summernote-develop-->
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!--summernote-develop-->
+</head>
+
+<body>
+<div class="wrapper">
+    <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+            <a class="sidebar-brand" href="/inbox">
+                <span class="align-middle">메일함</span>
+            </a>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">목록</li>
+
+                <li class="sidebar-item active">
+                    <a class="sidebar-link" href="/write">
+                        <i class="align-middle" data-feather="send"></i>
+                        <span class="align-middle">메일작성</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/inbox">
+                        <i class="align-middle" data-feather="arrow-down-left"></i>
+                        <span class="align-middle">받은메일함</span>
+                        <span class="bsU">205</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/outbox">
+                        <i class="align-middle" data-feather="arrow-up-right"></i>
+                        <span class="align-middle">보낸메일함</span>
+                        <span class="bsU">205</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/favorites">
+                        <i class="align-middle" data-feather="star"></i>
+                        <span class="align-middle">즐겨찾기</span>
+                        <span class="bsU">205</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/trash">
+                        <i class="align-middle" data-feather="trash-2"></i>
+                        <span class="align-middle">휴지통</span>
+                        <span class="bsU">205</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+            <a class="sidebar-toggle js-sidebar-toggle">
+                <i class="hamburger align-self-center"></i>
+            </a>
+            <form class="d-flex">
+                <input
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="검색"
+                        aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="align-middle" data-feather="search"></i>
+                </button>
+            </form>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                                href="#"
+                                xxl-
+                                data-bs-toggle="dropdown">
+                            <i class="align-middle" data-feather="settings"></i>
+                        </a>
+
+                        <a
+                                class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                                href="#"
+                                data-bs-toggle="dropdown">
+                            <img
+                                    src="/asset/img/avatars/youngbin.jpg"
+                                    class="avatar img-fluid rounded me-1"
+                                    alt="Charles Hall"
+                            />
+                            <span class="text-dark">전영빈</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="pages-profile.html"
+                            ><i class="align-middle me-1" data-feather="user"></i>
+                                계정관리</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="pages-sign-in.html"
+                            ><i class="align-middle me-1" data-feather="log-out"></i>
+                                로그아웃</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content">
+            <h1 class="h3 mb-3"><strong>메일작성</strong></h1>
+            <div class="row">
+                <div class="col-12 col-lg-8 col-xxl-12 d-flex">
+                    <div class="card flex-fill">
+                        <form th:action="@{/mail/send}" method="post" enctype="multipart/form-data" id="fileUploadForm">
+                            <div class="row mb-3">
+                                <label
+                                        for="subject"
+                                        class="col-sm-2 col-form-label">제목</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="subject" id="subject" th:value="${'Re: ' + originalMail.subject}"/>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="recipient" class="col-sm-2 col-form-label">받는사람</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="recipient" name="recipient"
+                                           th:value="${originalMail.recipient}" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="cc" class="col-sm-2 col-form-label">참조</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="cc" name="cc"
+                                           th:value="${originalMail.cc}" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="attachment" class="col-sm-2 col-form-label">첨부파일</label>
+                                <div class="col-sm-10">
+                                    <input type="file" class="form-control" name="attachment" id="attachment" aria-label="file example" />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="summernote" class="col-sm-2 col-form-label2">내용</label>
+                                <div class="col-sm-11">
+                                    <textarea id="summernote" class="form-control" name="content" ></textarea>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit" id="btnSubmit" >메일 보내기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer></footer>
+    </div>
+</div>
+<script th:src="${@environment.getProperty('resource.request-path')} + '/js/app.js'"></script>
+<script th:src="${@environment.getProperty('resource.request-path')} + '/js/summernote.js'"></script>
+<script th:src="${@environment.getProperty('resource.request-path')} + '/js/write.js'"></script>
+<script th:src="${@environment.getProperty('resource.request-path')} + '/js/tagify.js'"></script>
+
+</body>
+</html>

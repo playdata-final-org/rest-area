@@ -3,9 +3,9 @@ package com.example.BAS.dao.collection;
 import com.example.BAS.entitiy.blog.Collections;
 import com.example.BAS.repository.CollectionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,8 +18,8 @@ public class CollectionDAOImpl implements CollectionDAO {
     }
 
     @Override
-    public List<Collections> findByBlogs_BlogId(Long blogId) {
-        return collectionRepository.findByBlogs_BlogId(blogId);
+    public Page<Collections> findByBlogs_BlogId(Long blogId, Pageable pageable) {
+        return collectionRepository.findByBlogs_BlogId(blogId, pageable);
     }
 
     @Override
@@ -30,6 +30,16 @@ public class CollectionDAOImpl implements CollectionDAO {
     @Override
     public int getCollectionCount(Long blogId) {
         return collectionRepository.countDistinctCollectionIdsByBlogId(blogId);
+    }
+
+    @Override
+    public Collections findByCollectionId(Long collectionId) {
+        return collectionRepository.findByCollectionId(collectionId);
+    }
+
+    @Override
+    public Collections findByCollectionIds(Long collectionId) {
+        return collectionRepository.findByCollectionId(collectionId);
     }
 }
 

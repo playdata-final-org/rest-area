@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<th:block th:replace="layout/main-layout :: layout(default,none)" xmlns="http://www.w3.org/1999/html">
+
+    <th:block th:fragment="add_header">
+        <title>test</title>
+    </th:block>
+
+    <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
+        <section class="blogCategory" style="font-size: 20px; margin-top: 30px;">
+            <nav class="bc" style="display: flex; align-content: center;align-items: center;flex-direction: column;">
+                <ul style="list-style-type: none; padding: 0; margin: 0; display: flex;">
+                    <li style="margin-right: 15px;"><button id="blogHome" onclick="handleButtonClick('blogHome', loadBlogHomeContent)">마이 페이지</button></li>
+                    <li sec:authorize="hasRole('ROLE_BOOSTER')" style="margin-right: 15px;"><button id="blogCollection" onclick="handleButtonClick('blogCollection', loadBlogCollectionContent)">포인트 결제 내역</button></li>
+                    <li sec:authorize="hasRole('ROLE_BOOSTER')" style="margin-right: 15px;"><button id="blogMembership" onclick="handleButtonClick('blogMembership', loadMembershipContent)">멤버십</button></li>
+                    <li sec:authorize="hasRole('ROLE_CREATOR')"><button id="blogAbout" onclick="handleButtonClick('blogAbout', loadBlogAboutContent)">후원자</button></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section>
+            <div class="highlightLine"></div>
+            <div id="buttonHighlight"></div>
+        </section>
+
+        <div class="blogContent" id="blogContentContainer" style="margin-top: 20px;">
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        </div>
+    </div>
+    <th:block th:fragment="add_bottom">
+        <script th:inline="javascript">
+            var blogId = /*[[${blog.blogId}]]*/
+            var userId = /*[[${booster.userId}]]*/
+            var pageNumber = 0
+        </script>
+        <script src="/js/mypage.js" type="text/javascript"></script>
+        <script src="/js/highlight.js" type="text/javascript"></script>
+
+    </th:block>
+
+</th:block>

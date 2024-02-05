@@ -2,6 +2,7 @@ package com.example.BAS.controller.user;
 
 import com.example.BAS.config.security.PrincipalDetails;
 import com.example.BAS.dto.About.AboutResponseDTO;
+import com.example.BAS.dto.collection.CollectionDataDTO;
 import com.example.BAS.dto.collection.CollectionRequestDTO;
 import com.example.BAS.dto.collection.CollectionResponseDTO;
 import com.example.BAS.dto.membership.MembershipTierRequestDTO;
@@ -11,13 +12,16 @@ import com.example.BAS.service.auth.AuthService;
 import com.example.BAS.service.blog.BlogService;
 import com.example.BAS.service.boostHistory.BoostHistoryService;
 import com.example.BAS.service.collection.CollectionService;
+import com.example.BAS.service.collection.CommentService;
 import com.example.BAS.service.membership.MembershipService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,14 +49,16 @@ public class BlogController {
     private final AuthService authService;
     private final CollectionService collectionService;
     private final BoostHistoryService boostHistoryService;
+    private final CommentService commentService;
 
     @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
 
     @GetMapping("/blog/{blogId}")
     public String showBlogDetail(@PathVariable("blogId") Long blogId,
-                                 Model model, HttpServletRequest request) {
+                                 Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         Blogs blog = blogService.findByBlogId(blogId);
+        model.addAttribute("booster", principalDetails.getUsers());
 
         String blogCategory = String.valueOf(blog.getCategory());
 
@@ -78,7 +84,8 @@ public class BlogController {
             model.addAttribute("profileImageUrl", owner.getProfileImage().getFileUrl());
         }
 
-        model.addAttribute("booster", owner);
+        model.addAttribute("owner", owner);
+        model.addAttribute("booster",principalDetails.getUsers());
         model.addAttribute("blog", blog);
         model.addAttribute("titleImageUrl",blog.getBlogTitleImages().getFileUrl());
         model.addAttribute("categories",categories);
@@ -96,17 +103,17 @@ public class BlogController {
     @GetMapping("/blogCollection/{blogId}")
     public String showBlogCollection(@PathVariable("blogId") Long blogId,
                                      @AuthenticationPrincipal PrincipalDetails principalDetails,
+                                     @PageableDefault(size = 2)
+                                     Pageable pageable,
                                      Model model) {
-
-        List<CollectionRequestDTO> collections = collectionService.getCollectionList(blogId);
-
+        System.out.println(" afdsfsdfsdfsfasfasdfasdfasdfasdfasdfasdfasdfasdfa= ");
         String rolePage = principalDetails.rolePage();
-
         Blogs blog = blogService.findByBlogId(blogId);
 
+        String category = String.valueOf(blog.getCategory());
+        System.out.println("category = " + category);
         Long userId = principalDetails.getUsers().getUserId();
         List<BoostHistory> boostHistories = boostHistoryService.findByUserId(userId);
-
         Long tierId = null;
         for (BoostHistory boostHistory : boostHistories) {
             if (boostHistory.getBlogs().getBlogId().equals(blogId)) {
@@ -115,11 +122,17 @@ public class BlogController {
             }
         }
 
+
+        List<String> commentList = new ArrayList<>();
+        List<Long> collectionIdList = new ArrayList<>();
         List<List<String>> collectionImagesUrlsList = new ArrayList<>();
         List<String> collectionFileNames = new ArrayList<>();
         List<String> collectionUuids = new ArrayList<>();
-        for (CollectionRequestDTO collection : collections) {
+
+        Page<CollectionRequestDTO> collections = collectionService.getCollectionList(blogId,pageable);
+        for (CollectionRequestDTO collection : collections.getContent()) {
             Long collectionId = collection.getCollectionId();
+            collectionIdList.add(collectionId);
 
             List<String> collectionImagesUrls = collectionService.getCollectionImagesUrls(collectionId);
             collectionImagesUrlsList.add(collectionImagesUrls);
@@ -129,18 +142,26 @@ public class BlogController {
 
             String collectionUuid = collectionService.getCollectionFileUuid(collectionId);
             collectionUuids.add(collectionUuid);
-
         }
-
+        CollectionDataDTO blogCollectionDTO = new CollectionDataDTO();
+        blogCollectionDTO.setProfileImageUrl(principalDetails.profileImageUrl());
+        blogCollectionDTO.setBooster(principalDetails.getUsers());
+        blogCollectionDTO.setTierId(tierId);
+        blogCollectionDTO.setBlog(blog);
+        blogCollectionDTO.setCollections(collections);
+        blogCollectionDTO.setCollectionFileNames(collectionFileNames);
+        blogCollectionDTO.setCollectionIdList(collectionIdList);
+        blogCollectionDTO.setCollectionImagesUrlsList(collectionImagesUrlsList);
+        blogCollectionDTO.setCollectionUuids(collectionUuids);
+        blogCollectionDTO.setCategory(category);
+//        blogCollectionDTO.setComments(commentList);
+        System.out.println("blogCollectionDTO =================== " + blogCollectionDTO);
         if (rolePage == null) {
+            model.addAttribute("blogCollectionDTO",blogCollectionDTO);
+            System.out.println("blogCollectionDTO ========================================================= " + blogCollectionDTO);
+            model.addAttribute("userId",userId);
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
-            model.addAttribute("booster", principalDetails.getUsers());
-            model.addAttribute("tierId", tierId);
             model.addAttribute("blog",blog);
-            model.addAttribute("collections",collections);
-            model.addAttribute("collectionFileNames", collectionFileNames);
-            model.addAttribute("collectionImagesUrlsList", collectionImagesUrlsList);
-            model.addAttribute("collectionUuids", collectionUuids);
             return "blog/blog-collection";
         }else{
             return "user/main";

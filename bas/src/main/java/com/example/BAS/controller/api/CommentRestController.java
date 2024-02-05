@@ -1,0 +1,36 @@
+package com.example.BAS.controller.api;
+
+import com.example.BAS.dto.collection.CommentDTO;
+import com.example.BAS.dto.collection.UserComment;
+import com.example.BAS.entitiy.blog.CollectionComment;
+import com.example.BAS.entitiy.users.Users;
+import com.example.BAS.service.collection.CollectionService;
+import com.example.BAS.service.collection.CommentService;
+import com.example.BAS.service.users.UsersService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+public class CommentRestController {
+    private final UsersService usersService;
+    private final CollectionService collectionService;
+    private final CommentService commentService;
+
+    @PostMapping("/saveComment")
+    public ResponseEntity<CommentDTO> comment(@RequestBody UserComment userComment) {
+        CollectionComment collectionComment = commentService.save(userComment);
+
+        Long userId = userComment.getUserId();
+        Users users = usersService.findByUserId(userId);
+
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setNickName(users.getNickName());
+        commentDTO.setProfileImageUrl(users.getProfileImage().getFileUrl());
+        commentDTO.setContent(collectionComment.getContent());
+        return ResponseEntity.ok(commentDTO);
+    }
+}

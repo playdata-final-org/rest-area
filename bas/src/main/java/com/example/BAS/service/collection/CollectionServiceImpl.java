@@ -10,12 +10,15 @@ import com.example.BAS.entitiy.files.CollectionFiles;
 import com.example.BAS.entitiy.files.CollectionImages;
 import com.example.BAS.repository.CollectionFilesRepository;
 import com.example.BAS.repository.CollectionImageRepository;
+import com.example.BAS.repository.CollectionRepository;
 import com.example.BAS.service.file.FileService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,6 +42,7 @@ public class CollectionServiceImpl implements CollectionService {
     private final FileService fileService;
     private final CollectionImageRepository collectionImageRepository;
     private final CollectionFilesRepository collectionFilesRepository;
+    private final CollectionRepository collectionRepository;
 
     @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
@@ -87,11 +91,11 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CollectionRequestDTO> getCollectionList(Long blogId) {
-        List<Collections> collections = collectionDAO.findByBlogs_BlogId(blogId);
-        return collections.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<CollectionRequestDTO> getCollectionList(Long blogId, Pageable pageable) {
+        Page<Collections> collections = collectionDAO.findByBlogs_BlogId(blogId,pageable);
+        return collections
+                .map(this::convertToDTO);
+
     }
 
     @Override
@@ -214,6 +218,16 @@ public class CollectionServiceImpl implements CollectionService {
     @Override
     public int getCollectionCount(Long blogId) {
         return collectionDAO.getCollectionCount(blogId);
+    }
+
+    @Override
+    public Collections findByCollectionId(Long collectionId) {
+        return collectionDAO.findByCollectionId(collectionId);
+    }
+
+    @Override
+    public Collections findByCollectionIds(Long collectionId) {
+        return collectionDAO.findByCollectionIds(collectionId);
     }
 
     @Override

@@ -1,10 +1,7 @@
 package com.example.BAS.entitiy.users;
 
 import com.example.BAS.entitiy.authority.UserStatus;
-import com.example.BAS.entitiy.blog.Blogs;
-import com.example.BAS.entitiy.blog.BoostHistory;
-import com.example.BAS.entitiy.blog.Membership_tier;
-import com.example.BAS.entitiy.blog.Memberships;
+import com.example.BAS.entitiy.blog.*;
 import com.example.BAS.entitiy.files.ProfileImage;
 import com.example.BAS.entitiy.payment.Charge;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +28,14 @@ public class Users {
     private String password;
     private String nickName;
     private int point;
+
+    @OneToMany(mappedBy = "users")
+    @ToString.Exclude
+    private List<CollectionComment> collectionComments;
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<CollectionLike> collectionLikes;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_image_id")

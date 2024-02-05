@@ -21,6 +21,14 @@ public class Collections {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long collectionId;
 
+    @OneToMany(mappedBy = "collections")
+    @ToString.Exclude
+    private List<CollectionComment> collectionComments;
+
+    @OneToMany(mappedBy = "collections")
+    @ToString.Exclude
+    private List<CollectionLike> collectionLikes;
+
     @ManyToOne
     @JoinColumn(name = "blogs")
     private Blogs blogs;
@@ -63,8 +71,6 @@ public class Collections {
     public void updateCollectionImages(CollectionImages collectionImages) {
         this.collectionImages = (List<CollectionImages>) collectionImages;
     }
-
-
 
 
 }

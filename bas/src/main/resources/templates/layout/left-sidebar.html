@@ -26,34 +26,27 @@
             <!-- 세션 있을때 -->
 
             <!-- 세션 없을때 -->
-            <a  th:href="@{/myPage}"
-               class="list-group-item list-group-item-action py-2 ripple"
-               aria-current="true"
-            ><i class="fa fa-address-book-o" aria-hidden="true"></i>
-
-                <span>마이페이지</span>
-            </a>
 
             <a href="#"
                     class="list-group-item list-group-item-action py-2 ripple active"
-                    th:href="@{/content/feed}"
+                    th:href="@{/content/feed}" sec:authorize="hasRole('ROLE_BOOSTER')"
             ><i class="fa fa-search" aria-hidden="true"></i>
                 <span>크리에이터찾기</span>
             </a>
 
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-               th:href="@{/content/map}"
+               th:href="@{/boostedHistory/{userId}(userId=${booster.userId})}"
             >
-                <i class="fa fa-handshake-o" aria-hidden="true"></i><span>후원중인크리에이터</span></a
+                <i class="fa fa-handshake-o" aria-hidden="true"></i><span>마이페이지</span></a
             >
 
             <a th:href="@{/transCreator(userId=${booster.userId})}" class="list-group-item list-group-item-action py-2 ripple"
-
+               sec:authorize="hasRole('ROLE_BOOSTER')"
             ><i class="fa fa-credit-card" aria-hidden="true"></i><span>크리에이터로 전환하기</span></a
             >
 
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-               th:href="@{/transBooster(userId=${booster.userId})}"
+               th:href="@{/transBooster(userId=${booster.userId})}" sec:authorize="hasRole('ROLE_CREATOR')"
             ><i class="fa fa-heart-o" aria-hidden="true"></i><span>부스터로 전환하기</span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"

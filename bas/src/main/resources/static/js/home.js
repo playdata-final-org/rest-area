@@ -7,7 +7,13 @@ function loadBlogHomeContent() {
 }
 
 function loadBlogCollectionContent() {
-    loadContent('/blogCollection/'+blogId);
+    loadContent('/blogCollection/' + blogId);
+}
+function loadBlogCollectionContent1(page) {
+    console.log(page)
+    var pageSize = 2;
+    var pageNumber = page -1;
+    loadContent('/blogCollection/' + blogId+'?page='+pageNumber+'&size='+pageSize);
 }
 
 function loadMembershipContent() {

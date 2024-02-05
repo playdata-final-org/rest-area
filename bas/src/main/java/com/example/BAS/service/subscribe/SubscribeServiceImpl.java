@@ -1,5 +1,6 @@
 package com.example.BAS.service.subscribe;
 
+import com.example.BAS.dao.Membership.CreatorHistoryDAO;
 import com.example.BAS.dao.boostHistory.BoostHistoryDAO;
 import com.example.BAS.dao.user.UserDAO;
 import com.example.BAS.entitiy.blog.BoostHistory;
@@ -18,6 +19,7 @@ import java.util.List;
 public class SubscribeServiceImpl implements SubscribeService {
 
     private final BoostHistoryDAO boostHistoryDAO;
+    private final CreatorHistoryDAO creatorHistoryDAO;
     private final UserDAO userDAO;
 
     @Override
@@ -37,31 +39,45 @@ public class SubscribeServiceImpl implements SubscribeService {
         return now.isAfter(expirationDate);
     }
 
+
     @Override
     public void monthlySchedulerService() {
         List<BoostHistory> boostHistoryList = boostHistoryDAO.findAll();
-
         for (BoostHistory boostHistory : boostHistoryList) {
             subtractPointSchedulerService(boostHistory);
         }
     }
 
+    private void increaseOpponentPoint(BoostHistory boostHistory) {
+
+        Users opponentUser = boostHistory.getBlogs().getUsers();
+
+        Membership_tier membershipTier = boostHistory.getMembership_tier();
+        int tierPrice = Integer.parseInt(membershipTier.getTierPrice());
+
+        opponentUser.setPoint(opponentUser.getPoint() + tierPrice);
+
+        userDAO.saves(opponentUser);
+    }
+
     private void subtractPointSchedulerService(BoostHistory boostHistory) {
         Users user = boostHistory.getUser();
-        System.out.println("user = " + user);
         Membership_tier membershipTier = boostHistory.getMembership_tier();
-        System.out.println("membershipTier = " + membershipTier);
         int tierPrice = Integer.parseInt(membershipTier.getTierPrice());
-        System.out.println("tierPrice = " + tierPrice);
+        if (!boostHistory.getIsBoostState()) {
+            return;
+        }
         if (user.getPoint() >= tierPrice) {
             user.setPoint(user.getPoint() - tierPrice);
-            System.out.println("tierPrice = " + tierPrice);
             boostHistory.setMembership_tier(membershipTier);
             boostHistory.setUser(user);
-//            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(1);
-//            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
-//            boostHistory.setExpirationDate(expirationDate);
+            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(1);
+//        LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
+            boostHistory.setExpirationDate(expirationDate);
             boostHistory.setIsBoostState(true);
+
+            increaseOpponentPoint(boostHistory);
+
         } else {
             boostHistory.setIsBoostState(false);
         }

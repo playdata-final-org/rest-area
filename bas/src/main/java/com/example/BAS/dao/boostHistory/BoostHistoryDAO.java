@@ -15,4 +15,7 @@ public interface BoostHistoryDAO {
     List<BoostHistory> findByUserId(Long userId);
 
     int getBoostersCount(Long blogId);
+
+
+    BoostHistory findByBoostHistoryId(Long boostHistoryId);
 }

@@ -35,4 +35,9 @@ public class UsersServiceImpl implements UsersService{
     public List<Users> findLikeUser(String userInput) {
         return userDAO.findLikeUser(userInput);
     }
+
+    @Override
+    public Users findByUserId(Long userId) {
+        return userDAO.findByUserId(userId);
+    }
 }

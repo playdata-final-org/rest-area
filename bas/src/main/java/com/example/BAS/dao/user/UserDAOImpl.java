@@ -68,4 +68,9 @@ public class UserDAOImpl implements UserDAO {
         return userRepository.findByNickNameContains(userInput);
     }
 
+    @Override
+    public void saves(Users opponentUser) {
+        userRepository.save(opponentUser);
+    }
+
 }

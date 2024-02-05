@@ -1,72 +1,165 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>blog-collection</title>
+
 </head>
 <body>
 <section class="blogHome">
+    <form action="" method="post" style="margin-bottom: 30px;">
+        <!-- 검색 폼 등은 유지됨 -->
+    </form>
     <div class="homeContainer">
+        <!-- 컬렉션 정보 표시 -->
 
-        <th:block th:each="collection, iter : ${collections}">
-            <div class="card">
+        <div th:each="collection, iter : ${blogCollectionDTO.collections}" class="card">
 
-                <div class="fistImageContainer" style="display:flex; justify-content: center;">
-                    <th:block th:each="imageUrl, iterStat : ${collectionImagesUrlsList[iter.index]}">
-                        <div th:classappend="${imageUrl != null}" style="width:300px; height:300px;">
+            <button class="mainToggleButton">Toggle Content</button>
+            <section>
+                <div class="altoBox" style="width: 100%; height:150px; overflow: hidden;">
+
+                    <div class="fistImageContainer" style="display:flex; justify-content: center;">
+                        <div th:each="imageUrl : ${blogCollectionDTO.collectionImagesUrlsList[__${iter.index}__]}"
+                             style="width:300px; height:300px;">
                             <img th:src="${imageUrl}" alt="Collection Image"
                                  style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
-                    </th:block>
-                </div>
-
-                <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;">
-                    <div>
-                        <h2 class="card-title" style="font-size:30px;" th:text="${collection.title}">Title</h2>
-                        <p class="card-text" th:text="${collection.createDate}">Date</p>
-                        <p class="card-text" style="margin-top: 30px;" th:text="${collection.content}">Content</p>
                     </div>
-                    <div>
-                        <span th:text="${collection.tierName}" style="border-radius:10px; background: #c4c4db42; padding:10px;"></span>
+                    <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <div>
+                            <h2 class="card-title" style="font-size:30px;" th:text="${collection.title}">Title</h2>
+                            <p class="card-text" th:text="${collection.createDate}">Date</p>
+                            <p class="card-text" style="margin-top: 30px;" th:text="${collection.content}">Content</p>
+                        </div>
+                        <div>
+                            <span th:text="${collection.tierName}"
+                                  style="border-radius:10px; background: #c4c4db42; padding:10px;"></span>
+                        </div>
                     </div>
 
+                    <section class="categoryArea" style="display: flex;">
+                        <div style="background: #c4c4db42; width: 150px; padding: 10px; border-radius: 20px; margin-top:30px;">
+                            <span th:text="${blogCollectionDTO.category}"></span>
+                        </div>
+                    </section>
 
-                </div>
-
-
-                <div class="cardFile" th:if="${collection.membershipType == 'allPublic' or tierId >= collection.tierId}"
-                     style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px">
-                    <p class="card-text">
-                        <i class="fa fa-file-archive-o" aria-hidden="true" style="color: #0000ff;"></i>
-                        <a th:if="${collectionFileNames[iter.index] != null}"
-                           th:href="@{/download/img/collectionFiles/{uuid}_{fileName}(uuid=${collectionUuids[iter.index]},fileName=${collectionFileNames[iter.index]})}"
-                           th:utext="${collectionFileNames[iter.index]}" style="color: #0000ff; margin-left: 10px;"></a>
-                        <span th:unless="${collectionFileNames[iter.index] != null}">없음</span>
-                    </p>
-                </div>
-
-                <div class="cardFile" th:unless="${collection.membershipType == 'allPublic' or tierId >= collection.tierId}"
-                     style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px;
-                            display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
-                   <div style="display: flex; align-items: center;">
-                       <i class="fa fa-lock" aria-hidden="true"></i>
-                       <p style="margin-left: 10px;"><span th:text="${collection.tierName}" style="margin-right: 10px;"></span>등급 이상 다운로드 가능합니다</p>
-                   </div>
-                    <div class="plan-about" style="background: #ffa500; padding: 15px; border-radius: 30px;">
-                        <button style="color:#fff;background: transparent;border: transparent;">플랜 목록</button>
+                    <!-- 다운로드 가능한 파일 표시 -->
+                    <div class="cardFile"
+                         th:if="${collection.membershipType == 'allPublic' or blogCollectionDTO.tierId >= collection.tierId}"
+                         style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px">
+                        <p class="card-text">
+                            <i class="fa fa-file-archive-o" aria-hidden="true" style="color: #0000ff;"></i>
+                            <a th:if="${blogCollectionDTO.collectionFileNames[__${iter.index}__] != null}"
+                               th:href="@{/download/img/collectionFiles/{uuid}_{fileName}(uuid=${blogCollectionDTO.collectionUuids[__${iter.index}__]},fileName=${blogCollectionDTO.collectionFileNames[__${iter.index}__]})}"
+                               th:utext="${blogCollectionDTO.collectionFileNames[__${iter.index}__]}"
+                               style="color: #0000ff; margin-left: 10px;"></a>
+                            <span th:unless="${blogCollectionDTO.collectionFileNames[__${iter.index}__] != null}">없음</span>
+                        </p>
                     </div>
+                    <!-- 다운로드 권한이 없는 경우 표시 -->
+                    <div class="cardFile"
+                         th:unless="${collection.membershipType == 'allPublic' or blogCollectionDTO.tierId >= collection.tierId}"
+                         style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px;
+                        display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
+                        <div style="display: flex; align-items: center;">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <p style="margin-left: 10px;"><span th:text="${collection.tierName}"
+                                                                style="margin-right: 10px;"></span>등급 이상 다운로드 가능합니다</p>
+                        </div>
+                        <div class="plan-about" style="background: #ffa500; padding: 15px; border-radius: 30px;">
+                            <button style="color:#fff;background: transparent;border: transparent;">플랜 목록</button>
+                        </div>
+                    </div>
+
+                    <section class="like_comment"
+                             style="display: flex; margin-top: 30px; flex-direction: row; align-items: center;">
+                        <button class="likeButton">좋아요</button>
+                        <div class="userId" th:data-user-class="${userId}"></div>
+                        <div class="collection"
+                             th:data-collection-class="${blogCollectionDTO.collectionIdList[__${iter.index}__]}"></div>
+                        <span class="likeCount">0</span>
+                        <div style="margin-left: 30px;">댓글</div>
+
+                        <button class="toggleButton">Toggle Content</button>
+                    </section>
+
+
+                    <div class="highlightLine" style="margin-top: 20px;"></div>
+
+
+                    <section class="comment_area">
+                        <div class="commentHidden" style="width: 100%; height:0px; overflow: hidden;">
+                        <div class="commentBox">
+<!--                            <section class="comment_box"-->
+<!--                                     style="margin: 20px; background: #e4c1c1; display: flex; flex-direction: row; padding: 10px;">-->
+<!--                                <div class="userProfileImg">-->
+<!--                                    <div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">-->
+<!--                                        <img id="imagePreview1" alt="Profile Image"-->
+<!--                                             src="#"-->
+<!--                                             style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="width:100% display: flex; flex-direction: column; justify-content: space-around;">-->
+<!--                                    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">-->
+<!--                                        <span>유저네임</span>-->
+<!--                                        <span>날짜</span>-->
+<!--                                    </div>-->
+<!--                                    <div style="width: 100%; display: flex; align-items: center;">-->
+<!--                                        <span>댓글 내용</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </section>-->
+
+                        </div>
+                            <div class="highlightLine"></div>
+
+
+                            <section
+                                    style="width:100%; margin-top: 30px; display: flex;flex-direction: row; align-items: center;">
+                                <div class="boosterProfileImg">
+                                    <div class="creator-blog-img"
+                                         style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                                        <img id="imagePreview" alt="Profile Image"
+                                             th:src="${profileImageUrl}"
+                                             style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                                    </div>
+                                </div>
+                                <div class="userCommentWrite"
+                                     style="display: flex; align-items: center; justify-content: space-between;">
+                                    <label>
+                                        <textarea rows="1" cols="90" name="content"></textarea>
+                                    </label>
+                                </div>
+                            </section>
+                            <button class="commentButton"
+                                    style="width:100%; padding:10px; border: transparent; border-radius: 10px;">댓글 작성
+                            </button>
+
+                        </div>
+                    </section>
                 </div>
-                <script th:inline="javascript">
-                    var blogId = /*[[${blog.blogId}]]*/
-                    console.log(blogId)
-                </script>
-                <script src="/js/blog-collection-chooseMembership.js" type="text/javascript"></script>
-                <script src="/js/blog-collection-highLight.js" type="text/javascript"></script>
-            </div>
-        </th:block>
+            </section>
+        </div>
     </div>
+
+    <div th:if="${blogCollectionDTO.getCollections.getTotalPages > 1}" style="display:flex;">
+        <div th:each="pageNumber : ${#numbers.sequence(1,blogCollectionDTO.getCollections.getTotalPages())}">
+            <button th:attr="onclick='loadBlogCollectionContent1(' + ${pageNumber} + ')'" th:text="${pageNumber}">1</button>
+        </div>
+    </div>
+
+    <!-- 블로그 ID 스크립트 -->
+
+    <!-- 필요한 JavaScript 파일 로드 -->
+    <script src="/js/collectionLikes.js" type="text/javascript"></script>
+    <script src="/js/blog-collection-chooseMembership.js" type="text/javascript"></script>
+    <script src="/js/blog-collection-highLight.js" type="text/javascript"></script>
+    <script src="/js/collectionFolder.js" type="text/javascript"></script>
+    <script src="/js/collectionMainPold.js" type="text/javascript"></script>
+    <script src="/js/collectionLike.js" type="text/javascript"></script>
+    <script src="/js/comment.js" type="text/javascript"></script>
+
 </section>
 </body>
-
 </html>

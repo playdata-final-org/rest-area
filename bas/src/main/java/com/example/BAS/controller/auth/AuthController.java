@@ -3,6 +3,7 @@ package com.example.BAS.controller.auth;
 import com.example.BAS.config.security.PrincipalDetails;
 import com.example.BAS.dto.auth.SignupDTO;
 import com.example.BAS.dto.auth.UpdateUserDTO;
+import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.users.Users;
 import com.example.BAS.service.auth.AuthService;
 import com.example.BAS.service.blog.BlogService;
@@ -75,39 +76,51 @@ public class AuthController {
         authService.signup(signupDTO);
         return "user/signin";
     }
-    @GetMapping("/myPage")
-    public String showMyPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+    @GetMapping("/myPage/{userId}")
+    public String showMyPage(@PathVariable("userId") Long userId,
+                            @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         String rolePage = principalDetails.rolePage();
+
+        Blogs blog = blogService.findByUserId(userId);
+        Users user = principalDetails.getUsers();
 
         if (rolePage == null) {
             model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
+            model.addAttribute("blog",blog);
             model.addAttribute("booster", principalDetails.getUsers());
-
-            model.addAttribute("updateUserDTO", new UpdateUserDTO());
+            model.addAttribute("updateUserDTO", user);
 
             return "user/mypage";
         } else {
             return "user/main";
         }
     }
-    @PostMapping("/myPage")
-    public String myPage(
+    @PostMapping("/myPage/{userId}")
+    public String myPage(@PathVariable("userId") Long userId,
                          @ModelAttribute UpdateUserDTO updateUserDTO,
                          @RequestParam("file") MultipartFile newProfileImage,
                          @RequestParam("oldPassword") String oldPassword,
-                         @AuthenticationPrincipal PrincipalDetails principalDetails,Model model) throws IOException {
+                         @AuthenticationPrincipal PrincipalDetails principalDetails,
+                         Model model
+                         ) throws IOException {
+        System.out.println("adfsdfsfaddsdf ");
         updateUserDTO.setProfileImage(newProfileImage);
+
         authService.updateUser(updateUserDTO, oldPassword);
         String rolePage = principalDetails.rolePage();
+        Blogs blog = blogService.findByUserId(userId);
         if (rolePage == null) {
-            model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
+            model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("booster", principalDetails.getUsers());
             model.addAttribute("updateUserDTO", new UpdateUserDTO());
-            return "user/mypage";
+            model.addAttribute("blog",blog);
+
+            return "redirect:/boostedHistory/"+userId;
         } else {
             return "user/main";
         }
     }
+
     @GetMapping("/transCreator")
     public String transCreator(@RequestParam("userId") Long userId,
                                @AuthenticationPrincipal PrincipalDetails principalDetails, Model model){

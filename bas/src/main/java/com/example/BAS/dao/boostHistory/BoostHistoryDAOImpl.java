@@ -36,4 +36,11 @@ public class BoostHistoryDAOImpl implements BoostHistoryDAO{
     public int getBoostersCount(Long blogId) {
         return boostHistoryRepository.countDistinctUserIdsByBlogId(blogId);
     }
+
+    @Override
+    public BoostHistory findByBoostHistoryId(Long boostHistoryId) {
+        return boostHistoryRepository.findByBoostHistoryId(boostHistoryId);
+    }
+
+
 }

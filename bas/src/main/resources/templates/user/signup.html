@@ -76,6 +76,7 @@
                                                    placeholder="새 비밀번호를 다시 입력해주세요" required="required" oninput="signUpValidatePasswords()"/>
                                         </div>
                                     </div>
+                                    <span id="confirmPasswordError" class="text-danger"></span>
 
                                     <div class="d-flex flex-row align-items-center mt-4">
                                         <div class="form-outline flex-fill mb-0">
@@ -90,7 +91,6 @@
                                     <label th:if="${error_nickName}" class="text-danger" for="nickName"
                                            th:text="${error_nickName}"></label>
                                     <div id="duplicateNickNameMessage" class="text-danger"></div>
-                                    <span id="confirmPasswordError" class="text-danger"></span>
 
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-block" style="width: 100%; margin-top:20px;" type="submit">계속

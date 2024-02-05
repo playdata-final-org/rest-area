@@ -19,4 +19,6 @@ public interface UserDAO {
     List<Users> findByNickNameContainingIgnoreCase(String nickName);
 
     List<Users> findLikeUser(String userInput);
+
+    void saves(Users opponentUser);
 }

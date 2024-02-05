@@ -9,14 +9,14 @@
         <section class="blogMain">
             <div class="blogMainTitle">
                 <img id="blogMainPreview" alt="Cover Image Preview" th:src="${titleImageUrl}" src="">
-                <label for="coverImageInput" class="coverChange">
+                <label for="coverImageInput" class="coverChange" sec:authorize="hasRole('ROLE_CREATOR')">
                     <i class="fa fa-picture-o" aria-hidden="true"></i>커버 이미지 설정
                 </label>
                 <input type="file" id="coverImageInput" style="display: none;" accept="image/*">
             </div>
         </section>
         <div class="blogBody">
-            <section class="blogWriteButtonContainer">
+            <section class="blogWriteButtonContainer" sec:authorize="hasRole('ROLE_CREATOR')">
                 <div class="blogWriteButton">
                     <a th:href="@{/blogWrite}" class="blogWrite">
                         <i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -32,16 +32,18 @@
                 </div>
                 <div style="display: flex; flex-direction: column;" >
                     <span id="blogCategory" th:text="${blogCategory}"></span>
-                    <button id="categoryModalBtn" class="categoryModalBtn" data-toggle="modal" data-target="#categoryModal">카테고리 선택</button>
+                    <button id="categoryModalBtn" class="categoryModalBtn" data-toggle="modal" data-target="#categoryModal" sec:authorize="hasRole('ROLE_CREATOR')"
+                    style="border: transparent; background-color: #585184; color: #fff; padding: 10px; border-radius: 30px;">카테고리 선택</button>
                 </div>
 
                 <section class="categoryModalContainer">
-                    <div id="categoryModal" class="categoryModalBox">
+                    <div id="categoryModal" class="categoryModalBox" style="width:500px;">
                         <div class="modalContent">
-                            <h2>카테고리 선택</h2>
+                            <h2 style="margin-bottom: 10px;">카테고리 선택</h2>
                             <ul id="categoryList">
                                 <li th:each="category : ${categories}">
-                                    <button class="categoryItem" th:text="${category}"></button>
+                                    <button class="categoryItem" th:text="${category}"
+                                            style="border: transparent; width: 100%; border-radius: 10px; padding:1px;"></button>
                                 </li>
                             </ul>
                             <span class="modalClose" onclick="closeCategoryModal()">&times;</span>
@@ -49,12 +51,12 @@
                     </div>
                 </section>
 
-                <span class="username" th:text="${booster.nickName}">username</span></br>
-                <span class="email" th:text="${booster.username}">email</span></br>
+                <span class="username" th:text="${owner.nickName}">username</span></br>
+                <span class="email" th:text="${owner.username}">email</span></br>
                 <span class="member-count">회원수:</span><span class="member-count" th:text="${boostersCount}"></span><span
                     class="post-count">게시글 수</span><span class="post-count" th:text="${collectionCount}"></span>
             </section>
-            <section class="collectionWriteButtonContainer">
+            <section class="collectionWriteButtonContainer" sec:authorize="hasRole('ROLE_CREATOR')">
                 <div class="collectionWriteButton">
                     <a href="#" class="collectionWrite" onclick="openWriteOptionsModal()">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>작성하기
@@ -92,10 +94,12 @@
                 </ul>
             </nav>
         </section>
+
         <section>
             <div class="highlightLine"></div>
             <div id="buttonHighlight"></div>
         </section>
+
         <div class="blogContent" id="blogContentContainer" style="margin-top: 20px;">
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         </div>
@@ -103,7 +107,7 @@
     <th:block th:fragment="add_bottom">
         <script th:inline="javascript">
             var blogId = /*[[${blog.blogId}]]*/
-            var categories = /*[[${categories}]]*/
+            var pageNumber = 0
         </script>
         <script src="/js/home.js" type="text/javascript"></script>
         <script src="/js/highlight.js" type="text/javascript"></script>

@@ -10,4 +10,5 @@ public interface UsersService {
     Users findCreators(Long userId);
 
     List<Users> findLikeUser(String userInput);
+    Users findByUserId(Long userId);
 }

@@ -73,7 +73,6 @@ public class BoosterRestController {
         String userInput = requestBody.get("userInput");
         List<Users> users = usersService.findLikeUser(userInput);
 
-
         if (users.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -110,4 +109,6 @@ public class BoosterRestController {
 
         return ResponseEntity.ok(blogInfoDTOs);
     }
+
+
 }

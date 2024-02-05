@@ -59,4 +59,16 @@ public class BoostHistoryServiceImpl implements BoostHistoryService{
     public int getBoostersCount(Long blogId) {
         return boostHistoryDAO.getBoostersCount(blogId);
     }
+
+    @Override
+    public BoostHistory findByBoostHistoryId(Long boostHistoryId) {
+        return boostHistoryDAO.findByBoostHistoryId(boostHistoryId);
+    }
+
+    @Override
+    public void save(BoostHistory boostHistory) {
+        boostHistory.setIsBoostState(false);
+
+        boostHistoryDAO.save(boostHistory);
+    }
 }

@@ -1,11 +1,15 @@
 package com.example.BAS.service.charge;
 
+import com.example.BAS.dao.boostHistory.PointHistoryDAO;
 import com.example.BAS.dao.user.UserDAO;
 import com.example.BAS.dto.charge.ChargeDTO;
+import com.example.BAS.entitiy.payment.PointPaymentHistory;
 import com.example.BAS.entitiy.users.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChargeServiceImpl implements ChargeService {
 
     private final UserDAO userDAO;
+    private final PointHistoryDAO pointPaymentHistoryDAO;
     @Override
     public void chargePoint(ChargeDTO chargeDTO, Long userId) {
         Users user = userDAO.findUserById(userId);
@@ -25,6 +30,14 @@ public class ChargeServiceImpl implements ChargeService {
 
         user.setPoint(totalPoints);
         userDAO.save(user);
+
+        PointPaymentHistory paymentHistory = new PointPaymentHistory();
+        paymentHistory.setUser(user);
+        paymentHistory.setAmountCharged(chargeDTO.getAmount());
+        paymentHistory.setChargedPoints(newPoints);
+        paymentHistory.setCreateDate(LocalDateTime.now());
+
+        pointPaymentHistoryDAO.save(paymentHistory);
     }
     @Override
     public int findPointByUserId(Long userId) {

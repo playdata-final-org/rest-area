@@ -795,7 +795,7 @@ section.blogMain .blogMainTitle:hover .coverChange {
 }
 .blogBody {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items:flex-start;
     width:100%
 
@@ -1846,6 +1846,8 @@ section.subscribe-button-container {
 .charge-membership-view .membership-info-details span:last-child {
     margin-left: auto;
 }
+
+
 
 /*1599*/
 @media screen and (max-width:1599px) {

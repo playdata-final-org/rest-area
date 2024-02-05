@@ -220,6 +220,8 @@ public class AuthServiceImpl implements AuthService {
                     ProfileImage defaultImage = defaultProfileImage();
                     userToUpdate.updateProfileImage(defaultImage);
                 }
+                String nickName = updateUserDTO.getNickName();
+                userToUpdate.setNickName(nickName);
                 Users savedUser = userDAO.save(userToUpdate);
                 return mapper.map(savedUser, AuthDTO.class);
             }

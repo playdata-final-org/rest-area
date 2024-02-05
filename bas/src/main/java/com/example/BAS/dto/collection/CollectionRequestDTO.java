@@ -1,6 +1,7 @@
 package com.example.BAS.dto.collection;
 
 import com.example.BAS.entitiy.blog.Blogs;
+import com.example.BAS.entitiy.blog.CollectionLike;
 import com.example.BAS.entitiy.files.CollectionFiles;
 import com.example.BAS.entitiy.files.CollectionImages;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 public class CollectionRequestDTO {
     private Long collectionId;
+    private List<CollectionLike> collectionLikes;
     private Blogs blogs;
     private List<CollectionImages> collectionImages;
     private CollectionFiles collectionFiles;

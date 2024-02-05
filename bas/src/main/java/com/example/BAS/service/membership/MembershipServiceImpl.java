@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -65,6 +66,41 @@ public class MembershipServiceImpl implements MembershipService{
                 .map(membership_tier -> mapper.map(membership_tier, MembershipTierRequestDTO.class))
                 .collect(Collectors.toList());
     }
+    @Transactional
+    @Override
+    public List<MembershipTierRequestDTO> updateMembershipTier(Long creatorId,Long blogId,MembershipTierResponseDTO membershipTierResponseDTO) {
+
+        Memberships memberships = membershipDAO.findByBlogId(blogId);
+        System.out.println("memberships ================== " + memberships);
+        if (memberships == null) {
+          return null;
+        }
+
+        memberships.setUpdateDate(LocalDateTime.now());
+
+        List<Membership_tier> existingTiers = memberships.getMembershipTiers();
+
+
+        if (existingTiers.size() >= 3) {
+
+            existingTiers.get(0).setTierName(membershipTierResponseDTO.getTier1Name());
+            existingTiers.get(0).setTierContent(membershipTierResponseDTO.getTier1Content());
+            existingTiers.get(0).setTierPrice(membershipTierResponseDTO.getTier1Price());
+
+            existingTiers.get(1).setTierName(membershipTierResponseDTO.getTier2Name());
+            existingTiers.get(1).setTierContent(membershipTierResponseDTO.getTier2Content());
+            existingTiers.get(1).setTierPrice(membershipTierResponseDTO.getTier2Price());
+
+            existingTiers.get(2).setTierName(membershipTierResponseDTO.getTier3Name());
+            existingTiers.get(2).setTierContent(membershipTierResponseDTO.getTier3Content());
+            existingTiers.get(2).setTierPrice(membershipTierResponseDTO.getTier3Price());
+        }
+        membershipDAO.saveMemberships(memberships);
+        ModelMapper mapper = new ModelMapper();
+        return existingTiers.stream()
+                .map(tier -> mapper.map(tier, MembershipTierRequestDTO.class))
+                .collect(Collectors.toList());
+    }
     @Override
     public List<MembershipTierRequestDTO> getAllMemberships(Long blogId) {
         List<Membership_tier> membershipTiers = membershipDAO.findByMembershipsBlogsBlogId(blogId);
@@ -85,6 +121,11 @@ public class MembershipServiceImpl implements MembershipService{
     @Override
     public Membership_tier findByTierId(Long tierId) {
         return membershipDAO.findByTierId(tierId);
+    }
+
+    @Override
+    public Memberships findByBlogId(Long blogId) {
+        return membershipDAO.findByBlogId(blogId);
     }
 
     @Override

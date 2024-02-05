@@ -27,12 +27,6 @@
 
             <!-- 세션 없을때 -->
 
-            <a href="#"
-                    class="list-group-item list-group-item-action py-2 ripple active"
-                    th:href="@{/content/feed}" sec:authorize="hasRole('ROLE_BOOSTER')"
-            ><i class="fa fa-search" aria-hidden="true"></i>
-                <span>크리에이터찾기</span>
-            </a>
 
             <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                th:href="@{/boostedHistory/{userId}(userId=${booster.userId})}"

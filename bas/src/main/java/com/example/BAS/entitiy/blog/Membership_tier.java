@@ -19,6 +19,7 @@ public class Membership_tier {
     private Long tierId;
 
     private String tierName;
+    @Column(length = 1000)
     private String tierContent;
     private String tierPrice;
     private String grade;

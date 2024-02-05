@@ -26,7 +26,7 @@ function displayBlogs(response) {
     var blogList = $('#blogList');
     blogList.empty();
 
-    if (response.length === 0) {
+    if (!Array.isArray(response) || response.length === 0) {
         blogList.append('<p>찾으시는 크리에이터가 없습니다.</p>');
     } else {
         $.each(response, function(index, blog) {
@@ -42,6 +42,8 @@ function displayBlogs(response) {
 
             var collectionCount = blog.collectionCount;
 
+             var category = blog.category;
+
             var blogHTML = '<section class="creator-search-list">' +
                 '<div class="creator-search-info">' +
                 '<a href="/blog/' + blogId + '">' +
@@ -50,8 +52,9 @@ function displayBlogs(response) {
                 '</div>' +
                 '<div>' +
                 '<h5>' + nickName + '</h5>' +
+                '<span>' + category + '</span>' +
                 '<span>' + blogAbout + '</span>' +
-                '<span>게시글: ' + boosterCount + '</span>' +
+                '<span>회원 수: ' + boosterCount + '</span>' +
                 '<span>컬렉션 수: ' + collectionCount + '</span>' +
                 '</div>' +
                 '</a>' +

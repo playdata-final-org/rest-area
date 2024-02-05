@@ -23,6 +23,6 @@ public class CollectionDataDTO {
     private List<String> collectionUuids;
     private String category;
     private List<Long> collectionIdList;
-//    private List<String> comments;
+    private List<List<CommentDTO>> comments;
 
 }

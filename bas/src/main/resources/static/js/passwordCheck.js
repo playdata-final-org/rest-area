@@ -21,6 +21,7 @@
         if (newPassword !== confirmNewPassword) {
             newPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
             confirmNewPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
+            return false;
         } else {
             newPasswordError.textContent = "";
             confirmNewPasswordError.textContent = "";

@@ -6,7 +6,7 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form th:action="@{/blogMembershipWrite/{blogId}(blogId=${blog.blogId})}" method="post"
+        <form th:action="@{/updateBlogMembershipWrite/{blogId}(blogId=${blog.blogId})}" method="post"
               class="container" id="blogForm" th:object="${membershipTierResponseDTO}">
             <div class="blogWriteMembership-container">
                 <section class="blogWriteMembership">
@@ -88,7 +88,7 @@
                 <section class="blogWriteMembership-button">
                     <div class="blogWriteMembership-button-box">
                         <button type="button" id="prevPage">이전</button>
-                        <button type="submit" id="save">저장</button>
+                        <button type="submit" id="save">수정</button>
                         <button type="button" id="clearForm">초기화</button>
                         <button type="button" id="nextPage">다음</button>
                     </div>

@@ -15,5 +15,6 @@ public class CategoryDataDTO {
     private int boosterCount;
     private int collectionCount;
     private String blogAbout;
+    private String category;
 
 }

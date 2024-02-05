@@ -103,7 +103,6 @@ public class AuthController {
                          @AuthenticationPrincipal PrincipalDetails principalDetails,
                          Model model
                          ) throws IOException {
-        System.out.println("adfsdfsfaddsdf ");
         updateUserDTO.setProfileImage(newProfileImage);
 
         authService.updateUser(updateUserDTO, oldPassword);

@@ -14,9 +14,9 @@ function loadMembershipContent() {
     loadContent('/boostHistory/'+ userId);
 }
 
-function loadBlogAboutContent() {
-    loadContent('/boostDetailPage/'+userId);
-}
+//function loadBlogAboutContent() {
+//    loadContent('/boostDetailPage/'+userId);
+//}
 
 function loadContent(page) {
     $.ajax({

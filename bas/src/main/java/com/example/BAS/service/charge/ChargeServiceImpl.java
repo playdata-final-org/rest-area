@@ -23,7 +23,7 @@ public class ChargeServiceImpl implements ChargeService {
         Users user = userDAO.findUserById(userId);
 
         int chargedPoints = chargeDTO.getAmount();
-        int newPoints = chargedPoints * 10;
+        int newPoints = chargedPoints /100;
 
         int currentPoints = user.getPoint();
         int totalPoints = currentPoints + newPoints;

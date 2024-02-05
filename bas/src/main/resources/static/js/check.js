@@ -29,6 +29,7 @@ function checkDuplicatePassword() {
 
         $.post(contextPath + '/signup/checkDuplicatePassword', { password: password }, function (response) {
             duplicatePasswordMessage.textContent = response;
+             return false;
         });
     }
 
@@ -42,6 +43,7 @@ function checkDuplicatePassword() {
         if (Password !== confirmNewPassword) {
             PasswordError.textContent = "비밀번호가 일치하지 않습니다.";
             confirmNewPasswordError.textContent = "비밀번호가 일치하지 않습니다.";
+            return false;
         } else {
             PasswordError.textContent = "비밀번호가 일치합니다.";
             confirmNewPasswordError.textContent = "비밀번호가 일치합니다.";

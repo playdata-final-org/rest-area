@@ -74,13 +74,16 @@
                     <button type="button" name="membershipType" data-membership-type="allPublic" onclick="toggleMembership('allPublic')">
                         <span>전체 공개</span>
                     </button>
-                    <button type="button" name="membershipType" data-membership-type="paidPublic" onclick="toggleMembership('paidPublic')">
+                    <button th:if="${membershipTiers == null}" type="button">
+                        <span>유료 공개</span>
+                    </button>
+                    <button th:if="${membershipTiers != null}" type="button" name="membershipType" data-membership-type="paidPublic" onclick="toggleMembership('paidPublic')">
                         <span>유료 공개</span>
                     </button>
                 </div>
             </section>
 
-            <section class="collection-membership-choose-select">
+            <section class="collection-membership-choose-select" th:if="${membershipTiers != null}">
                 <div class="collection-membership-choose-select-box">
                     <button type="button" name="tierId" th:data-tier-id="${membershipTiers[0].tierId}" onclick="toggleGrade('${membershipTiers[0].tierId}')">
                         <span th:text="${membershipTiers[0].tierName}"></span>
@@ -97,8 +100,6 @@
             <section class="collection-button">
                 <div class="collection-button-box">
                     <button type="submit">업로드</button>
-                    <button type="submit">수정</button>
-                    <button type="submit">삭제</button>
                 </div>
             </section>
         </form>

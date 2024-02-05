@@ -1,14 +1,13 @@
 $(document).ready(function() {
     var commentButtons1 = document.querySelectorAll('.commentButton');
-    console.log("********** commentButtons1 ********");
-    commentButtons1.forEach((button) => {
-        console.log("************ button **************");
-        console.log(button);
 
-        button.addEventListener("click" , function() {
-            var commentContent = $('textarea[name="content"]').val();
-            var userId = document.querySelector('.userId').getAttribute('data-user-class');
-            var collectionId = document.querySelector('.collection').getAttribute('data-collection-class');
+    commentButtons1.forEach((button) => {
+
+        button.addEventListener("click" , function(e) {
+            var card = e.target.closest('.card');
+            var commentContent = card.querySelector('textarea[name="content"]').value;
+            var userId = card.querySelector('.userId').getAttribute('data-user-class');
+            var collectionId = card.querySelector('.collection').getAttribute('data-collection-class');
             var userComment = {
                 content: commentContent,
                 userId: userId,
@@ -23,7 +22,8 @@ $(document).ready(function() {
                 data: requestData,
                 success: function(response) {
                     displayComment(response,button);
-
+                    $('textarea[name="content"]').val('');
+                    console.log(displayComment)
                 },
                 error: function(err) {
                     console.error('Error:', err);
@@ -35,13 +35,14 @@ $(document).ready(function() {
 
 function displayComment(response,button) {
     var imageUrl = response.profileImageUrl;
+    console.log(imageUrl)
     var nickName = response.nickName;
     var content = response.content;
-var card = button.closest('.card');
-var comment_area = card.querySelector('.commentBox');
+    var card = button.closest('.card');
+    var comment_area = card.querySelector('.commentBox');
     console.log(comment_area);
 
-    var blogHTML = '<section class="comment_box" style="margin: 20px; background: #e4c1c1; display: flex; flex-direction: row; padding: 10px;">' +
+    var blogHTML = '<section class="comment_box" style="margin: 20px; display: flex; flex-direction: row; padding: 10px;">' +
         '<div class="userProfileImg">' +
         '<div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">' +
         '<img id="imagePreview1" alt="Profile Image" src="' + imageUrl + '" style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">' +

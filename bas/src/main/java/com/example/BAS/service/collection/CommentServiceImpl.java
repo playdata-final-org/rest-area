@@ -9,6 +9,8 @@ import com.example.BAS.service.users.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService{
@@ -23,6 +25,11 @@ public class CommentServiceImpl implements CommentService{
         Collections collections = collectionService.findByCollectionId(userComment.getCollectionId());
         String content = userComment.getContent();
         return commentDAO.save(users, collections, content);
+    }
+
+    @Override
+    public List<CollectionComment> findByCollectionId(Long collectionId) {
+        return commentDAO.findByCollectionId(collectionId);
     }
 
 }

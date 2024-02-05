@@ -5,6 +5,7 @@ import com.example.BAS.dto.About.AboutResponseDTO;
 import com.example.BAS.dto.collection.CollectionDataDTO;
 import com.example.BAS.dto.collection.CollectionRequestDTO;
 import com.example.BAS.dto.collection.CollectionResponseDTO;
+import com.example.BAS.dto.collection.CommentDTO;
 import com.example.BAS.dto.membership.MembershipTierRequestDTO;
 import com.example.BAS.entitiy.blog.*;
 import com.example.BAS.entitiy.users.Users;
@@ -60,7 +61,18 @@ public class BlogController {
         Blogs blog = blogService.findByBlogId(blogId);
         model.addAttribute("booster", principalDetails.getUsers());
 
-        String blogCategory = String.valueOf(blog.getCategory());
+        Long membershipId = null;
+        Memberships memberships = membershipService.findByBlogId(blogId);
+        if (memberships != null) {
+            membershipId = memberships.getMembershipId();
+        }
+
+        String blogCategory;
+        if (blog != null && blog.getCategory() != null) {
+            blogCategory = String.valueOf(blog.getCategory());
+        } else {
+            blogCategory = "카테고리를 선택해주세요";
+        }
 
         int boostersCount = 0;
         int collectionCount = 0;
@@ -71,6 +83,7 @@ public class BlogController {
 
         Long ownerId = blog.getUsers().getUserId();
         Users owner = authService.findByUserId(ownerId);
+
 
         List<BlogCategory> categories = Arrays.asList(BlogCategory.values());
 
@@ -84,6 +97,7 @@ public class BlogController {
             model.addAttribute("profileImageUrl", owner.getProfileImage().getFileUrl());
         }
 
+
         model.addAttribute("owner", owner);
         model.addAttribute("booster",principalDetails.getUsers());
         model.addAttribute("blog", blog);
@@ -92,6 +106,7 @@ public class BlogController {
         model.addAttribute("boostersCount",boostersCount);
         model.addAttribute("collectionCount",collectionCount);
         model.addAttribute("blogCategory",blogCategory);
+        model.addAttribute("membershipId",membershipId);
         return "blog/blog";
     }
 
@@ -106,12 +121,12 @@ public class BlogController {
                                      @PageableDefault(size = 2)
                                      Pageable pageable,
                                      Model model) {
-        System.out.println(" afdsfsdfsdfsfasfasdfasdfasdfasdfasdfasdfasdfasdfa= ");
+
         String rolePage = principalDetails.rolePage();
         Blogs blog = blogService.findByBlogId(blogId);
 
         String category = String.valueOf(blog.getCategory());
-        System.out.println("category = " + category);
+
         Long userId = principalDetails.getUsers().getUserId();
         List<BoostHistory> boostHistories = boostHistoryService.findByUserId(userId);
         Long tierId = null;
@@ -123,7 +138,7 @@ public class BlogController {
         }
 
 
-        List<String> commentList = new ArrayList<>();
+        List<List<CommentDTO>> commentList = new ArrayList<>();
         List<Long> collectionIdList = new ArrayList<>();
         List<List<String>> collectionImagesUrlsList = new ArrayList<>();
         List<String> collectionFileNames = new ArrayList<>();
@@ -133,6 +148,24 @@ public class BlogController {
         for (CollectionRequestDTO collection : collections.getContent()) {
             Long collectionId = collection.getCollectionId();
             collectionIdList.add(collectionId);
+
+            List<CommentDTO> comments = new ArrayList<>();
+            for (CollectionComment comment : commentService.findByCollectionId(collectionId)) {
+                Long commentId = comment.getCommentId();
+                Users users = comment.getUsers();
+                String content = comment.getContent();
+                String profileUrl = users.getProfileImage().getFileUrl();
+                String nickName = users.getNickName();
+
+                CommentDTO commentDTO = new CommentDTO();
+
+                commentDTO.setContent(content);
+                commentDTO.setProfileImageUrl(profileUrl);
+                commentDTO.setNickName(nickName);
+
+                comments.add(commentDTO);
+            }
+            commentList.add(comments);
 
             List<String> collectionImagesUrls = collectionService.getCollectionImagesUrls(collectionId);
             collectionImagesUrlsList.add(collectionImagesUrls);
@@ -154,7 +187,7 @@ public class BlogController {
         blogCollectionDTO.setCollectionImagesUrlsList(collectionImagesUrlsList);
         blogCollectionDTO.setCollectionUuids(collectionUuids);
         blogCollectionDTO.setCategory(category);
-//        blogCollectionDTO.setComments(commentList);
+        blogCollectionDTO.setComments(commentList);
         System.out.println("blogCollectionDTO =================== " + blogCollectionDTO);
         if (rolePage == null) {
             model.addAttribute("blogCollectionDTO",blogCollectionDTO);
@@ -216,7 +249,15 @@ public class BlogController {
                                 @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         String rolePage = principalDetails.rolePage();
         Blogs blog = blogService.findByBlogId(blogId);
+
         Memberships membership = membershipService.findByMembershipId(blogId);
+        if(membership == null){
+            model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
+            model.addAttribute("booster", principalDetails.getUsers());
+            model.addAttribute("blog",blog);
+            model.addAttribute("membershipTiers", null);
+            return "blog/blog-write";
+        }
         Long membershipId = membership.getMembershipId();
         List<MembershipTierRequestDTO> membershipTiers = membershipService.findTierInfoByMembershipId(membershipId);
 
@@ -239,17 +280,26 @@ public class BlogController {
                              @RequestParam("file") MultipartFile file,
                              @RequestParam("membershipType") String membershipType,
                              @RequestParam("tierId") String tierIdStr
-                             ) throws IOException {
+    ) throws IOException {
 
-        Long tierId = Long.parseLong(tierIdStr);
-        Membership_tier membershipTier = membershipService.findByTierId(tierId);
-        String tierName = membershipTier.getTierName();
+        Long tierId = null;
+        String tierName = "전체공개";
+
+        if (tierIdStr != null && !tierIdStr.isEmpty()) {
+            try {
+                tierId = Long.parseLong(tierIdStr);
+                Membership_tier membershipTier = membershipService.findByTierId(tierId);
+                tierName = membershipTier.getTierName();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
         Long userId = principalDetails.getUsers().getUserId();
         collectionResponseDTO.setCollectionImages(imageFiles);
         collectionResponseDTO.setCollectionFiles(file);
 
         collectionService.save(blogId, collectionResponseDTO, membershipType, tierId, tierName);
-
         return "redirect:/blog/" + blogId + "?userId=" + userId;
     }
 

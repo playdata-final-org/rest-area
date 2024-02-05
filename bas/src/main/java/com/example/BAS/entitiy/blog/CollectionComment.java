@@ -14,7 +14,7 @@ public class CollectionComment {
     @Id
     @GeneratedValue
     private Long commentId;
-
+    @Column(length = 1000)
     private String content;
 
     @ManyToOne

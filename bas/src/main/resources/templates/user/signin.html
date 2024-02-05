@@ -48,47 +48,47 @@
                                     <span class="h3 fw-bold mb-0 mt-3">로그인 또는 회원가입</span>
                                 </div>
                                 <div id="loginContainer" style="position: relative;">
-                                    <div id="showLoginOptions" class="show-login-options"
-                                         style="cursor: pointer; padding: 10px; background-color: transparent; color: #cbb0b0;
-                                                border: solid 1px #9e8f8fe3; border-radius: 5px; display: flex; justify-content: center;">
-                                        소셜 로그인 하기</div>
-                                    <div id="socialLoginContainer" class="social-login-container"
-                                         style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                                                background-color: #fffdfd; width: 300px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                                                z-index: 1000; border-radius: 20px;">
+<!--                                    <div id="showLoginOptions" class="show-login-options"-->
+<!--                                         style="cursor: pointer; padding: 10px; background-color: transparent; color: #cbb0b0;-->
+<!--                                                border: solid 1px #9e8f8fe3; border-radius: 5px; display: flex; justify-content: center;">-->
+<!--                                        소셜 로그인 하기</div>-->
+<!--                                    <div id="socialLoginContainer" class="social-login-container"-->
+<!--                                         style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);-->
+<!--                                                background-color: #fffdfd; width: 300px; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--                                                z-index: 1000; border-radius: 20px;">-->
 
-                                        <div class="method mb-3">
-                                            <div class="method-control" id="GgCustomLogin">
-                                                <a href="javascript:void(0)" class="method-action google">
-                                                    <img th:src="@{/assets/google_logo.png}" style="width:30px; height:auto;">
-                                                    <span>구글로그인</span>
-                                                </a>
-                                            </div>
-                                        </div>
+<!--                                        <div class="method mb-3">-->
+<!--                                            <div class="method-control" id="GgCustomLogin">-->
+<!--                                                <a href="javascript:void(0)" class="method-action google">-->
+<!--                                                    <img th:src="@{/assets/google_logo.png}" style="width:30px; height:auto;">-->
+<!--                                                    <span>구글로그인</span>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                        <div class="method mb-3">
-                                            <div class="method-control" id="naverIdLogin_loginButton">
-                                                <a href="javascript:void(0)" class="method-action naver">
-                                                    <img th:src="@{/assets/naver_logo.png}" style="width:30px; height:auto;">
-                                                    <span>네이버로그인</span>
-                                                </a>
-                                            </div>
-                                        </div>
+<!--                                        <div class="method mb-3">-->
+<!--                                            <div class="method-control" id="naverIdLogin_loginButton">-->
+<!--                                                <a href="javascript:void(0)" class="method-action naver">-->
+<!--                                                    <img th:src="@{/assets/naver_logo.png}" style="width:30px; height:auto;">-->
+<!--                                                    <span>네이버로그인</span>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                        <div class="method">
-                                            <div class="method-control" id="kakaoLogin" onclick="kakaoLogin();">
-                                                <a href="javascript:kakaoLogin()" class="method-action kakao">
-                                                    <img th:src="@{/assets/kakao_logo.png}" style="width:30px; height:auto;">
-                                                    <span>카카오로그인</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div id="overlay" class="overlay"
-                                         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                                                background-color: rgba(0, 0, 0, 0.5); z-index: 900;"></div>
-                                <p style="display: flex; justify-content: center; margin: 20px;">or</p>
+<!--                                        <div class="method">-->
+<!--                                            <div class="method-control" id="kakaoLogin" onclick="kakaoLogin();">-->
+<!--                                                <a href="javascript:kakaoLogin()" class="method-action kakao">-->
+<!--                                                    <img th:src="@{/assets/kakao_logo.png}" style="width:30px; height:auto;">-->
+<!--                                                    <span>카카오로그인</span>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                    <div id="overlay" class="overlay"-->
+<!--                                         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;-->
+<!--                                                background-color: rgba(0, 0, 0, 0.5); z-index: 900;"></div>-->
+<!--                                <p style="display: flex; justify-content: center; margin: 20px;">or</p>-->
 
                                 <div class="form-outline mb-2">
                                     <input type="text" id="username" name="username" style="border-radius: 6px;" class="form-control form-control-sm" required="required"/>

@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
-    var blogCollectionButtonId = 'blogCollection';
-    highlightButton(blogCollectionButtonId);
+    var blogHomeButtonId = 'blogHome';
+    highlightButton(blogHomeButtonId);
 });
 
 function handleButtonClick(buttonId, contentLoader) {

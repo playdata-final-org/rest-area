@@ -18,6 +18,7 @@ public class BlogAbout {
     private Long aboutId;
 
     private String aboutTitle;
+    @Column(length = 1000)
     private String aboutContent;
 
     @ManyToOne

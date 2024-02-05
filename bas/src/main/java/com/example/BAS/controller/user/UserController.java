@@ -38,7 +38,8 @@ public class UserController {
     public String charge(@PathVariable("userId") Long userId
                          ,@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         String rolePage = principalDetails.rolePage();
-        Blogs blog =blogService.findByUserId(userId);
+        Long blogId =blogService.findBlogIdByUserId(userId);
+        Blogs blog = blogService.findByBlogId(blogId);
 
         if (rolePage == null) {
             model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
@@ -71,7 +72,9 @@ public class UserController {
     public String showBoostHistory(@PathVariable("userId") Long userId
                         ,@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         String rolePage = principalDetails.rolePage();
-        Blogs blog =blogService.findByUserId(userId);
+        System.out.println("userId ========================== " + userId);
+        Long blogId =blogService.findBlogIdByUserId(userId);
+        Blogs blog = blogService.findByBlogId(blogId);
 
         if (rolePage == null) {
             model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
@@ -189,73 +192,73 @@ public class UserController {
             return "user/main";
         }
     }
-    @GetMapping("/boostDetailPage/{userId}")
-    public String showBoostDetailPage(@PathVariable("userId") Long userId
-            ,@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-        String rolePage = principalDetails.rolePage();
-        Blogs blog =blogService.findByUserId(userId);
-        List<BoostHistory> boostHistory = boostHistoryService.findByUserId(userId);
-
-        List<Long> blogIds = new ArrayList<>();
-        List<Long> boostHistoryIds = new ArrayList<>();
-        List<String> creatorNickNames = new ArrayList<>();
-        List<String> creatorImgUrls = new ArrayList<>();
-        List<LocalDateTime> boostDates = new ArrayList<>();
-        List<LocalDateTime> expirationDates = new ArrayList<>();
-        List<String> tierNames = new ArrayList<>();
-        List<Boolean> status = new ArrayList<>();
-        for(BoostHistory boostHistory1 : boostHistory){
-            Long blogId = boostHistory1.getUser().getUserId();
-            blogIds.add(blogId);
-
-            boolean state =boostHistory1.getIsBoostState();
-            status.add(state);
-
-            Long boostHistoryId = boostHistory1.getBoostHistoryId();
-            boostHistoryIds.add(boostHistoryId);
-
-            String creatorNickName = boostHistory1.getBlogs().getUsers().getNickName();
-            creatorNickNames.add(creatorNickName);
-
-            String creatorImgUrl = boostHistory1.getBlogs().getUsers().getProfileImage().getFileUrl();
-            creatorImgUrls.add(creatorImgUrl);
-
-            LocalDateTime boostDate =boostHistory1.getBoostDate();
-            boostDates.add(boostDate);
-
-            LocalDateTime expirationDate = boostHistory1.getExpirationDate();
-            expirationDates.add(expirationDate);
-
-            String tierName = boostHistory1.getMembership_tier().getTierName();
-            tierNames.add(tierName);
-
-//            BoostDelete boostDelete = (BoostDelete) boostHistory1.getBoostDeletes();
-//            BoostHistory boostHistory2=boostDelete.getBoostHistory();
-//            String deleteNickName = boostHistory2.getBlogs().getUsers().getNickName();
-        }
-        BoostHistoryDTO boostHistoryDTO = new BoostHistoryDTO();
-        boostHistoryDTO.setBlogIds(blogIds);
-        boostHistoryDTO.setBoostHistoryIds(boostHistoryIds);
-        boostHistoryDTO.setCreatorNickNames(creatorNickNames);
-        boostHistoryDTO.setCreatorImgUrls(creatorImgUrls);
-        boostHistoryDTO.setBoostDates(boostDates);
-        boostHistoryDTO.setExpirationDates(expirationDates);
-        boostHistoryDTO.setTierNames(tierNames);
-        boostHistoryDTO.setStatus(status);
-
-
-        System.out.println("boostHistoryDTO ============================================= " + boostHistoryDTO);
-
-        if (rolePage == null) {
-            model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
-            model.addAttribute("booster", principalDetails.getUsers());
-            model.addAttribute("blog",blog);
-            model.addAttribute("boostHistoryDTO",boostHistoryDTO);
-            return "user/boostDetailPage";
-        } else {
-            return "user/main";
-        }
-    }
+//    @GetMapping("/boostDetailPage/{userId}")
+//    public String showBoostDetailPage(@PathVariable("userId") Long userId
+//            ,@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+//        String rolePage = principalDetails.rolePage();
+//        Blogs blog =blogService.findByUserId(userId);
+//        List<BoostHistory> boostHistory = boostHistoryService.findByUserId(userId);
+//
+//        List<Long> blogIds = new ArrayList<>();
+//        List<Long> boostHistoryIds = new ArrayList<>();
+//        List<String> creatorNickNames = new ArrayList<>();
+//        List<String> creatorImgUrls = new ArrayList<>();
+//        List<LocalDateTime> boostDates = new ArrayList<>();
+//        List<LocalDateTime> expirationDates = new ArrayList<>();
+//        List<String> tierNames = new ArrayList<>();
+//        List<Boolean> status = new ArrayList<>();
+//        for(BoostHistory boostHistory1 : boostHistory){
+//            Long blogId = boostHistory1.getUser().getUserId();
+//            blogIds.add(blogId);
+//
+//            boolean state =boostHistory1.getIsBoostState();
+//            status.add(state);
+//
+//            Long boostHistoryId = boostHistory1.getBoostHistoryId();
+//            boostHistoryIds.add(boostHistoryId);
+//
+//            String creatorNickName = boostHistory1.getBlogs().getUsers().getNickName();
+//            creatorNickNames.add(creatorNickName);
+//
+//            String creatorImgUrl = boostHistory1.getBlogs().getUsers().getProfileImage().getFileUrl();
+//            creatorImgUrls.add(creatorImgUrl);
+//
+//            LocalDateTime boostDate =boostHistory1.getBoostDate();
+//            boostDates.add(boostDate);
+//
+//            LocalDateTime expirationDate = boostHistory1.getExpirationDate();
+//            expirationDates.add(expirationDate);
+//
+//            String tierName = boostHistory1.getMembership_tier().getTierName();
+//            tierNames.add(tierName);
+//
+////            BoostDelete boostDelete = (BoostDelete) boostHistory1.getBoostDeletes();
+////            BoostHistory boostHistory2=boostDelete.getBoostHistory();
+////            String deleteNickName = boostHistory2.getBlogs().getUsers().getNickName();
+//        }
+//        BoostHistoryDTO boostHistoryDTO = new BoostHistoryDTO();
+//        boostHistoryDTO.setBlogIds(blogIds);
+//        boostHistoryDTO.setBoostHistoryIds(boostHistoryIds);
+//        boostHistoryDTO.setCreatorNickNames(creatorNickNames);
+//        boostHistoryDTO.setCreatorImgUrls(creatorImgUrls);
+//        boostHistoryDTO.setBoostDates(boostDates);
+//        boostHistoryDTO.setExpirationDates(expirationDates);
+//        boostHistoryDTO.setTierNames(tierNames);
+//        boostHistoryDTO.setStatus(status);
+//
+//
+//        System.out.println("boostHistoryDTO ============================================= " + boostHistoryDTO);
+//
+//        if (rolePage == null) {
+//            model.addAttribute("profileImageUrl",principalDetails.profileImageUrl());
+//            model.addAttribute("booster", principalDetails.getUsers());
+//            model.addAttribute("blog",blog);
+//            model.addAttribute("boostHistoryDTO",boostHistoryDTO);
+//            return "user/boostDetailPage";
+//        } else {
+//            return "user/main";
+//        }
+//    }
 }
 
 

@@ -1,5 +1,5 @@
 <header th:fragment="header" class="fragment-header" xmlns="http://www.w3.org/1999/html">
-    <div class="fragmentHeader">
+    <div class="fragmentHeader" style="margin: 0;width: 100%; border-bottom: 3px solid #fff; background: #f7f5f5;">
         <h1 class="fragmentLogo">
             <a th:href="@{${#authentication.principal.users.currentRole eq 'ROLE_BOOSTER'} ? '/creator-search' : '/blog/' + ${blog.blogId}}">
             <img th:src="@{/assets/BASTation.png}" alt="BAS"></a></h1>

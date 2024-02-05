@@ -1,10 +1,6 @@
 $(document).ready(function () {
-    loadBlogHomeContent();
+    loadBlogCollectionContent();
 });
-
-function loadBlogHomeContent() {
-    loadContent('/blogHome');
-}
 
 function loadBlogCollectionContent() {
     loadContent('/blogCollection/' + blogId);

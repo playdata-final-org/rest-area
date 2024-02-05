@@ -8,16 +8,14 @@
 <body>
 <section class="blogHome">
     <form action="" method="post" style="margin-bottom: 30px;">
-        <!-- 검색 폼 등은 유지됨 -->
+
     </form>
     <div class="homeContainer">
-        <!-- 컬렉션 정보 표시 -->
 
         <div th:each="collection, iter : ${blogCollectionDTO.collections}" class="card">
 
-            <button class="mainToggleButton">Toggle Content</button>
             <section>
-                <div class="altoBox" style="width: 100%; height:150px; overflow: hidden;">
+                <div class="altoBox"  style="width: 100%; height:150px; overflow: hidden; background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));">
 
                     <div class="fistImageContainer" style="display:flex; justify-content: center;">
                         <div th:each="imageUrl : ${blogCollectionDTO.collectionImagesUrlsList[__${iter.index}__]}"
@@ -74,7 +72,10 @@
 
                     <section class="like_comment"
                              style="display: flex; margin-top: 30px; flex-direction: row; align-items: center;">
-                        <button class="likeButton">좋아요</button>
+                       <span class="likeButton">
+                             <i class="fa fa-heart" aria-hidden="true"></i>
+                        </span>
+<!--                        <button class="likeButton">좋아요</button>-->
                         <div class="userId" th:data-user-class="${userId}"></div>
                         <div class="collection"
                              th:data-collection-class="${blogCollectionDTO.collectionIdList[__${iter.index}__]}"></div>
@@ -139,6 +140,7 @@
                         </div>
                     </section>
                 </div>
+                <button class="mainToggleButton" style="width:100%">펼치기</button>
             </section>
         </div>
     </div>

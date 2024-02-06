@@ -51,7 +51,12 @@ public class BoosterRestController {
             if (blogAbout != null) {
                 blogAboutText = blogAbout.getAboutContent();
             }
-
+            String categoryText;
+            if (blog.getCategory() != null) {
+                categoryText = String.valueOf(blog.getCategory());
+            } else {
+                categoryText = "카테고리 없음";
+            }
 
 
 
@@ -62,6 +67,7 @@ public class BoosterRestController {
             blogInfoDTO.setBoosterCount(boostersCount);
             blogInfoDTO.setCollectionCount(collectionCount);
             blogInfoDTO.setBlogAbout(blogAboutText);
+            blogInfoDTO.setCategory(categoryText);
 
             blogInfoDTOs.add(blogInfoDTO);
         }
@@ -83,6 +89,16 @@ public class BoosterRestController {
             Long userId = user.getUserId();
             Users userList = usersService.findCreators(userId);
             Blogs blog = blogService.findByUserId(userId);
+            if (blog == null) {
+                continue; 
+            }
+            String categoryText;
+            if (blog.getCategory() != null) {
+                categoryText = String.valueOf(blog.getCategory());
+            } else {
+                categoryText = "카테고리 없음";
+            }
+
             String creatorImageUrl = userList.getProfileImage().getFileUrl();
             String creatorNickName = userList.getNickName();
             int boostersCount = boostHistoryService.getBoostersCount(blog.getBlogId());
@@ -92,10 +108,6 @@ public class BoosterRestController {
             if (blogAbout != null) {
                 blogAboutText = blogAbout.getAboutContent();
             }
-
-
-
-
             CategoryDataDTO blogInfoDTO = new CategoryDataDTO();
             blogInfoDTO.setBlogId(blog.getBlogId());
             blogInfoDTO.setImageUrl(creatorImageUrl);
@@ -103,7 +115,7 @@ public class BoosterRestController {
             blogInfoDTO.setBoosterCount(boostersCount);
             blogInfoDTO.setCollectionCount(collectionCount);
             blogInfoDTO.setBlogAbout(blogAboutText);
-
+            blogInfoDTO.setCategory(categoryText);
             blogInfoDTOs.add(blogInfoDTO);
         }
 

@@ -11,4 +11,5 @@ public class CommentDTO {
     private String nickName;
     private String profileImageUrl;
     private String content;
+
 }

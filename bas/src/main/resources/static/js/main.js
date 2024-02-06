@@ -2,7 +2,7 @@ IMP.init("imp41664175");
 
 const handleButtonClick = async (amount) => {
     console.log("Money:", amount);
-    const pointsToCharge = 10 * (amount / 10000);
+    const pointsToCharge = amount;
 
     IMP.request_pay({
         pg: "kakaopay",
@@ -25,7 +25,7 @@ const handleButtonClick = async (amount) => {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + response.error_msg;
             alert(msg);
-            document.location.href = "/mypage";
+
         }
     });
 };

@@ -17,4 +17,5 @@ public interface BlogRepository extends JpaRepository<Blogs,Long> {
     List<Blogs> findByUsers(Users savedUser);
 
     List<Blogs> findByCategory(BlogCategory category);
+
 }

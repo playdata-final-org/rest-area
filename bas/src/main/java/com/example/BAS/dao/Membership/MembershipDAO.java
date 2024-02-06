@@ -14,4 +14,6 @@ public interface MembershipDAO {
     Membership_tier findByTierName(String grade);
     List<Membership_tier> findTierInfoByMembershipId(Long membershipId);
     Membership_tier findByTierId(Long tierId);
+
+    Memberships findByBlogId(Long blogId);
 }

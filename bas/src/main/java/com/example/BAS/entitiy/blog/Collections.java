@@ -38,6 +38,7 @@ public class Collections {
     private List<CollectionImages> collectionImages;
 
     private String title;
+    @Column(length = 1000)
     private String content;
 
     private String membershipType;

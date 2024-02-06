@@ -1,5 +1,7 @@
 server:
   port: 8597
+  tomcat:
+    max-http-form-post-size: 10GB
 
 spring:
   application:
@@ -48,6 +50,8 @@ spring:
 
   servlet:
     multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
       location: C:\back_msa\source
 
 

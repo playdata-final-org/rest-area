@@ -1,6 +1,23 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    const allPublicButton = document.querySelector('.collection-membership-choose-box button[data-membership-type="allPublic"]');
+
+
+    allPublicButton.classList.add('selected');
+
+
+    const membershipTypeInput = document.createElement('input');
+    membershipTypeInput.type = 'hidden';
+    membershipTypeInput.name = 'membershipType';
+    membershipTypeInput.value = 'allPublic';
+    document.getElementById('blogForm').appendChild(membershipTypeInput);
+});
+
 function toggleMembershipSection(show) {
     const section = document.querySelector('.collection-membership-choose-select');
-    section.style.display = show ? 'block' : 'none';
+    if (section) {
+        section.style.display = show ? 'block' : 'none';
+    }
 }
 
 function toggleMembership(membershipType) {
@@ -40,8 +57,12 @@ document.getElementById('blogForm').addEventListener('submit', function (event) 
     const selectedGradeButton =
         document.querySelector('.collection-membership-choose-select-box button[name="tierId"].selected');
 
-    const tierId = selectedGradeButton.getAttribute('data-tier-id');
+    let tierId = null;
 
+
+    if (selectedGradeButton) {
+        tierId = selectedGradeButton.getAttribute('data-tier-id');
+    }
     const membershipTypeInput = document.createElement('input');
     membershipTypeInput.type = 'hidden';
     membershipTypeInput.name = 'membershipType';

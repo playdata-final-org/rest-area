@@ -19,7 +19,7 @@ public class CollectionDAOImpl implements CollectionDAO {
 
     @Override
     public Page<Collections> findByBlogs_BlogId(Long blogId, Pageable pageable) {
-        return collectionRepository.findByBlogs_BlogId(blogId, pageable);
+        return collectionRepository.findByBlogs_BlogIdOrderByCreateDateDesc(blogId, pageable);
     }
 
     @Override

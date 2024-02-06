@@ -20,4 +20,5 @@ public interface BlogDAO {
     BlogTitleImages saved(BlogTitleImages newImage);
 
     List<Blogs> findByCategory(BlogCategory category);
+
 }

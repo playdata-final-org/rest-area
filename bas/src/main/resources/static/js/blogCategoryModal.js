@@ -35,7 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             contentType: "application/json",
             data: data,
             success: function(response) {
+             if(response == null){
+             categorySpan.textContent ="카테고리를 선택해주세요"
+             }
              categorySpan.textContent = category;
+
                 console.log('성공');
             },
             error: function(xhr, status, error) {

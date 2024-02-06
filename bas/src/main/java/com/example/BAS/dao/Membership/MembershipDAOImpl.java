@@ -54,4 +54,9 @@ public class MembershipDAOImpl implements MembershipDAO{
     public Membership_tier findByTierId(Long tierId) {
         return membershipTierRepository.findByTierId(tierId);
     }
+
+    @Override
+    public Memberships findByBlogId(Long blogId) {
+        return membershipRepository.findByBlogsBlogId(blogId);
+    }
 }

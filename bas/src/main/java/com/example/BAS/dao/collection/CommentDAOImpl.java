@@ -7,6 +7,8 @@ import com.example.BAS.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class CommentDAOImpl implements CommentDAO{
@@ -19,5 +21,10 @@ public class CommentDAOImpl implements CommentDAO{
         comment.setCollections(collections);
         comment.setContent(content);
         return commentRepository.save(comment);
+    }
+
+    @Override
+    public List<CollectionComment> findByCollectionId(Long collectionId) {
+        return commentRepository.findByCollectionsCollectionId(collectionId);
     }
 }

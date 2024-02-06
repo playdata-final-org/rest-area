@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // 초기에 섹션을 숨기기
     toggleMembershipSection(false);
 
-    // 초기에 등급 버튼에 selected 클래스 적용
-    const initialGradeButton = document.querySelector('.collection-membership-choose-select-box button:nth-child(1)');
-        initialGradeButton.classList.add('selected');
+
 });
 

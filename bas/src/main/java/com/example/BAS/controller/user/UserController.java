@@ -34,6 +34,7 @@ public class UserController {
     private final BoostHistoryService boostHistoryService;
     private final PointHistoryService pointHistoryService;
 
+
     @GetMapping("/chargeChoose/{userId}")
     public String charge(@PathVariable("userId") Long userId
                          ,@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {

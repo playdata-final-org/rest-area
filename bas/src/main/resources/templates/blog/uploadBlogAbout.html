@@ -6,7 +6,7 @@
     </th:block>
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
-        <form  th:action="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}" method="post" class="container" id="blogForm">
+        <form  th:action="@{/updateAbout/{blogId}(blogId=${blog.blogId})}" method="post" class="container" id="blogForm">
             <section class="collection-title">
                 <div class="collection-title-box">
                     <label for="titleInput" >
@@ -17,13 +17,14 @@
 
             <section class="collection-content">
                 <div class="collection-content-box">
+                    <label for="collection-content-Input"></label>
                     <textarea id="collection-content-Input" name="aboutContent"></textarea>
                 </div>
             </section>
 
             <section class="collection-button">
                 <div class="collection-button-box">
-                    <button type="submit">업로드</button>
+                    <button type="submit">수정</button>
                 </div>
             </section>
         </form>

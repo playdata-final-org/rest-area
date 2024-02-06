@@ -80,12 +80,12 @@
 
                                     <div class="d-flex flex-row align-items-center mt-4">
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="nickName" name="nickName" class="form-control"
+                                            <input placeholder="별명" type="text" id="nickName" name="nickName" class="form-control"
                                                    th:value="${updateUserDTO.nickName}" style="border: 1px solid;"
-                                                   placeholder="별명"/>
+                                                  />
                                         </div>
                                         <button type="button" class="btn btn-primary" onclick="checkDuplicateNickName()"
-                                                style="margin-left: 10px;">중복 체크
+                                                style="margin-left: 10px; width:150px;">중복 체크
                                         </button>
                                     </div>
                                     <label th:if="${error_nickName}" class="text-danger" for="nickName"

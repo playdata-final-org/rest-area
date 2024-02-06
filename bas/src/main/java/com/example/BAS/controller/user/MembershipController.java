@@ -57,7 +57,7 @@ public class MembershipController {
         String rolePage = principalDetails.rolePage();
         Blogs blog = blogService.findByBlogId(blogId);
         List<MembershipTierRequestDTO> membershipList = membershipService.getAllMemberships(blogId);
-        System.out.println("membershipList = " + membershipList);
+
         if (rolePage == null) {
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("booster", principalDetails.getUsers());

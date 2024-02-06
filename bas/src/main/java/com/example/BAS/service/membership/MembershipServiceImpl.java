@@ -108,7 +108,7 @@ public class MembershipServiceImpl implements MembershipService{
     }
     @Override
     public Memberships findByMembershipId(Long blogId) {
-        return membershipDAO.findByMembershipId(blogId);
+        return membershipDAO.findByBlogId(blogId);
     }
 
     public List<MembershipTierRequestDTO> findTierInfoByMembershipId(Long membershipId) {

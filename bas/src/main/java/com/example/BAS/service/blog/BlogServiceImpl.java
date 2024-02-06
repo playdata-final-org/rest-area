@@ -12,6 +12,7 @@ import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.files.BlogTitleImages;
 import com.example.BAS.entitiy.users.Users;
 import com.example.BAS.service.file.FileService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -82,6 +84,26 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blogs findByUserId(Long userId) {
         return blogDAO.findByBlogId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void update(Long blogId, AboutResponseDTO aboutResponseDTO) {
+        BlogAbout about = blogAboutDAO.findByBlogs_BlogId(blogId);
+        System.out.println("about ================== " + about);
+        if (about != null) {
+            about.setAboutContent(aboutResponseDTO.getAboutContent());
+            about.setAboutTitle(aboutResponseDTO.getAboutTitle());
+            about.setUpdateDate(LocalDateTime.now());
+            blogAboutDAO.save(about);
+        } else {
+            throw new EntityNotFoundException("블로그 소개를 찾을 수 없습니다. ID: " + blogId);
+        }
+    }
+
+    @Override
+    public BlogAbout findByBlogs_BlogId(Long blogId) {
+        return blogAboutDAO.findByBlogs_BlogId(blogId);
     }
 
     private BlogTitleImages defaultProfileImage() throws IOException {

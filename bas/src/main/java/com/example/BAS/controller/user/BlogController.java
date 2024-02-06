@@ -67,6 +67,13 @@ public class BlogController {
             membershipId = memberships.getMembershipId();
         }
 
+        Long aboutId = null;
+        BlogAbout about = blogService.findByBlogs_BlogId(blogId);
+        if (about != null){
+            aboutId = about.getAboutId();
+        }
+        System.out.println("about ======================= " + about);
+
         String blogCategory;
         if (blog != null && blog.getCategory() != null) {
             blogCategory = String.valueOf(blog.getCategory());
@@ -107,6 +114,7 @@ public class BlogController {
         model.addAttribute("collectionCount",collectionCount);
         model.addAttribute("blogCategory",blogCategory);
         model.addAttribute("membershipId",membershipId);
+        model.addAttribute("aboutId",aboutId);
         return "blog/blog";
     }
 
@@ -251,6 +259,7 @@ public class BlogController {
         Blogs blog = blogService.findByBlogId(blogId);
 
         Memberships membership = membershipService.findByMembershipId(blogId);
+        System.out.println("membership = " + membership);
         if(membership == null){
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("booster", principalDetails.getUsers());
@@ -260,12 +269,13 @@ public class BlogController {
         }
         Long membershipId = membership.getMembershipId();
         List<MembershipTierRequestDTO> membershipTiers = membershipService.findTierInfoByMembershipId(membershipId);
-
+        System.out.println("membershipTiers ===================== " + membershipTiers);
         if (rolePage == null) {
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("booster", principalDetails.getUsers());
             model.addAttribute("blog",blog);
             model.addAttribute("membershipTiers",membershipTiers);
+            System.out.println("membershipTiers =================== " + membershipTiers);
             return "blog/blog-write";
         }else{
             return "user/main";
@@ -340,6 +350,31 @@ public class BlogController {
                                  @ModelAttribute AboutResponseDTO aboutResponseDTO,
                                  @AuthenticationPrincipal PrincipalDetails principalDetails){
         blogService.save(blogId,aboutResponseDTO);
+
+        return "redirect:/blog/"+blogId;
+    }
+    @GetMapping("/updateAbout/{blogId}")
+    public String showUpdateBlogAbout(@PathVariable("blogId") Long blogId,
+                                  @ModelAttribute AboutResponseDTO aboutResponseDTO,
+                                  @AuthenticationPrincipal PrincipalDetails principalDetails,
+                                      Model model){
+        String rolePage = principalDetails.rolePage();
+        Blogs blog = blogService.findByBlogId(blogId);
+        if (rolePage == null) {
+            model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
+            model.addAttribute("booster", principalDetails.getUsers());
+            model.addAttribute("blog",blog);
+            return "blog/uploadBlogAbout";
+        }else{
+            return "user/main";
+        }
+    }
+
+    @PostMapping("/updateAbout/{blogId}")
+    public String updateBlogAbout(@PathVariable("blogId") Long blogId,
+                                 @ModelAttribute AboutResponseDTO aboutResponseDTO,
+                                 @AuthenticationPrincipal PrincipalDetails principalDetails){
+        blogService.update(blogId,aboutResponseDTO);
 
         return "redirect:/blog/"+blogId;
     }

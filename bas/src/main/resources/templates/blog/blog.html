@@ -78,9 +78,15 @@
                             <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
                             멤버십 수정
                         </a>
-                        <a th:href="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}">
+                        <a th:if="${aboutId == null}"
+                                th:href="@{/aboutWrite/{blogId}(blogId=${blog.blogId})}">
                             <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
                             소개 작성
+                        </a>
+                        <a th:if="${aboutId != null}"
+                                th:href="@{/updateAbout/{blogId}(blogId=${blog.blogId})}">
+                            <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
+                            소개 수정
                         </a>
                         <span class="close" onclick="closeWriteOptionsModal()">&times;</span>
                     </div>

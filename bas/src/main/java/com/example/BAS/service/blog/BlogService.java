@@ -33,4 +33,7 @@ public interface BlogService {
     List<Blogs> getBlogsByCategory(BlogCategory category);
 
     Blogs findByUserId(Long userId);
+    void update(Long blogId, AboutResponseDTO aboutResponseDTO);
+
+    BlogAbout findByBlogs_BlogId(Long blogId);
 }

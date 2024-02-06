@@ -5,8 +5,6 @@ import com.example.BAS.repository.BlogAboutRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 @RequiredArgsConstructor
 public class BlogAboutDAOImpl implements BlogAboutDAO{
@@ -19,5 +17,15 @@ public class BlogAboutDAOImpl implements BlogAboutDAO{
     @Override
     public BlogAbout findByAbout(Long blogId) {
         return blogAboutRepository.findAllByBlogs_BlogId(blogId);
+    }
+
+    @Override
+    public BlogAbout findByBlogs_BlogId(Long blogId) {
+        return blogAboutRepository.findByBlogs_BlogId(blogId);
+    }
+
+    @Override
+    public void save(BlogAbout about) {
+        blogAboutRepository.save(about);
     }
 }

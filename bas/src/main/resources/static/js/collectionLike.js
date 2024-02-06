@@ -15,10 +15,10 @@ console.log(button)
         console.log(likeRequest)
         var requestData = JSON.stringify(likeRequest);
         console.log(requestData)
-
-        if (liked) {
+        let is_liked = e.currentTarget.querySelector('i').style.color === "red";
+        if (is_liked) {
             var xhr = new XMLHttpRequest();
-
+            e.target.style.color ="";
             xhr.open('DELETE', '/remove', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function() {
@@ -34,6 +34,7 @@ console.log(button)
             };
             xhr.send(requestData);
         } else {
+            e.target.style.color ="red";
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/add', true);
             xhr.setRequestHeader('Content-Type', 'application/json');

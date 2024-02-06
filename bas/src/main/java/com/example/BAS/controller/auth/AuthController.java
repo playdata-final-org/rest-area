@@ -104,6 +104,7 @@ public class AuthController {
                          Model model
                          ) throws IOException {
         updateUserDTO.setProfileImage(newProfileImage);
+        principalDetails.getUsers().getProfileImage().getFileUrl();
 
         authService.updateUser(updateUserDTO, oldPassword);
         String rolePage = principalDetails.rolePage();

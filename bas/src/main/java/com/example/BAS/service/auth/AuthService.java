@@ -4,7 +4,6 @@ import com.example.BAS.dto.auth.AuthDTO;
 import com.example.BAS.dto.auth.SignupDTO;
 import com.example.BAS.dto.auth.UpdateUserDTO;
 import com.example.BAS.entitiy.users.Users;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.validation.Errors;
 
 import java.io.IOException;

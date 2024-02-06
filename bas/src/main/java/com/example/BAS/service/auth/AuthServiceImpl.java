@@ -1,5 +1,6 @@
 package com.example.BAS.service.auth;
 
+import com.example.BAS.config.security.PrincipalDetails;
 import com.example.BAS.dao.auth.AuthDAO;
 import com.example.BAS.dao.blog.BlogDAO;
 import com.example.BAS.dao.user.UserDAO;
@@ -19,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -205,7 +208,7 @@ public class AuthServiceImpl implements AuthService {
         ModelMapper mapper = new ModelMapper();
 
         if (userToUpdate != null) {
-            if (bCryptPasswordEncoder.matches(oldPassword, userToUpdate.getPassword())) {
+            if (bCryptPasswordEncoder.matches(oldPassword,userToUpdate.getPassword())) {
 
                 String rawNewPassword = updateUserDTO.getNewPassword();
                 String encNewPassword = bCryptPasswordEncoder.encode(rawNewPassword);
@@ -222,12 +225,23 @@ public class AuthServiceImpl implements AuthService {
                 }
                 String nickName = updateUserDTO.getNickName();
                 userToUpdate.setNickName(nickName);
+                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
                 Users savedUser = userDAO.save(userToUpdate);
+                SecurityContextHolder.getContext().setAuthentication(updateUser(authentication,userToUpdate));
                 return mapper.map(savedUser, AuthDTO.class);
             }
         }
         return null;
     }
+
+    private Authentication updateUser(Authentication currentAuth,Users users ){
+        PrincipalDetails principalDetails = new PrincipalDetails(users);
+        UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(principalDetails, currentAuth.getCredentials(), principalDetails.getAuthorities());
+        return newAuth;
+    }
+
 
     public AuthDTO switchToCreator(Long userId) {
         Users user = userDAO.findByUserId(userId);

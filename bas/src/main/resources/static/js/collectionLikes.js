@@ -16,7 +16,7 @@ button3.forEach((button) => {
                     like_btn.innerText = like?.count;
                     // 추후 수정 필요.
                     if(like.is_liked){
-                        like_btn.style.color ="red";
+                        like_btn.querySelector('i').style.color ="red";
                         like_btn.classList.add('active');   // 임시용
                     }
                 } else {

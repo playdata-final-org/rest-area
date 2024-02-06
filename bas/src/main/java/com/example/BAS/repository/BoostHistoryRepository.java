@@ -15,4 +15,7 @@ public interface BoostHistoryRepository extends JpaRepository<BoostHistory,Long>
     int countDistinctUserIdsByBlogId(@Param("blogId") Long blogId);
 
     BoostHistory findByBoostHistoryId(Long boostHistoryId);
+
+    List<BoostHistory> findBlogIdByUserUserId(Long userId);
+    List<BoostHistory> findByUserUserId(Long userId);
 }

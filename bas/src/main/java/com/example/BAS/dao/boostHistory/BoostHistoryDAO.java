@@ -1,5 +1,6 @@
 package com.example.BAS.dao.boostHistory;
 
+import com.example.BAS.entitiy.blog.BoostDelete;
 import com.example.BAS.entitiy.blog.BoostHistory;
 
 import java.util.List;
@@ -18,4 +19,12 @@ public interface BoostHistoryDAO {
 
 
     BoostHistory findByBoostHistoryId(Long boostHistoryId);
+
+    List<BoostHistory> findBlogIdByUserId(Long userId);
+
+    List<BoostHistory> findByUserUserId(Long userId);
+
+    void saveHistory(BoostDelete boostDelete);
+
+    List<BoostDelete> findByUserIds(Long userId);
 }

@@ -2,9 +2,11 @@ package com.example.BAS.controller.user;
 
 import com.example.BAS.config.security.PrincipalDetails;
 import com.example.BAS.dto.booster.BoostHistoryDTO;
+import com.example.BAS.dto.booster.BoosterDeleteDTO;
 import com.example.BAS.dto.charge.ChargeDTO;
 import com.example.BAS.dto.charge.ChargeHistoryData;
 import com.example.BAS.entitiy.blog.Blogs;
+import com.example.BAS.entitiy.blog.BoostDelete;
 import com.example.BAS.entitiy.blog.BoostHistory;
 import com.example.BAS.entitiy.payment.PointPaymentHistory;
 import com.example.BAS.service.blog.BlogService;
@@ -132,6 +134,52 @@ public class UserController {
         String rolePage = principalDetails.rolePage();
         Blogs blog =blogService.findByUserId(userId);
         List<BoostHistory> boostHistory = boostHistoryService.findByUserId(userId);
+        List<BoostDelete> boostDeletes = boostHistoryService.findByUserIds(userId);
+
+        List<Long> delBlogIds = new ArrayList<>();
+        List<Long> delBoostDeleteIds = new ArrayList<>();
+        List<String> delCreatorNickNames = new ArrayList<>();
+        List<String> delCreatorImgUrls = new ArrayList<>();
+        List<LocalDateTime> delBoostDates = new ArrayList<>();
+        List<LocalDateTime> delExpirationDates = new ArrayList<>();
+        List<String> delTierNames = new ArrayList<>();
+        List<Boolean> delStatus = new ArrayList<>();
+
+        for (BoostDelete boostDelete : boostDeletes){
+            Long blogId = boostDelete.getBlogs().getBlogId();
+            delBlogIds.add(blogId);
+
+            boolean state =boostDelete.getIsBoostState();
+            delStatus.add(state);
+
+            Long boostDeleteId = boostDelete.getBoostDeleteId();
+            delBoostDeleteIds.add(boostDeleteId);
+
+            String creatorNickName = boostDelete.getBlogs().getUsers().getNickName();
+            delCreatorNickNames.add(creatorNickName);
+
+            String creatorImgUrl = boostDelete.getBlogs().getUsers().getProfileImage().getFileUrl();
+            delCreatorImgUrls.add(creatorImgUrl);
+
+            LocalDateTime boostDate =boostDelete.getBoostDate();
+            delBoostDates.add(boostDate);
+
+            LocalDateTime expirationDate = boostDelete.getExpirationDate();
+            delExpirationDates.add(expirationDate);
+
+            String tierName = boostDelete.getMembership_tier().getTierName();
+            delTierNames.add(tierName);
+        }
+        BoosterDeleteDTO boosterDeleteDTO = new BoosterDeleteDTO();
+        boosterDeleteDTO.setDelBlogIds(delBlogIds);
+        boosterDeleteDTO.setDelBoostDeleteIds(delBoostDeleteIds);
+        boosterDeleteDTO.setDelCreatorNickNames(delCreatorNickNames);
+        boosterDeleteDTO.setDelCreatorImgUrls(delCreatorImgUrls);
+        boosterDeleteDTO.setDelBoostDates(delBoostDates);
+        boosterDeleteDTO.setDelExpirationDates(delExpirationDates);
+        boosterDeleteDTO.setDelTierNames(delTierNames);
+        boosterDeleteDTO.setDelStatus(delStatus);;
+
 
         List<Long> blogIds = new ArrayList<>();
         List<Long> boostHistoryIds = new ArrayList<>();
@@ -188,6 +236,7 @@ public class UserController {
             model.addAttribute("booster", principalDetails.getUsers());
             model.addAttribute("blog",blog);
             model.addAttribute("boostHistoryDTO",boostHistoryDTO);
+            model.addAttribute("boostDeleteDTO",boosterDeleteDTO);
             return "user/boostHistory";
         } else {
             return "user/main";

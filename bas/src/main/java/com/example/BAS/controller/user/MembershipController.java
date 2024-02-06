@@ -91,4 +91,18 @@ public class MembershipController {
 
         return "redirect:/blog/" + blogId;
     }
+
+    @PostMapping("/updateBlogMembership/{blogId}")
+    public String updateSubScribe(@PathVariable("blogId") Long blogId,
+                            @RequestParam("selectedTierId") Long selectedTierId,
+                            @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+
+        Blogs blog =blogService.findByBlogId(blogId);
+
+        Long userId = principalDetails.getUsers().getUserId();
+
+        boostHistoryService.update(selectedTierId,userId,blogId);
+
+        return "redirect:/blog/" + blogId;
+    }
 }

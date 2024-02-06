@@ -21,10 +21,6 @@ public class BoostHistory {
 
     private Boolean isBoostState;
 
-    @OneToOne(mappedBy = "boostHistory", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    @ToString.Exclude
-    private BoostDelete boostDelete;
-
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blogs blogs;
@@ -55,16 +51,5 @@ public class BoostHistory {
     public void updateDate() {
         this.updateDate = LocalDateTime.now();
     }
-    @PreRemove
-    public void cancelDate() {
-        if (this.boostDelete == null) {
-            this.boostDelete = new BoostDelete();
-        }
-        this.boostDelete.setBoostHistory(this);
-        this.boostDelete.setIsBoostState(this.isBoostState);
-        this.boostDelete.setUser(this.user);
-        this.boostDelete.setBlogs(this.blogs);
-        this.boostDelete.setUpdateDate(this.updateDate);
 
-    }
 }

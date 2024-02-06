@@ -11,8 +11,14 @@ button3.forEach((button) => {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    var likeCount = JSON.parse(xhr.responseText);
-                    card.querySelector('.likeCount').innerText = likeCount;
+                    var like = JSON.parse(xhr.responseText);
+                    let like_btn = card.querySelector('.likeCount');
+                    like_btn.innerText = like?.count;
+                    // 추후 수정 필요.
+                    if(like.is_liked){
+                        like_btn.style.color ="red";
+                        like_btn.classList.add('active');   // 임시용
+                    }
                 } else {
                     console.error('좋아요 수 요청 실패');
                 }

@@ -1,68 +1,93 @@
-/* Navigation Bar */
-.header-navbar {
-    background-color: #212529;
-    padding: 10px;
-    height: 100%;
-    display: relative;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Add a subtle border */
-}
-.header-logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-logo-container img {
-    height: 200px;
-    margin: 0 auto; /* Center the image horizontally */
+/* 알림 드롭다운 스타일 */
+.alarm-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #212529; /* 변경할 색상 */
+  color: #fff; /* 변경할 텍스트 색상 */
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  right: 0; /* 오른쪽 정렬 */
+  top: 100%; /* 메뉴 밑에 위치 */
+  z-index: 1;
 }
 
-/* Dropdown Menu */
-.header-dropdown {
-    display: inline-block;
-    position: absolute;
-    background-color : #212529;
+.alarm-dropdown-content.show {
+  display: block;
 }
 
-.header-dropdown a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    display: inline-block;
-}
-
+/* 메뉴 드롭다운 스타일 */
 .header-dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Position the dropdown below the header */
-    left: 0; /* Align dropdown with the left side of the header */
-    background-color: #212529; /* Dropdown background color */
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #212529; /* 변경할 색상 */
+  color: #fff; /* 변경할 텍스트 색상 */
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  left: 0; /* 왼쪽 정렬 */
+  top: 100%; /* 로고 밑에 위치 */
+  z-index: 1;
 }
 
+.header-dropdown-content.show {
+  display: block;
+}
+
+/* 버튼 스타일 */
+.header-dropdown-button {
+  background-color: #212529; /* 변경할 색상 */
+  color: #fff; /* 변경할 텍스트 색상 */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* 로고 스타일 */
+.header-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px; /* 헤더 영역의 패딩을 늘림 */
+  position: relative; /* 부모 요소에 대한 상대 위치 설정 */
+  border-bottom: 2px solid #ddd; /* 헤더 영역에 아래쪽 경계선 추가 */
+}
+
+.header-logo-container {
+  text-align: center; /* 가운데 정렬 */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* 가운데 정렬을 위한 위치 조정 */
+}
+
+.header-logo-container a {
+  display: block;
+}
+
+/* 로고 스타일 */
+.header-logo-container img {
+  max-width: 100%; /* 이미지가 컨테이너를 벗어나지 않도록 */
+  max-height: 100px; /* 이미지의 최대 높이 설정 */
+  width: auto; /* 이미지의 너비 자동으로 조절하여 비율 유지 */
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+.alarm-icon-button {
+  background-color: #212529; /* 변경할 색상 */
+}
+
+.fa-bell:before {
+  color: white; /* 변경할 아이콘 색상 */
+}
+
+/* 메뉴 드롭다운 스타일 */
 .header-dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+  display: block;
+  padding: 8px 0; /* 상하 여백 조절 */
+  text-decoration: none; /* 밑줄 제거 */
+  color: #fff; /* 텍스트 색상 흰색으로 변경 */
 }
 
-.header-dropdown:hover .header-dropdown-content {
-    display: block;
-}
-
-/* Adjustments for mobile responsiveness */
-@media screen and (max-width: 600px) {
-    .header-navbar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .header-dropdown {
-        margin-top: 10px;
-    }
+.header-dropdown-content a:hover {
+  background-color: #343a40; /* hover 효과를 위한 배경색 변경 */
 }

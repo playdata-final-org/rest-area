@@ -49,7 +49,7 @@ public class UserController {
             return "user/sign-up";
         }
         userService.createUser(userRequestDTO);
-        return "main/index";
+        return "redirect:/dev/index";
     }
 
     @GetMapping("/login")

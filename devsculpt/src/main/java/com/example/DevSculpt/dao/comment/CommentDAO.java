@@ -10,4 +10,6 @@ public interface CommentDAO {
     List<CommentEntity> findByBoardId(Long boardId);
 
     List<CommentEntity> findByBoardIdWithUser(Long boardId);
+
+    CommentEntity getCommentById(Long commentId);
 }

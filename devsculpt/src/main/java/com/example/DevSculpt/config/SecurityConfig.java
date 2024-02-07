@@ -1,6 +1,7 @@
 package com.example.DevSculpt.config;
 
 
+import com.example.DevSculpt.service.alarm.SseEmitterService;
 import com.example.DevSculpt.service.security.CustomAuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -19,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final SseEmitterService sseEmitterService;
 
     // 회원가입 시, 비밀번호 암호화 저장
     @Bean
@@ -35,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/dev/**").permitAll()
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/upload/**").permitAll()
+                        .requestMatchers("/sse/**").permitAll()
                         .requestMatchers("/api/**").permitAll() // api테스트용 허용
                         .anyRequest().authenticated() // permitAll()처리한 요청을 제외한 것에 대해서는 인증을 받도록 처리
                 )
@@ -60,6 +63,11 @@ public class SecurityConfig {
                             PathRequest.toStaticResources().atCommonLocations()
                     );
         };
+    }
+
+    @Bean
+    public SecurityEventListener mySecurityEventListener() {
+        return new SecurityEventListener(sseEmitterService);  // SseEmitterService 주입
     }
 }
 

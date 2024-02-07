@@ -1,32 +1,127 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Devsculpt</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/header.css"/>
-    <style>
-    </style>
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- 알림 아이템 템플릿 -->
+    <script type="text/template" id="notification-template">
+        <p class="notification-message"></p>
+    </script>
 </head>
+
 <body>
 <div th:fragment="header">
     <div class="header-navbar">
-        <div class="header-dropdown">
-            <a href="#">Menu</a>
+        <div class="header-dropdown-button-content">
+            <button class="header-dropdown-button">MENU</button>
             <div class="header-dropdown-content">
                 <a th:if="${session.user != null}" th:href="@{/dev/mypage/user/{devId}(devId=${session.user.devId})}">마이페이지</a>
                 <a th:unless="${session.user != null}" th:href="@{/dev/login}">로그인</a>
                 <a th:unless="${session.user != null}" th:href="@{/dev/signup}">회원가입</a>
-                <a th:if="${session.user != null}" th:href="@{/logout}">로그아웃</a> <!-- Use /logout for Spring Security logout -->
+                <a th:if="${session.user != null}" th:href="@{/logout}">로그아웃</a>
                 <a href="#">커뮤니티</a>
                 <a href="#">지식</a>
             </div>
         </div>
+
+        <button class="alarm-icon-button">
+            <i class="fas fa-bell"></i>
+            <div class="alarm-dropdown-content" th:id="notification-dropdown">
+                <p id="no-notification-msg">알림이 없습니다.</p>
+            </div>
+        </button>
+
         <div class="header-logo-container">
             <a th:href="@{/dev/index}">
-                <img src="/assets/image/devlogo.png" alt="Logo">
+                <img src="/assets/image/devlogo.png" alt="로고">
             </a>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var notificationButton = document.querySelector('.alarm-icon-button');
+        var notificationDropdown = document.querySelector('.alarm-dropdown-content');
+        var noNotificationMsg = document.getElementById('no-notification-msg');
+
+        // 알림을 가져오고 표시하는 함수
+        function loadNotifications() {
+            // 서버로 SSE 연결을 맺어 알림을 받아옴
+            var eventSource = new EventSource('/sse/subscribe');
+
+            // 알림 메시지를 HTML에 추가하는 함수
+            function addNotification(message) {
+                var notificationItem = document.createElement('p');
+                notificationItem.className = 'notification-message';
+                notificationItem.textContent = message;
+                notificationDropdown.appendChild(notificationItem);
+
+                // 알림이 있으면 '알림이 없습니다.' 메시지를 감춤
+                noNotificationMsg.style.display = 'none';
+            }
+
+            // SSE 이벤트 리스너
+            eventSource.addEventListener('message', function (event) {
+                try {
+                    var notificationData = JSON.parse(event.data);
+                    addNotification(notificationData.message);
+                } catch (e) {
+                    console.error('Error parsing JSON:', e);
+                }
+            });
+
+            // SSE 연결이 종료되면 다시 연결q
+            eventSource.addEventListener('error', function (event) {
+                if (event.readyState === EventSource.CLOSED) {
+                    eventSource.close();
+                    loadNotifications();
+                }
+            });
+        }
+
+        // 알림 드롭다운을 토글하는 함수
+        function toggleNotificationDropdown() {
+            notificationDropdown.classList.toggle('show');
+        }
+
+        // 메뉴 드롭다운 토글 (MENU 버튼 클릭)
+        var menuButton = document.querySelector('.header-dropdown-button');
+        var menuDropdown = document.querySelector('.header-dropdown-content');
+
+        menuButton.addEventListener('click', function () {
+            menuDropdown.classList.toggle('show');
+        });
+
+        // 알림 아이콘 버튼 클릭 시 알림을 가져오고 드롭다운을 토글
+        notificationButton.addEventListener('click', function () {
+            toggleNotificationDropdown();
+        });
+
+        // 페이지 로드 시 알림을 가져옴
+        loadNotifications();
+
+        // 다른 곳을 클릭하면 알림 드롭다운을 닫음
+        window.addEventListener('click', function (event) {
+            if (!event.target.matches('.alarm-icon-button')) {
+                var openDropdown = document.querySelector('.alarm-dropdown-content.show');
+                if (openDropdown) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+
+            if (!event.target.matches('.header-dropdown-button')) {
+                var openMenu = document.querySelector('.header-dropdown-content.show');
+                if (openMenu) {
+                    openMenu.classList.remove('show');
+                }
+            }
+        });
+    });
+</script>
 </body>
+
 </html>

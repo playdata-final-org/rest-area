@@ -86,6 +86,12 @@ public class BlogServiceImpl implements BlogService {
         return blogDAO.findByBlogId(userId);
     }
 
+    // TODO : 임시 메소드 리펙터링 필요함.
+    public Blogs findByUserIdTemp(Long userId){
+        return blogDAO.findByUserId(userId);
+    }
+
+
     @Override
     @Transactional
     public void update(Long blogId, AboutResponseDTO aboutResponseDTO) {

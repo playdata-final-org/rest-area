@@ -36,4 +36,6 @@ public interface BlogService {
     void update(Long blogId, AboutResponseDTO aboutResponseDTO);
 
     BlogAbout findByBlogs_BlogId(Long blogId);
+
+    Blogs findByUserIdTemp(Long userId);
 }

@@ -26,4 +26,9 @@ public class CommentDAOImpl implements CommentDAO {
     public List<CommentEntity> findByBoardIdWithUser(Long boardId) {
         return repository.findByBoardBoardIdWithUser(boardId);
     }
+
+    @Override
+    public CommentEntity getCommentById(Long commentId) {
+        return repository.findById(commentId).orElse(null);
+    }
 }

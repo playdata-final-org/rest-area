@@ -40,11 +40,10 @@ body {
 
 .cs-sidebar-menu {
   position: fixed;
-  right: 100px;
-  top: 70px;
+  right: 0px;
+  top: 102px;
   z-index: 250;
-  box-shadow: rgb(91 91 91) 3px 5px 7px 1px;
-  border: 2px solid #b4b4b4;
+  border: #transparent;
 }
 
 .cs-sidebar-list-group {

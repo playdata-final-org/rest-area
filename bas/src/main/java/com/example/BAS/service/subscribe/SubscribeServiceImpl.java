@@ -3,6 +3,7 @@ package com.example.BAS.service.subscribe;
 import com.example.BAS.dao.Membership.CreatorHistoryDAO;
 import com.example.BAS.dao.boostHistory.BoostHistoryDAO;
 import com.example.BAS.dao.user.UserDAO;
+import com.example.BAS.entitiy.blog.BoostDelete;
 import com.example.BAS.entitiy.blog.BoostHistory;
 import com.example.BAS.entitiy.blog.Membership_tier;
 import com.example.BAS.entitiy.users.Users;
@@ -28,6 +29,10 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         for (BoostHistory boostHistory : boostHistories) {
             if (isExpired(boostHistory)) {
+                BoostDelete boostDelete = new BoostDelete();
+                boostDelete.create(boostHistory);
+                boostHistoryDAO.saveHistory(boostDelete);
+
                 boostHistoryDAO.deletedMembership(boostHistory);
             }
         }

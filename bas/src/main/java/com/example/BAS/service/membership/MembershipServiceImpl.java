@@ -129,6 +129,13 @@ public class MembershipServiceImpl implements MembershipService{
     }
 
     @Override
+    public List<MembershipTierRequestDTO> getAllMembershipList(Blogs blogs) {
+        Long blogId = blogs.getBlogId();
+        List<Membership_tier> membershipTiers = membershipDAO.findByMembershipsBlogsBlogId(blogId);
+        return convertToDTOList(membershipTiers);
+    }
+
+    @Override
     public Membership_tier findById(Long selectedTierId) {
         return membershipDAO.findById(selectedTierId);
     }

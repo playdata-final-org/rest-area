@@ -21,15 +21,15 @@ spring:
       mode: always
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@127.0.0.1:49160:xe
-    username: mail
-    password: mail
+    url: jdbc:oracle:thin:@127.0.0.1:1521:xe
+    username: BAS
+    password: BAS
 
   jpa:
     show-sql: true
     hibernate:
-#      ddl-auto: create
-      ddl-auto: none
+      ddl-auto: update
+#      ddl-auto: none
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -52,7 +52,7 @@ spring:
     multipart:
       max-file-size: 10GB
       max-request-size: 10GB
-      location: /Users/npc/Desktop/testimg
+      location: C:\back_msa\source\
 
 
   Post: /v1/payment/approve

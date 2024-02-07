@@ -20,21 +20,22 @@ public class CommentEntity {
     private Long commentId;
     private String content;
     private String nickName;
-
-    // 새로 추가된 속성: 프로필 이미지
     private String profileImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boardId")
     private BoardEntity board;
 
-    // 새로 추가된 연관 관계
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "devId")
     private UserEntity user;
 
+    @OneToOne(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private AlarmLogEntity alarm;
+
     @CreationTimestamp
     private LocalDateTime creationDate;
+
     @UpdateTimestamp
     private LocalDateTime modificationDate;
 
@@ -44,5 +45,8 @@ public class CommentEntity {
         this.nickName = nickName;
         this.profileImage = profileImage;
         this.user = user;
+        this.alarm = new AlarmLogEntity();
+        this.alarm.setMessage(nickName + " 님께서 댓글을 남기셨습니다.");
+        this.alarm.setUser(board.getUser());
     }
 }

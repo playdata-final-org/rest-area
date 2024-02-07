@@ -6,46 +6,82 @@
 </head>
 <body>
 <section class="blogHome">
-    <div class="homeContainer">
-        <div th:if="${#lists.isEmpty(boostHistoryDTO.blogIds)}">
-            <p>내역이 없습니다.</p>
-        </div>
-
-        <div th:unless="${#lists.isEmpty(boostHistoryDTO.blogIds)}" th:each="index : ${#numbers.sequence(0, boostHistoryDTO.blogIds.size()-1)}" class="historyCard">
-            <section class="creator-search-list">
-                <div class="creator-search-info" style="width: 100%; text-decoration: none; color: inherit; display: flex; flex-direction: row; align-items: center;">
-                    <a th:href="@{'/blog/' + ${boostHistoryDTO.blogIds[__${index}__]}}">
-                        <div>
-                            <div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
-                                <img id="imagePreview" alt="Profile Image" th:src="${boostHistoryDTO.creatorImgUrls[__${index}__]}" style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
-                            </div>
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; width:100%">
-                            <div style="display: flex; flex-direction: column; justify-content: space-between;">
-                                <span>크리에이터:<span style="margin-left:5px;" th:text="${boostHistoryDTO.creatorNickNames[__${index}__]}"></span></span>
-                                <span>가입 날짜: <span style="margin-left:5px;" th:text="${#temporals.format(boostHistoryDTO.boostDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
-
-                                <span>만료 날짜: <span style="margin-left:5px;" class="expirationDate" th:text="${#temporals.format(boostHistoryDTO.expirationDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
-                                <span>멤버십:<span style="margin-left:5px;" class="membership" th:text="${boostHistoryDTO.tierNames[__${index}__]}"></span></span>
-                            </div>
-                        </div>
-                    </a>
-                    <div th:if="${boostHistoryDTO.status[__${index}__]}" class="status_box"
-                         style="width: 100px; margin-left: 100px; height: 100px; border-radius: 50%; background: #46e673; display: flex; justify-content: center; align-items: center; font-size: 20px;">
-                        <span class="status">후원중</span>
-                    </div>
-                    <div th:unless="${boostHistoryDTO.status[__${index}__]}" class="status_box"
-                         style="width: 100px; margin-left: 100px; height: 100px; border-radius: 50%; background: red; display: flex; justify-content: center; align-items: center; font-size: 20px;">
-                        <span class="status" style="border: transparent; padding: 5px;">탈퇴 예약</span>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="boostHistoryId" th:data-user-class="${boostHistoryDTO.boostHistoryIds[__${index}__]}"></div>
-                        <button  th:if="${boostHistoryDTO.status[__${index}__]}" class="deleteMembership">탈퇴 하기</button>
-                        <button  th:unless="${boostHistoryDTO.status[__${index}__]}" class="deleteMembership" style="border:transparent;"></button>
-                    </div>
+    <div class="homeContainer" style="display:flex; flex-direction: row;">
+        <section style="flex:1;">
+            <div style="display:flex; flex-direction:column;">
+                <div th:if="${#lists.isEmpty(boostHistoryDTO.blogIds)} or ${#lists.isEmpty(boostDeleteDTO.delBlogIds)}">
+                    <p>내역이 없습니다.</p>
                 </div>
-            </section>
-        </div>
+
+                <div th:unless="${#lists.isEmpty(boostHistoryDTO.blogIds)} or ${#lists.isEmpty(boostDeleteDTO.delBlogIds)}" th:each="index : ${#numbers.sequence(0, boostHistoryDTO.blogIds.size()-1)}" class="historyCard">
+                    <section class="creator-search-list">
+                        <div class="creator-search-info" style="width: 100%; text-decoration: none; color: inherit; display: flex; flex-direction: row; align-items: center;">
+                            <a th:href="@{'/blog/' + ${boostHistoryDTO.blogIds[__${index}__]}}">
+                                <div>
+                                    <div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                                        <img id="imagePreview" alt="Profile Image" th:src="${boostHistoryDTO.creatorImgUrls[__${index}__]}" style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: row; justify-content: space-between; width:100%">
+                                    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                        <span>크리에이터:<span style="margin-left:5px;" th:text="${boostHistoryDTO.creatorNickNames[__${index}__]}"></span></span>
+                                        <span>가입 날짜: <span style="margin-left:5px;" th:text="${#temporals.format(boostHistoryDTO.boostDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
+
+                                        <span>만료 날짜: <span style="margin-left:5px;" class="expirationDate" th:text="${#temporals.format(boostHistoryDTO.expirationDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
+                                        <span>멤버십:<span style="margin-left:5px;" class="membership" th:text="${boostHistoryDTO.tierNames[__${index}__]}"></span></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div th:if="${boostHistoryDTO.status[__${index}__]}" class="status_box"
+                                 style="width: 100px; margin-left: 100px; height: 100px; border-radius: 50%; background: #46e673; display: flex; justify-content: center; align-items: center; font-size: 20px;">
+                                <span class="status">후원중</span>
+                            </div>
+                            <div th:unless="${boostHistoryDTO.status[__${index}__]}" class="status_box"
+                                 style="width: 100px; margin-left: 100px; height: 100px; border-radius: 50%; background: red; display: flex; justify-content: center; align-items: center; font-size: 20px;">
+                                <span class="status" style="border: transparent; padding: 5px;">탈퇴 예약</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="boostHistoryId" th:data-user-class="${boostHistoryDTO.boostHistoryIds[__${index}__]}"></div>
+                                <button  th:if="${boostHistoryDTO.status[__${index}__]}" class="deleteMembership">탈퇴 하기</button>
+                                <button  th:unless="${boostHistoryDTO.status[__${index}__]}" class="deleteMembership" style="border:transparent;"></button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <section style="flex:1; margin-left:30px;">
+            <div th:if="${#lists.isEmpty(boostDeleteDTO.delBlogIds)}">
+                <p>내역이 없습니다.</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(boostDeleteDTO.delBlogIds)}" th:each="index : ${#numbers.sequence(0, boostDeleteDTO.delBlogIds.size()-1)}" class="historyCard">
+                <section class="creator-search-list">
+                    <div class="creator-search-info" style="width: 100%; text-decoration: none; color: inherit; display: flex; flex-direction: row; align-items: center;">
+                        <a th:href="@{'/blog/' + ${boostDeleteDTO.delBlogIds[__${index}__]}}">
+                            <div>
+                                <div class="creator-blog-img" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden;">
+                                    <img id="imagePreview1" alt="Profile Image" th:src="${boostDeleteDTO.delCreatorImgUrls[__${index}__]}" style="object-fit: cover; border-radius: 3px; width: 100%; height: 100%;">
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; justify-content: space-between; width:100%">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <span>크리에이터:<span style="margin-left:5px;" th:text="${boostDeleteDTO.delCreatorNickNames[__${index}__]}"></span></span>
+                                    <span>가입 날짜: <span style="margin-left:5px;" th:text="${#temporals.format(boostDeleteDTO.delBoostDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
+
+                                    <span>만료 날짜: <span style="margin-left:5px;" class="expirationDate" th:text="${#temporals.format(boostDeleteDTO.delExpirationDates[__${index}__], 'yyyy년MM월dd일 HH시mm분ss초')}"></span></span>
+                                    <span>멤버십:<span style="margin-left:5px;" class="membership" th:text="${boostDeleteDTO.delTierNames[__${index}__]}"></span></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div th:unless="${boostDeleteDTO.delStatus[__${index}__]}" class="status_box"
+                             style="width: 100px; margin-left: 100px; height: 100px; border-radius: 50%; background: red; display: flex; justify-content: center; align-items: center; font-size: 20px;">
+                            <span class="status" style="border: transparent; padding: 5px;">탈퇴</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
 
     </div>
 </section>

@@ -131,7 +131,15 @@ public class BlogController {
                                      Model model) {
 
         String rolePage = principalDetails.rolePage();
+
+        Long boostId = principalDetails.getUsers().getUserId();
+
+
+
+
         Blogs blog = blogService.findByBlogId(blogId);
+
+        Long creatorId = blog.getUsers().getUserId();
 
         String category = String.valueOf(blog.getCategory());
 
@@ -203,6 +211,8 @@ public class BlogController {
             model.addAttribute("userId",userId);
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("blog",blog);
+            model.addAttribute("booster",boostId);
+            model.addAttribute("creator",creatorId);
             return "blog/blog-collection";
         }else{
             return "user/main";
@@ -239,13 +249,25 @@ public class BlogController {
                                  Model model) {
         List<MembershipTierRequestDTO> membershipList = membershipService.getAllMemberships(blogId);
         String rolePage = principalDetails.rolePage();
-        Blogs blog = blogService.findByBlogId(blogId);
 
+        Long userId = principalDetails.getUsers().getUserId();
+        List<BoostHistory> boostHistories = boostHistoryService.findBlogIdByUserId(userId);
+
+        boolean isBoosted = false;
+        for (BoostHistory boostHistory : boostHistories) {
+            if (boostHistory.getBlogs().getBlogId().equals(blogId)) {
+                isBoosted = true;
+                break;
+            }
+        }
+        Blogs blog = blogService.findByBlogId(blogId);
         if (rolePage == null) {
             model.addAttribute("profileImageUrl", principalDetails.profileImageUrl());
             model.addAttribute("booster", principalDetails.getUsers());
             model.addAttribute("blog",blog);
             model.addAttribute("membershipTier",membershipList);
+            model.addAttribute("isBoosted", isBoosted);
+
             return "blog/blog-membership";
         }else{
             return "user/main";

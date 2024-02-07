@@ -42,8 +42,7 @@ public class BoostHistoryServiceImpl implements BoostHistoryService{
             boostHistory.setMembership_tier(membershipTier);
             boostHistory.setUser(user);
             boostHistory.setBlogs(blogs);
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);//테스트 5분
-//            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
+            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
             boostHistory.setExpirationDate(expirationDate);
             boostHistory.setIsBoostState(true);
             boostHistoryDAO.save(boostHistory);
@@ -99,8 +98,7 @@ public class BoostHistoryServiceImpl implements BoostHistoryService{
 
             BoostHistory boostHistory = boostHistoryDAO.findByBoostHistoryId(historyId);
             boostHistory.setMembership_tier(membershipTier);
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);//테스트 5분
-//            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
+            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
             boostHistory.setExpirationDate(expirationDate);
             boostHistory.setIsBoostState(true);
             boostHistoryDAO.save(boostHistory);

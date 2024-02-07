@@ -10,10 +10,17 @@ $(document).ready(function() {
         });
 
 function searchBlogs() {
+        var category = $(".categoryItem.active").text();
         var userInput = $('#creator-search-bar-titleInput').val().trim();
-        if (userInput !== '') {
+        if (userInput !== '' || category.trim() !== "") {
             var url = "/blogs/search";
-            var data = JSON.stringify({ userInput: userInput });
+            var data = { userInput: userInput };
+
+
+            if(category.trim() !== "")
+                data = {...data,category : category}
+            data = JSON.stringify(data);
+
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -21,7 +28,8 @@ function searchBlogs() {
                 data: data,
                 success: function(response) {
                     displayBlogs(response);
-                    $('#creator-search-bar-titleInput').val('');
+                    // TODO : 추후 로직 변경시 수정할것 (기존 검색어 유지로 변경한 상태)
+                    // $('#creator-search-bar-titleInput').val('');
                     console.log(response);
                 },
                 error: function(err) {
@@ -31,6 +39,7 @@ function searchBlogs() {
         } else {
 
             console.log('검색어를 입력하세요.');
+            $('#blogList').html('<p>검색어를 입력하세요.</p>');
         }
     }
 

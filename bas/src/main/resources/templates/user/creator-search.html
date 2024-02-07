@@ -7,36 +7,38 @@
 
     <div th:fragment="content" class="cs-main-content-bg cs-content col container-flude">
 
-            <div class="creator-search-container">
-                <section class="creator-search-icon">
-                    <i class="fa fa-search fa-3x" aria-hidden="true"></i>
-                </section>
+        <div class="creator-search-container">
+            <section class="creator-search-icon">
+                <i class="fa fa-search fa-3x" aria-hidden="true"></i>
+            </section>
 
-                <section class="creator-search">
-                     <p>크리에이터찾기</p>
-                </section>
+            <section class="creator-search">
+                <p>크리에이터찾기</p>
+            </section>
 
-                <div class="container2">
-                    <div class="creator-search-bar" style="display: flex; justify-content: center;">
-                        <div class="creator-search-bar-box">
-                            <label for="creator-search-bar-titleInput" >
-<!--                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>-->
-                                <input type="text" id="creator-search-bar-titleInput" name="nickName" placeholder="마음에 드는 크리에이터를 검색해 보세요.">
-                            </label>
-                        </div>
+            <div class="container2">
+                <div class="creator-search-bar" style="display: flex; justify-content: center;">
+                    <div class="creator-search-bar-box">
+                        <label for="creator-search-bar-titleInput">
+                            <!--                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; left:30px; top: 50%; transform: translateY(-50%);"></i>-->
+                            <input type="text" id="creator-search-bar-titleInput" name="nickName"
+                                   placeholder="마음에 드는 크리에이터를 검색해 보세요.">
+                        </label>
                     </div>
-
-                    <section class="creator-search-bar-button" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                        <div id="categoryContainer" class="creator-search-bar-button-box" th:each="category : ${categories}" style="margin:10px;">
-                            <button id="categoryItemBtn" class="categoryItem" th:text="${category}"></button>
-                        </div>
-                    </section>
                 </div>
-                <div id="blogList" class="creator-search-list-box">
 
-                </div>
+                <section class="creator-search-bar-button"
+                         style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                    <div id="categoryContainer" class="creator-search-bar-button-box" th:each="category : ${categories}"
+                         style="margin:10px;">
+                        <button id="categoryItemBtn" class="categoryItem" th:text="${category}"></button>
+                    </div>
+                </section>
             </div>
-        <div>
+            <div id="blogList" class="creator-search-list-box">
+
+            </div>
+        </div>
     </div>
 
 

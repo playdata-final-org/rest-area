@@ -31,8 +31,8 @@ public class QuartzConfig {
     public SimpleTriggerFactoryBean dailyTrigger(JobDetail dailyQuartzJobDetail) {
         SimpleTriggerFactoryBean triggerFactoryBean = new SimpleTriggerFactoryBean();
         triggerFactoryBean.setJobDetail(dailyQuartzJobDetail);
-//        triggerFactoryBean.setRepeatInterval(24 * 60 * 60 * 1000);
-        triggerFactoryBean.setRepeatInterval(10000);
+        triggerFactoryBean.setRepeatInterval(24 * 60 * 60 * 1000);
+
         triggerFactoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
         triggerFactoryBean.setStartDelay(0);
         return triggerFactoryBean;
@@ -42,8 +42,8 @@ public class QuartzConfig {
     public SimpleTriggerFactoryBean monthlyTrigger(JobDetail monthlyQuartzJobDetail) {
         SimpleTriggerFactoryBean triggerFactoryBean = new SimpleTriggerFactoryBean();
         triggerFactoryBean.setJobDetail(monthlyQuartzJobDetail);
-//        triggerFactoryBean.setRepeatInterval(30L * 24 * 60 * 60 * 1000);
-        triggerFactoryBean.setRepeatInterval(30000);
+        triggerFactoryBean.setRepeatInterval(30L * 24 * 60 * 60 * 1000);
+
         triggerFactoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
         triggerFactoryBean.setStartDelay(0);
         return triggerFactoryBean;

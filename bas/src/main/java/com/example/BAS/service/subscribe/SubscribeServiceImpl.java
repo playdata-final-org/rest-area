@@ -76,8 +76,7 @@ public class SubscribeServiceImpl implements SubscribeService {
             user.setPoint(user.getPoint() - tierPrice);
             boostHistory.setMembership_tier(membershipTier);
             boostHistory.setUser(user);
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(1);
-//        LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
+            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
             boostHistory.setExpirationDate(expirationDate);
             boostHistory.setIsBoostState(true);
 

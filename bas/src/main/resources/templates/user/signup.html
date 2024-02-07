@@ -30,7 +30,7 @@
                                             <p th:text="${signupError}"></p>
                                         </div>
                                     </div>
-                                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 20px;  justify-content: space-between;">
                                         <div class="upload-img"
                                              style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin-right: 20px;">
                                             <img id="imagePreview" alt="" th:src="${signupDTO.profileImage != null ? signupDTO.profileImage.fileUrl : '/assets/ai.png'}"

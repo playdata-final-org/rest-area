@@ -178,7 +178,7 @@ public class UserController {
         boosterDeleteDTO.setDelBoostDates(delBoostDates);
         boosterDeleteDTO.setDelExpirationDates(delExpirationDates);
         boosterDeleteDTO.setDelTierNames(delTierNames);
-        boosterDeleteDTO.setDelStatus(delStatus);;
+        boosterDeleteDTO.setDelStatus(delStatus);
 
 
         List<Long> blogIds = new ArrayList<>();
@@ -237,6 +237,8 @@ public class UserController {
             model.addAttribute("blog",blog);
             model.addAttribute("boostHistoryDTO",boostHistoryDTO);
             model.addAttribute("boostDeleteDTO",boosterDeleteDTO);
+            System.out.println("boostHistoryDTO ============================= " + boostHistoryDTO);
+            System.out.println("boosterDeleteDTO = " + boosterDeleteDTO);
             return "user/boostHistory";
         } else {
             return "user/main";

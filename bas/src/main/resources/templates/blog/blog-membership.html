@@ -7,7 +7,7 @@
 </head>
 <body>
 <section class="blogCollection">
-<div th:text="${isBoosted}"></div>
+
     <div th:if="${isBoosted == false}"
             class="collectionContainer" th:each="membership, iterStat : ${membershipTier}">
         <div class="card">

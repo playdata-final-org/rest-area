@@ -59,7 +59,6 @@ public class BoosterRestController {
             }
 
 
-
             CategoryDataDTO blogInfoDTO = new CategoryDataDTO();
             blogInfoDTO.setBlogId(blog.getBlogId());
             blogInfoDTO.setImageUrl(creatorImageUrl);
@@ -74,53 +73,115 @@ public class BoosterRestController {
 
         return ResponseEntity.ok(blogInfoDTOs);
     }
+
     @PostMapping("/blogs/search")
     public ResponseEntity<List<CategoryDataDTO>> creatorSearchByInput(@RequestBody Map<String, String> requestBody) {
         String userInput = requestBody.get("userInput");
-        List<Users> users = usersService.findLikeUser(userInput);
+        String category = requestBody.get("category");
+        // TODO : 나중에 꼬꼮꼭수정 필요
 
-        if (users.isEmpty()) {
-            return ResponseEntity.noContent().build();
+        if ((userInput == null || userInput.isEmpty())  && category != null && !category.isEmpty() ) {
+            List<Blogs> blogs = blogService.getBlogsByCategory(BlogCategory.valueOf(category));
+
+            if (blogs.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            List<CategoryDataDTO> blogInfoDTOs = new ArrayList<>();
+
+            for (Blogs blog : blogs) {
+                Long userId = blog.getUsers().getUserId();
+                Users user = usersService.findCreators(userId);
+                String creatorImageUrl = user.getProfileImage().getFileUrl();
+                String creatorNickName = user.getNickName();
+                int boostersCount = boostHistoryService.getBoostersCount(blog.getBlogId());
+                int collectionCount = collectionService.getCollectionCount(blog.getBlogId());
+                BlogAbout blogAbout = blogService.findByAbout(blog.getBlogId());
+                String blogAboutText = "";
+                if (blogAbout != null) {
+                    blogAboutText = blogAbout.getAboutContent();
+                }
+                String categoryText;
+                if (blog.getCategory() != null) {
+                    categoryText = String.valueOf(blog.getCategory());
+                } else {
+                    categoryText = "카테고리 없음";
+                }
+
+                CategoryDataDTO blogInfoDTO = new CategoryDataDTO();
+                blogInfoDTO.setBlogId(blog.getBlogId());
+                blogInfoDTO.setImageUrl(creatorImageUrl);
+                blogInfoDTO.setNickName(creatorNickName);
+                blogInfoDTO.setBoosterCount(boostersCount);
+                blogInfoDTO.setCollectionCount(collectionCount);
+                blogInfoDTO.setBlogAbout(blogAboutText);
+                blogInfoDTO.setCategory(categoryText);
+
+                blogInfoDTOs.add(blogInfoDTO);
+            }
+            return ResponseEntity.ok(blogInfoDTOs);
         }
 
-        List<CategoryDataDTO> blogInfoDTOs = new ArrayList<>();
 
-        for (Users user : users) {
-            Long userId = user.getUserId();
-            Users userList = usersService.findCreators(userId);
-            Blogs blog = blogService.findByUserId(userId);
-            if (blog == null) {
-                continue; 
-            }
-            String categoryText;
-            if (blog.getCategory() != null) {
-                categoryText = String.valueOf(blog.getCategory());
-            } else {
-                categoryText = "카테고리 없음";
+        if (userInput != null) {
+            List<Users> users = usersService.findLikeUser(userInput);
+            if (users.isEmpty()) {
+                return ResponseEntity.noContent().build();
             }
 
-            String creatorImageUrl = userList.getProfileImage().getFileUrl();
-            String creatorNickName = userList.getNickName();
-            int boostersCount = boostHistoryService.getBoostersCount(blog.getBlogId());
-            int collectionCount = collectionService.getCollectionCount(blog.getBlogId());
-            BlogAbout blogAbout = blogService.findByAbout(blog.getBlogId());
-            String blogAboutText = "";
-            if (blogAbout != null) {
-                blogAboutText = blogAbout.getAboutContent();
+
+            List<CategoryDataDTO> blogInfoDTOs = new ArrayList<>();
+
+
+            // TODO : 추후 아래 코드를 DB에서 적용되도록 변경할것
+
+            for (Users user : users) {
+                Long userId = user.getUserId();
+                Users userList = usersService.findCreators(userId);
+                Blogs blog = blogService.findByUserIdTemp(userId);
+                if (blog == null) {
+                    continue;
+                }
+                String categoryText;
+
+                if (blog.getCategory() != null) {
+                    categoryText = String.valueOf(blog.getCategory());
+                    if (category != null && !category.isEmpty() && !categoryText.equals(category))
+                        continue;
+                } else {
+                    if (category != null && !category.isEmpty())
+                        continue;
+                    categoryText = "카테고리 없음";
+                }
+
+                String creatorImageUrl = userList.getProfileImage().getFileUrl();
+                String creatorNickName = userList.getNickName();
+                int boostersCount = boostHistoryService.getBoostersCount(blog.getBlogId());
+                int collectionCount = collectionService.getCollectionCount(blog.getBlogId());
+                BlogAbout blogAbout = blogService.findByAbout(blog.getBlogId());
+                String blogAboutText = "";
+                if (blogAbout != null) {
+                    blogAboutText = blogAbout.getAboutContent();
+                }
+                CategoryDataDTO blogInfoDTO = new CategoryDataDTO();
+                blogInfoDTO.setBlogId(blog.getBlogId());
+                blogInfoDTO.setImageUrl(creatorImageUrl);
+                blogInfoDTO.setNickName(creatorNickName);
+                blogInfoDTO.setBoosterCount(boostersCount);
+                blogInfoDTO.setCollectionCount(collectionCount);
+                blogInfoDTO.setBlogAbout(blogAboutText);
+                blogInfoDTO.setCategory(categoryText);
+                blogInfoDTOs.add(blogInfoDTO);
             }
-            CategoryDataDTO blogInfoDTO = new CategoryDataDTO();
-            blogInfoDTO.setBlogId(blog.getBlogId());
-            blogInfoDTO.setImageUrl(creatorImageUrl);
-            blogInfoDTO.setNickName(creatorNickName);
-            blogInfoDTO.setBoosterCount(boostersCount);
-            blogInfoDTO.setCollectionCount(collectionCount);
-            blogInfoDTO.setBlogAbout(blogAboutText);
-            blogInfoDTO.setCategory(categoryText);
-            blogInfoDTOs.add(blogInfoDTO);
+
+            return ResponseEntity.ok(blogInfoDTOs);
+
+
         }
-
-        return ResponseEntity.ok(blogInfoDTOs);
+        return ResponseEntity.noContent().build();
     }
-
-
 }
+
+
+
+

@@ -64,6 +64,10 @@ public class BlogDAOImpl implements BlogDAO{
         return blogRepository.findByCategory(category);
     }
 
+    @Override
+    public Blogs findByUserId(Long userId) {
+        return  blogRepository.findByUserId(userId);
+    }
 
 
 }

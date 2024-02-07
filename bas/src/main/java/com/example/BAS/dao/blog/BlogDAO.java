@@ -21,4 +21,7 @@ public interface BlogDAO {
 
     List<Blogs> findByCategory(BlogCategory category);
 
+    // TODO : 별도 사이드 이펙트 방지를 위해 메소드 생성하였으니 수정 바람.
+    Blogs findByUserId(Long userId);
+
 }

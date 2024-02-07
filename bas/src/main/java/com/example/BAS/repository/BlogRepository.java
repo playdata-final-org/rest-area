@@ -18,4 +18,7 @@ public interface BlogRepository extends JpaRepository<Blogs,Long> {
 
     List<Blogs> findByCategory(BlogCategory category);
 
+    @Query("SELECT b FROM Blogs b where b.users.userId = :userId")
+    Blogs findByUserId(Long userId);
+
 }

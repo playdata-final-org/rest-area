@@ -18,11 +18,6 @@ public class BoostDelete {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long boostDeleteId;
 
-    // boostHistoryId 필드는 외래 키가 아닌 객체 참조로 변경합니다.
-    @OneToOne
-    @JoinColumn(name = "boost_history_id")
-    private BoostHistory boostHistory;
-
     private Boolean isBoostState;
 
     @ManyToOne
@@ -45,4 +40,15 @@ public class BoostDelete {
     private LocalDateTime expirationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updateDate;
+
+    public void create(BoostHistory boostHistory) {
+        this.boostDate = boostHistory.getBoostDate();
+        this.blogs=boostHistory.getBlogs();
+        this.isBoostState=boostHistory.getIsBoostState();
+        this.user = boostHistory.getUser();
+        this.expirationDate = boostHistory.getExpirationDate();
+        this.updateDate = boostHistory.getUpdateDate();
+        this.cancelDate = boostHistory.getCancelDate();
+        this.membership_tier=boostHistory.getMembership_tier();
+    }
 }

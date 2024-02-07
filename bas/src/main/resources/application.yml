@@ -52,7 +52,7 @@ spring:
     multipart:
       max-file-size: 10GB
       max-request-size: 10GB
-      location: C:\back_msa\source
+      location: C:\back_msa\source\
 
 
   Post: /v1/payment/approve

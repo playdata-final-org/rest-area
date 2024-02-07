@@ -7,7 +7,9 @@
 </head>
 <body>
 <section class="blogCollection">
-    <div class="collectionContainer" th:each="membership, iterStat : ${membershipTier}">
+<div th:text="${isBoosted}"></div>
+    <div th:if="${isBoosted == false}"
+            class="collectionContainer" th:each="membership, iterStat : ${membershipTier}">
         <div class="card">
             <div class="cardHeader">
                 <h2 class="card-title" th:text="${membership.getTierName()}" style="font-size:25px;">제목</h2>
@@ -20,12 +22,42 @@
             <div class="membershipButton">
                 <form th:action="@{/blogMembership/{blogId}(blogId=${blog.blogId})}" method="post">
                    <input type="hidden" name="selectedTierId" th:value="${membership.getTierId()}">
+                    <div class="tierId" th:data-tier-class="${membership.getTierId()}"></div>
                     <button type="submit" class="joinButton" style="background-color: transparent;
                                                  color: #fff;
                                                  font-size: 18px;
                                                  border: none;
                                                  padding: 10px;
                                                  cursor: pointer;">가입하기</button>
+                </form>
+            </div>
+            <div class="card-body">
+                <p class="card-text" th:text="${membership.getTierContent()}">내용</p>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${isBoosted == true}"
+            class="collectionContainer" th:each="membership, iterStat : ${membershipTier}">
+        <div class="card">
+            <div class="cardHeader">
+                <h2 class="card-title" th:text="${membership.getTierName()}" style="font-size:25px;">제목</h2>
+                <div style="display: flex;
+                            align-items: center;
+                            flex-direction: row;">
+                    <img th:src="@{/assets/point.png}" style="width: 30px;"><p style="margin-left:5px; font-size:20px;" class="card-text" th:text="${membership.getTierPrice()}">가격</p>
+                </div>
+            </div>
+            <div class="membershipButton">
+                <form th:action="@{/updateBlogMembership/{blogId}(blogId=${blog.blogId})}" method="post">
+                    <input type="hidden" name="selectedTierId" th:value="${membership.getTierId()}">
+                    <div class="tierId" th:data-tier-class="${membership.getTierId()}"></div>
+                    <button type="submit" class="updateJoinButton" style="background-color: transparent;
+                                                 color: #fff;
+                                                 font-size: 18px;
+                                                 border: none;
+                                                 padding: 10px;
+                                                 cursor: pointer;">업데이트 하기</button>
                 </form>
             </div>
             <div class="card-body">

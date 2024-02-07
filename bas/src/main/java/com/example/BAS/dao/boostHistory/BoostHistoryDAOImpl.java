@@ -1,7 +1,9 @@
 package com.example.BAS.dao.boostHistory;
 
+import com.example.BAS.entitiy.blog.BoostDelete;
 import com.example.BAS.entitiy.blog.BoostHistory;
 import com.example.BAS.repository.BoostHistoryRepository;
+import com.example.BAS.repository.DeleteHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoostHistoryDAOImpl implements BoostHistoryDAO{
     private final BoostHistoryRepository boostHistoryRepository;
+    private final DeleteHistoryRepository deleteHistoryRepository;
 
     @Override
     public void save(BoostHistory boostHistory) {
@@ -42,5 +45,24 @@ public class BoostHistoryDAOImpl implements BoostHistoryDAO{
         return boostHistoryRepository.findByBoostHistoryId(boostHistoryId);
     }
 
+    @Override
+    public List<BoostHistory> findBlogIdByUserId(Long userId) {
+        return boostHistoryRepository.findBlogIdByUserUserId(userId);
+    }
+
+    @Override
+    public List<BoostHistory> findByUserUserId(Long userId) {
+        return boostHistoryRepository.findByUserUserId(userId);
+    }
+
+    @Override
+    public void saveHistory(BoostDelete boostDelete) {
+        deleteHistoryRepository.save(boostDelete);
+    }
+
+    @Override
+    public List<BoostDelete> findByUserIds(Long userId) {
+        return deleteHistoryRepository.findByUserUserId(userId);
+    }
 
 }

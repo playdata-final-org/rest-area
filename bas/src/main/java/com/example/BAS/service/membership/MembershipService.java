@@ -2,6 +2,7 @@ package com.example.BAS.service.membership;
 
 import com.example.BAS.dto.membership.MembershipTierRequestDTO;
 import com.example.BAS.dto.membership.MembershipTierResponseDTO;
+import com.example.BAS.entitiy.blog.Blogs;
 import com.example.BAS.entitiy.blog.Membership_tier;
 import com.example.BAS.entitiy.blog.Memberships;
 
@@ -18,4 +19,6 @@ public interface MembershipService {
     Membership_tier findByTierId(Long tierId);
 
     Memberships findByBlogId(Long blogId);
+
+    List<MembershipTierRequestDTO> getAllMembershipList(Blogs blogs);
 }

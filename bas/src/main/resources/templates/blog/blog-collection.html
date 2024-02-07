@@ -36,16 +36,9 @@
                         </div>
                     </div>
 
-<!--                    <section class="categoryArea" style="display: flex; margin-bottom:10px;">-->
-<!--                        <div style="background: #c4c4db42; width: 150px; padding: 10px; border-radius: 20px; margin-top:30px;">-->
-<!--                            <span th:if="${blogCollectionDTO.category != null}" th:text="${blogCollectionDTO.category}"></span>-->
-<!--                            <span th:unless="${blogCollectionDTO.category != null}">카테고리없음</span>-->
-<!--                        </div>-->
-<!--                    </section>-->
-
                     <!-- 다운로드 가능한 파일 표시 -->
                     <div class="cardFile"
-                         th:if="${collection.membershipType == 'allPublic' or blogCollectionDTO.tierId >= collection.tierId or blogCollectionDTO.blog.blogId == blog.blogId}"
+                         th:if="${#strings.equals(collection.membershipType, 'allPublic')} or ${blogCollectionDTO.tierId >= collection.tierId} or ${creator == booster}"
                          style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px">
                         <p class="card-text">
                             <i class="fa fa-file-archive-o" aria-hidden="true" style="color: #0000ff;"></i>
@@ -56,9 +49,10 @@
                             <span th:unless="${blogCollectionDTO.collectionFileNames[__${iter.index}__] != null}">없음</span>
                         </p>
                     </div>
+
                     <!-- 다운로드 권한이 없는 경우 표시 -->
                     <div class="cardFile"
-                         th:unless="${collection.membershipType == 'allPublic' or blogCollectionDTO.tierId >= collection.tierId or blogCollectionDTO.blog.blogId == blog.blogId}"
+                         th:unless="${#strings.equals(collection.membershipType, 'allPublic')} or ${blogCollectionDTO.tierId >= collection.tierId} or ${creator == booster}"
                          style="background: #c4c4db42; width: 100%; padding: 20px; border-radius: 10px;
                         display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
                         <div style="display: flex; align-items: center;">

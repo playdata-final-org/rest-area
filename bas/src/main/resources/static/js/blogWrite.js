@@ -4,13 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     allPublicButton.classList.add('selected');
-
-
-    const membershipTypeInput = document.createElement('input');
-    membershipTypeInput.type = 'hidden';
-    membershipTypeInput.name = 'membershipType';
-    membershipTypeInput.value = 'allPublic';
-    document.getElementById('blogForm').appendChild(membershipTypeInput);
 });
 
 function toggleMembershipSection(show) {

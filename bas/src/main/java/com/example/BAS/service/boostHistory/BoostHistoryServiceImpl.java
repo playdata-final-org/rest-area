@@ -4,6 +4,7 @@ import com.example.BAS.dao.blog.BlogDAO;
 import com.example.BAS.dao.boostHistory.BoostHistoryDAO;
 import com.example.BAS.dao.user.UserDAO;
 import com.example.BAS.entitiy.blog.Blogs;
+import com.example.BAS.entitiy.blog.BoostDelete;
 import com.example.BAS.entitiy.blog.BoostHistory;
 import com.example.BAS.entitiy.blog.Membership_tier;
 import com.example.BAS.entitiy.users.Users;
@@ -71,4 +72,45 @@ public class BoostHistoryServiceImpl implements BoostHistoryService{
 
         boostHistoryDAO.save(boostHistory);
     }
+
+    @Override
+    public List<BoostHistory> findBlogIdByUserId(Long userId) {
+        return boostHistoryDAO.findBlogIdByUserId(userId);
+    }
+
+    @Override
+    public void update(Long selectedTierId, Long userId, Long blogId) {
+        Users user = userDAO.findByUserId(userId);
+        Blogs blogs = blogDAO.findByBlogId(blogId);
+        Membership_tier membershipTier = membershipService.findById(selectedTierId);
+        List<BoostHistory> boostHistories = boostHistoryDAO.findByUserUserId(userId);
+        Long historyId = null;
+
+        for (BoostHistory history : boostHistories) {
+            if (history.getBlogs().getBlogId().equals(blogId)) {
+                historyId = history.getBoostHistoryId();
+                break;
+            }
+        }
+        int tierPrice = Integer.parseInt(membershipTier.getTierPrice());
+
+        if(user.getPoint() >= tierPrice){
+            user.setPoint(user.getPoint()-tierPrice);
+
+            BoostHistory boostHistory = boostHistoryDAO.findByBoostHistoryId(historyId);
+            boostHistory.setMembership_tier(membershipTier);
+            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);//테스트 5분
+//            LocalDateTime expirationDate = LocalDateTime.now().plusDays(31);
+            boostHistory.setExpirationDate(expirationDate);
+            boostHistory.setIsBoostState(true);
+            boostHistoryDAO.save(boostHistory);
+        }
+        userDAO.save(user);
+    }
+
+    @Override
+    public List<BoostDelete> findByUserIds(Long userId) {
+        return boostHistoryDAO.findByUserIds(userId);
+    }
+
 }

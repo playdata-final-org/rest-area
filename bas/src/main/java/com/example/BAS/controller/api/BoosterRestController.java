@@ -80,7 +80,7 @@ public class BoosterRestController {
         String category = requestBody.get("category");
         // TODO : 나중에 꼬꼮꼭수정 필요
 
-        if (userInput == null && category != null && !category.isEmpty() ) {
+        if ((userInput == null || userInput.isEmpty())  && category != null && !category.isEmpty() ) {
             List<Blogs> blogs = blogService.getBlogsByCategory(BlogCategory.valueOf(category));
 
             if (blogs.isEmpty()) {
@@ -146,10 +146,10 @@ public class BoosterRestController {
 
                 if (blog.getCategory() != null) {
                     categoryText = String.valueOf(blog.getCategory());
-                    if (category != null && !categoryText.equals(category))
+                    if (category != null && !category.isEmpty() && !categoryText.equals(category))
                         continue;
                 } else {
-                    if (category != null)
+                    if (category != null && !category.isEmpty())
                         continue;
                     categoryText = "카테고리 없음";
                 }
